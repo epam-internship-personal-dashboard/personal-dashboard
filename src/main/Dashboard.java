@@ -22,12 +22,13 @@ public class Dashboard {
 	
 	public static void registerUsers (HashSet<User> hshUsers) {
 		System.out.println("Please enter name:");
-		uName = scanner.next();
+		uName = scanner.nextLine();
 		System.out.println("Please enter age:");
 		uAge = scanner.nextInt();
 		System.out.println("Please enter email:");
 		uEmail = scanner.next();		
 		hshUsers.add(new User(uName, uAge, uEmail));
+		//hshUsers.remove(o)
 	}	
 	
 	public static  void listUsers(HashSet<User> hshUsers) {
@@ -48,7 +49,7 @@ public class Dashboard {
 		int newAge = scanner.nextInt();
 		
 		for( User element : hshUsers){
-			if (element.getEmail() == email){
+			if (element.getEmail().equals(email)){
 				element.setName(newName);
 				element.setEmail(newEmail);
 				element.setAge(newAge);
