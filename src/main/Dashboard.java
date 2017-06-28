@@ -16,8 +16,14 @@ public class Dashboard {
 		//List out all Users
 		listUsers(hashUsers);
 		
-		//
+		//Modify a User
 		modifyUser(hashUsers);
+		
+		//Delete a User
+		deleteUser(hashUsers);
+		
+		//List out all Users
+		listUsers(hashUsers);
 	}
 	
 	public static void registerUsers (HashSet<User> hshUsers) {
@@ -59,9 +65,19 @@ public class Dashboard {
 		}
 	}	
 	
-	public void deleteUser (String uName, String uAge, String uEmail) {
-		//email = uEmail;		
-		//loop through to find email.
+	public static void deleteUser (HashSet<User> hshUsers) {
+		System.out.println("Please enter the current email of the user you wish to delete:");
+		String email = scanner.next().toString();	
+		String newName;
+		
+		for( User element : hshUsers){
+			if (element.getEmail().equals(email)){
+				newName = element.getName();
+				hshUsers.remove(element);
+				System.out.println("The user:" + newName +"has been deleted");
+			}
+			
+		}		
 	}
 	
 }
