@@ -11,12 +11,18 @@ public class Dashboard {
 	
 	public static void main(String[] args) {				
 		//Register User
-		registerUsers(hashUsers);
+		System.out.println("Please enter name:");
+		uName = scanner.nextLine();
+		System.out.println("Please enter age:");
+		uAge = scanner.nextInt();
+		System.out.println("Please enter email:");
+		uEmail = scanner.next();	
+		registerUsers(hashUsers, uName, uAge, uEmail);
 		
 		//List out all Users
 		listUsers(hashUsers);
 		
-		//Modify a User
+		//Modify a User		
 		modifyUser(hashUsers);
 		
 		//Delete a User
@@ -26,15 +32,8 @@ public class Dashboard {
 		listUsers(hashUsers);
 	}
 	
-	public static void registerUsers (HashSet<User> hshUsers) {
-		System.out.println("Please enter name:");
-		uName = scanner.nextLine();
-		System.out.println("Please enter age:");
-		uAge = scanner.nextInt();
-		System.out.println("Please enter email:");
-		uEmail = scanner.next();		
-		hshUsers.add(new User(uName, uAge, uEmail));
-		//hshUsers.remove(o)
+	public static void registerUsers (final HashSet<User> hshUsers, final String name, final int age, final String email) {			
+		hshUsers.add(new User(name, age, email));		
 	}	
 	
 	public static  void listUsers(HashSet<User> hshUsers) {
@@ -74,7 +73,7 @@ public class Dashboard {
 			if (element.getEmail().equals(email)){
 				newName = element.getName();
 				hshUsers.remove(element);
-				System.out.println("The user:" + newName +"has been deleted");
+				System.out.println("The user :" + newName +"has been deleted");
 			}
 			
 		}		
