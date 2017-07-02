@@ -11,12 +11,12 @@ public class User {
 
 	}
 	
-	User (String uName, int uAge, String uEmail) {
-		name = uName;
-		age = uAge;
-		email = uEmail;
-	}
-	
+//	User (String uName, int uAge, String uEmail) {
+//		name = uName;
+//		age = uAge;
+//		email = uEmail;
+//	}
+//	
 	@Override
 	public int hashCode() {
 		final int prime = 31;

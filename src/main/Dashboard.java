@@ -6,76 +6,62 @@ public class Dashboard {
 	static String uName;
 	static int uAge; 
 	static String uEmail;
+	static User user = new User();
 	static HashSet<User> hashUsers =  new HashSet<User>();
 	static Scanner scanner = new Scanner(System.in);	
 	
 	public static void main(String[] args) {				
-		//Register User
+	//Register User
+		
 		System.out.println("Please enter name:");
-		uName = scanner.nextLine();
+		user.setName(scanner.nextLine());
 		System.out.println("Please enter age:");
-		uAge = scanner.nextInt();
+		user.setAge(scanner.nextInt());
 		System.out.println("Please enter email:");
-		uEmail = scanner.next();	
-		registerUsers(hashUsers, uName, uAge, uEmail);
+		user.setEmail(scanner.next());	
 		
 		//List out all Users
-		listUsers(hashUsers);
+		listUsers();
 		
 		//Modify a User		
-		modifyUser(hashUsers);
+		modifyUser();
 		
 		//Delete a User
 		deleteUser(hashUsers);
 		
 		//List out all Users
-		listUsers(hashUsers);
+		listUsers();
 	}
-	
-	public static void registerUsers (final HashSet<User> hshUsers, final String name, final int age, final String email) {			
-		hshUsers.add(new User(name, age, email));		
-	}	
-	
-	public static  void listUsers(HashSet<User> hshUsers) {
-		for( User element : hshUsers){
+		
+	public static  void listUsers() {
+		for( User element : hashUsers){
 			System.out.println(element +"\n");
 		}
 	}
 	
-	public static void modifyUser (HashSet<User> hshUsers) {	
+	public static void modifyUser () {	
 		System.out.println("Please enter the current email of the user you wish to modify:");
-		String email = scanner.next().toString();	
-		
-		System.out.println("Please enter new name:");
-		String newName = scanner.next().toString();
-		System.out.println("Please enter new email:");
-		String newEmail = scanner.next().toString();
-		System.out.println("Please enter new age:");
-		int newAge = scanner.nextInt();
-		
-		for( User element : hshUsers){
+		String email = scanner.next().toString();		
+		for( User element : hashUsers){
 			if (element.getEmail().equals(email)){
-				element.setName(newName);
-				element.setEmail(newEmail);
-				element.setAge(newAge);
-				System.out.println(element +"\n");
-			}
-			
-		}
+				hashUsers.remove(element);
+			}			
+		}		
+		System.out.println("Please enter name:");
+		user.setName(scanner.nextLine());
+		System.out.println("Please enter age:");
+		user.setAge(scanner.nextInt());
+		System.out.println("Please enter email:");
+		user.setEmail(scanner.next());	
 	}	
 	
 	public static void deleteUser (HashSet<User> hshUsers) {
 		System.out.println("Please enter the current email of the user you wish to delete:");
-		String email = scanner.next().toString();	
-		String newName;
-		
+		String email = scanner.next().toString();			
 		for( User element : hshUsers){
 			if (element.getEmail().equals(email)){
-				newName = element.getName();
 				hshUsers.remove(element);
-				System.out.println("The user :" + newName +"has been deleted");
-			}
-			
+			}			
 		}		
 	}
 	
