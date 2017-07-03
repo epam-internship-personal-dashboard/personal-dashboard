@@ -8,7 +8,7 @@ public class Dashboard {
 	static Scanner scanner = new Scanner(System.in);	
 	
 	public static void main(String[] args) {	
-		System.out.println("Welcome to User Management System");
+		System.out.println("Welcome to User Management System ");
 		int menu =  0;
 		String email;
 		
@@ -18,8 +18,10 @@ public class Dashboard {
 			System.out.println("[3] MODIFY USER");
 			System.out.println("[4] DELETE USER");
 			
-			System.out.println("Choose a menu: ");
-			menu = scanner.nextInt();
+			try {
+				System.out.println("Choose a menu: ");
+				menu = scanner.nextInt();
+			
 			scanner.nextLine();
 			
 			switch (menu) {
@@ -57,9 +59,12 @@ public class Dashboard {
 				break;
 				
 			default:
-				System.out.println("You have entered an valid menu :( \nStart again");	
+				System.out.println("You have entered an valid menu :( \nPlease try again");	
 				break;
 			}
+			} catch(InputMismatchException e) {
+				System.out.println("Incorrect menu entered :( \nPlease try again");			
+			} 
 			
 		} while (menu > 0 && menu <5);	
 		
@@ -71,8 +76,12 @@ public class Dashboard {
 		User user = new User();
 		System.out.println("Please enter name:");
 		user.setName(scanner.nextLine());
-		System.out.println("Please enter age:");
-		user.setAge(scanner.nextInt());
+		try {
+			System.out.println("Please enter age:");
+			user.setAge(scanner.nextInt());
+		} catch(InputMismatchException e) {
+			System.out.println("Incorrect age entered! \n");			
+		} 
 		System.out.println("Please enter email:");
 		user.setEmail(scanner.next());	
 		insertUser(user);		
