@@ -10,13 +10,7 @@ public class User {
 		// TODO Auto-generated method stub
 
 	}
-	
-//	User (String uName, int uAge, String uEmail) {
-//		name = uName;
-//		age = uAge;
-//		email = uEmail;
-//	}
-//	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;

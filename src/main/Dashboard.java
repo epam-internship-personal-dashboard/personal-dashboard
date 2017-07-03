@@ -3,51 +3,82 @@ package main;
 import java.util.*;
 
 public class Dashboard {
-	static String uName;
-	static int uAge; 
-	static String uEmail;
-	static User user = new User();
+	
 	static HashSet<User> hashUsers =  new HashSet<User>();
 	static Scanner scanner = new Scanner(System.in);	
 	
-	public static void main(String[] args) {				
-	//Register User		
-		System.out.println("Please enter name:");
-		user.setName(scanner.nextLine());
-		System.out.println("Please enter age:");
-		user.setAge(scanner.nextInt());
-		System.out.println("Please enter email:");
-		user.setEmail(scanner.next());	
-		registerUsers();
+	public static void main(String[] args) {	
+		System.out.println("Welcome to User Management System");
+		int menu =  0;
+		String email;
 		
-		//List out all Users
-		listUsers();
+		do {
+			System.out.println("[1] REGISTER USER");
+			System.out.println("[2] LIST ALL USERS");
+			System.out.println("[3] MODIFY USER");
+			System.out.println("[4] DELETE USER");
+			
+			System.out.println("Choose a menu: ");
+			menu = scanner.nextInt();
+			scanner.nextLine();
+			
+			switch (menu) {
+			case 1:
+				//Register User		
+				registerUser();				
+				break;
+				
+			case 2:
+				//List out all Users
+				listUsers();				
+				break;
+				
+			case 3:
+				//Modify a User					
+				System.out.println("Please enter the current email of the user you wish to modify:");
+				email = scanner.next().toString();
+				if(findUser(email)) {
+					deleteUser(email);		
+					scanner.nextLine();
+					registerUser();
+					System.out.println("User details modified:");
+					
+				} else {
+					System.out.println("This user does not exist \n \n");
+				}
+				
+				break;
+				
+			case 4:
+				//Delete a User
+				System.out.println("Please enter the current email of the user you wish to delete:");
+				email = scanner.next().toString();
+				deleteUser(email);
+				break;
+				
+			default:
+				System.out.println("You have entered an valid menu :( \nStart again");	
+				break;
+			}
+			
+		} while (menu > 0 && menu <5);	
 		
-		//Modify a User		
-		System.out.println("Please enter the current email of the user you wish to modify:");
-		deleteUser();
-		System.out.println("Please enter name:");
-		user.setName(scanner.nextLine());
-		System.out.println("Please enter age:");
-		user.setAge(scanner.nextInt());
-		System.out.println("Please enter email:");
-		user.setEmail(scanner.next());	
-		registerUsers();
-		System.out.println("User details modified:");
 		
-		//List out all Users
-		listUsers();
-		
-		//Delete a User
-		System.out.println("Please enter the current email of the user you wish to delete:");
-		deleteUser();
-		
-		
-		//List out all Users
-		listUsers();
+
 	}
 	
-	public static void registerUsers () {			
+	public static void registerUser() {		
+		User user = new User();
+		System.out.println("Please enter name:");
+		user.setName(scanner.nextLine());
+		System.out.println("Please enter age:");
+		user.setAge(scanner.nextInt());
+		System.out.println("Please enter email:");
+		user.setEmail(scanner.next());	
+		insertUser(user);		
+		 	}	
+	
+	public static void insertUser(User user) {			
 		hashUsers.add(user);		
 		 	}
 		
@@ -57,9 +88,21 @@ public class Dashboard {
 		}
 	}
 	
+	
+	public static  boolean findUser(String email) {
+		boolean exists = false;
+		for( User element : hashUsers){
+			if (element.getEmail().equals(email)){
+				exists = true;
+			}else {
+				exists =false;
+			}
+		}
+		return exists;	
+	}
+	
 
-	public static void deleteUser () {		
-		String email = scanner.next().toString();			
+	public static void deleteUser (String email) {							
 		for( User element : hashUsers){
 			if (element.getEmail().equals(email)){
 				hashUsers.remove(element);
