@@ -1,125 +1,131 @@
 package main;
 
-import java.util.*;
+import java.util.HashSet;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class Dashboard {
 
-	static HashSet<User> hashUsers = new HashSet<User>();
-	static Scanner scanner = new Scanner(System.in);
+    static HashSet<User> hashUsers = new HashSet<User>();
+    static Scanner scanner = new Scanner(System.in);
 
-	public static void main(String[] args) {
-		System.out.println("Welcome to User Management System ");
-		int menu = 0;
-		String email;
+    public static void main(String[] args) {
+        System.out.println("Welcome to User Management System ");
+        int menu = 0;
+        String email;
 
-		do {
-			System.out.println("[0] EXIT");
-			System.out.println("[1] REGISTER USER");
-			System.out.println("[2] LIST ALL USERS");
-			System.out.println("[3] MODIFY USER");
-			System.out.println("[4] DELETE USER");
+        do {
+            System.out.println("[0] EXIT");
+            System.out.println("[1] REGISTER USER");
+            System.out.println("[2] LIST ALL USERS");
+            System.out.println("[3] MODIFY USER");
+            System.out.println("[4] DELETE USER");
 
-			try {
-				System.out.println("Choose a menu: ");
-				menu = scanner.nextInt();
+            try {
+                System.out.println("Choose a menu: ");
 
-				scanner.nextLine();
+                while (!scanner.hasNextInt()) {
+                    scanner.next();
+                }
 
-				switch (menu) {
-				case 0:
-					// Quit
-					System.out.println("GoodBye...");
-					System.exit(0);
-					break;
-					
-				case 1:
-					// Register User
-					registerUser();
-					break;
+                menu = scanner.nextInt();
+                scanner.nextLine();
 
-				case 2:
-					// List out all Users
-					listUsers();
-					break;
+                switch (menu) {
+                case 0:
+                    // Quit
+                    System.out.println("GoodBye...");
+                    System.exit(0);
+                    break;
 
-				case 3:
-					// Modify a User
-					System.out.println("Please enter the current email of the user you wish to modify:");
-					email = scanner.next().toString();
-					if (findUser(email)) {
-						deleteUser(email);
-						scanner.nextLine();
-						registerUser();
-						System.out.println("User details modified:");
+                case 1:
+                    // Register User
+                    registerUser();
+                    break;
 
-					} else {
-						System.out.println("This user does not exist \n \n");
-					}
+                case 2:
+                    // List out all Users
+                    listUsers();
+                    break;
 
-					break;
+                case 3:
+                    // Modify a User
+                    System.out.println("Please enter the current email of the user you wish to modify:");
+                    email = scanner.next().toString();
+                    if (findUser(email)) {
+                        deleteUser(email);
+                        scanner.nextLine();
+                        registerUser();
+                        System.out.println("User details modified:");
 
-				case 4:
-					// Delete a User
-					System.out.println("Please enter the current email of the user you wish to delete:");
-					email = scanner.next().toString();
-					deleteUser(email);
-					break;
+                    } else {
+                        System.out.println("This user does not exist \n \n");
+                    }
 
-				default:
-					System.out.println("You have entered an valid menu :( \nPlease try again");
-					break;
-				}
-			} catch (InputMismatchException e) {
-				System.out.println("Incorrect menu entered :( \nPlease try again");
-			}
+                    break;
 
-		} while (menu > 0 && menu < 5);
+                case 4:
+                    // Delete a User
+                    System.out.println("Please enter the current email of the user you wish to delete:");
+                    email = scanner.next().toString();
+                    deleteUser(email);
+                    break;
 
-	}
+                default:
+                    System.out.println("You have entered an valid menu :( \nPlease try again");
+                    break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println("Incorrect menu entered :( \nPlease try again");
+            }
 
-	public static void registerUser() {
-		User user = new User();
-		System.out.println("Please enter name:");
-		user.setName(scanner.nextLine());
-		try {
-			System.out.println("Please enter age:");
-			user.setAge(scanner.nextInt());
-		} catch (InputMismatchException e) {
-			System.out.println("Incorrect age entered! \n");
-		}
-		System.out.println("Please enter email:");
-		user.setEmail(scanner.next());
-		insertUser(user);
-	}
+        } while (true);
 
-	public static void insertUser(User user) {
-		hashUsers.add(user);
-	}
+    }
 
-	public static void listUsers() {
-		for (User element : hashUsers) {
-			System.out.println(element + "\n");
-		}
-	}
+    public static void registerUser() {
+        User user = new User();
+        System.out.println("Please enter name:");
+        user.setName(scanner.nextLine());
+        try {
+            System.out.println("Please enter age:");
+            user.setAge(scanner.nextInt());
+        } catch (InputMismatchException e) {
+            System.out.println("Incorrect age entered! \n");
+        }
+        System.out.println("Please enter email:");
+        user.setEmail(scanner.next());
+        insertUser(user);
+    }
 
-	public static boolean findUser(String email) {
-		boolean exists = false;
-		for (User element : hashUsers) {
-			if (element.getEmail().equals(email)) {
-				exists = true;
-			} else {
-				exists = false;
-			}
-		}
-		return exists;
-	}
+    public static void insertUser(User user) {
+        hashUsers.add(user);
+    }
 
-	public static void deleteUser(String email) {
-		for (User element : hashUsers) {
-			if (element.getEmail().equals(email)) {
-				hashUsers.remove(element);
-			}
-		}
-	}
+    public static void listUsers() {
+        for (User element : hashUsers) {
+            System.out.println(element + "\n");
+        }
+    }
+
+    public static boolean findUser(String email) {
+        boolean exists = false;
+        for (User element : hashUsers) {
+            if (element.getEmail().equals(email)) {
+                exists = true;
+            } else {
+                exists = false;
+            }
+        }
+        return exists;
+    }
+
+    public static void deleteUser(String email) {
+        for (User element : hashUsers) {
+            if (element.getEmail().equals(email)) {
+                hashUsers.remove(element);
+            }
+        }
+    }
 
 }
