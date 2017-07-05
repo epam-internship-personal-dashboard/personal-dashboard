@@ -105,7 +105,7 @@ public class Dashboard {
         System.out.println(storeUsers.retrieve());
     }
 
-    public static boolean findUser(String email) {
+    public static boolean findUser(final String email) {
         boolean exists = false;
         for (User element : storeUsers.retrieve()) {
             if (element.getEmail().equals(email)) {
@@ -117,7 +117,7 @@ public class Dashboard {
         return exists;
     }
 
-    public static void deleteUser(String email) {
+    public static void deleteUser(final String email) {
         for (User element : storeUsers.retrieve()) {
             if (element.getEmail().equals(email)) {
                 storeUsers.delete(element);
