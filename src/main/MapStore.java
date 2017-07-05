@@ -2,7 +2,7 @@ package main;
 
 import java.util.Set;
 
-public interface Store<T> {
+public interface MapStore<T> {
 
     void store(T t);
 

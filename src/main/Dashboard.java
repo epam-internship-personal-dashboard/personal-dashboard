@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Dashboard {
 
-    static StoreSet<User> storeUsers = new StoreSet<User>();
+    static MapStoreImpl<User> storeUsers = new MapStoreImpl<User>();
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {

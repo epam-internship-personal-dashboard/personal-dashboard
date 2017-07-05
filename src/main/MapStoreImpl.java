@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class StoreSet<T> implements Store<T> {
+public class MapStoreImpl<T> implements MapStore<T> {
     private int count = 0;
 
     private HashMap<Integer, T> hMap = new HashMap<Integer, T>();
@@ -17,7 +17,7 @@ public class StoreSet<T> implements Store<T> {
     }
 
     @Override
-    public Set<T> retrieve() {        
+    public Set<T> retrieve() {
         return new HashSet<>(hMap.values());
     }
 

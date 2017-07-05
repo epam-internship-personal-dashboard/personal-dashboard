@@ -53,7 +53,7 @@ public class User {
         return name;
     }
 
-    public void setName(String uName) {
+    public void setName(final String uName) {
         name = uName;
     }
 
@@ -61,7 +61,7 @@ public class User {
         return age;
     }
 
-    public void setAge(int uAge) {
+    public void setAge(final int uAge) {
         age = uAge;
     }
 
@@ -69,7 +69,7 @@ public class User {
         return email;
     }
 
-    public void setEmail(String uEmail) {
+    public void setEmail(final String uEmail) {
         email = uEmail;
     }
 
