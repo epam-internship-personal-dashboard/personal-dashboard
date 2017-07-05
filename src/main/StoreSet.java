@@ -1,53 +1,40 @@
 package main;
 
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Map.Entry;
 import java.util.Set;
 
 public class StoreSet<T> implements Store<T> {
-    private static int count = 0;
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-    }
+    private int count = 0;
 
     private HashMap<Integer, T> hMap = new HashMap<Integer, T>();
 
     @Override
     public void store(T t) {
-        hMap.put(mapKey(), t);
+        hMap.put(++count, t);
     }
 
     @Override
-    public void retrieve() {
-        Set<Entry<Integer, T>> set = hMap.entrySet();
-        for (Entry<Integer, T> me : set) {
-            System.out.println(me.getValue());
+    public Set<T> retrieve() {        
+        return new HashSet<>(hMap.values());
+    }
+
+    @Override
+    public void delete(T t) {
+        for (Iterator<Entry<Integer, T>> it = hMap.entrySet().iterator(); it.hasNext();) {
+            Entry<Integer, T> entry = it.next();
+            if (entry.getValue().equals(t)) {
+                it.remove();
+            }
         }
     }
 
     @Override
-    public boolean modify(T t) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public delete(T t) {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    @Override
-    public boolean store() {
-        // TODO Auto-generated method stub
-        return false;
-    }
-
-    private static int mapKey() {
-        count++;
-        return count;
+    public void modify(T t, T k) {
+        delete(t);
+        store(k);
     }
 
 }

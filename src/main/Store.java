@@ -1,14 +1,15 @@
 package main;
 
+import java.util.Set;
+
 public interface Store<T> {
 
     void store(T t);
 
-    void retrieve();
-
-    boolean modify(T t);
+    Set<T> retrieve();
 
     void delete(T t);
 
-    boolean store();
+    void modify(T t, T k);
+
 }

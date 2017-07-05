@@ -1,12 +1,11 @@
 package main;
 
-import java.util.HashSet;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Dashboard {
 
-    static HashSet<User> hashUsers = new HashSet<User>();
+    static StoreSet<User> storeUsers = new StoreSet<User>();
     static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -99,18 +98,16 @@ public class Dashboard {
     }
 
     public static void insertUser(User user) {
-        hashUsers.add(user);
+        storeUsers.store(user);
     }
 
     public static void listUsers() {
-        for (User element : hashUsers) {
-            System.out.println(element + "\n");
-        }
+        System.out.println(storeUsers.retrieve());
     }
 
     public static boolean findUser(String email) {
         boolean exists = false;
-        for (User element : hashUsers) {
+        for (User element : storeUsers.retrieve()) {
             if (element.getEmail().equals(email)) {
                 exists = true;
             } else {
@@ -121,9 +118,9 @@ public class Dashboard {
     }
 
     public static void deleteUser(String email) {
-        for (User element : hashUsers) {
+        for (User element : storeUsers.retrieve()) {
             if (element.getEmail().equals(email)) {
-                hashUsers.remove(element);
+                storeUsers.delete(element);
             }
         }
     }
