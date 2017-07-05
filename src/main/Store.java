@@ -4,11 +4,11 @@ public interface Store<T> {
 
     void store(T t);
 
-    T retrieve();
+    void retrieve();
 
     boolean modify(T t);
 
-    boolean delete(T t);
+    void delete(T t);
 
     boolean store();
 }
