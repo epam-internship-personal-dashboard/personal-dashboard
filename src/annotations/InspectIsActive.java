@@ -2,6 +2,7 @@ package annotations;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.TreeSet;
 
 import main.User;
 
@@ -12,26 +13,43 @@ public class InspectIsActive {
         Class<User> c = User.class;
         Field[] f = c.getDeclaredFields();
         Method[] m = c.getMethods();
+        TreeSet<String> fSet = new TreeSet<String>();
+        TreeSet<String> MSet = new TreeSet<String>();
 
-        for (Field field : f) {
-            if (field.isAnnotationPresent(IsActive.class)) {
-                IsActive anno = field.getAnnotation(IsActive.class);
-                boolean value = anno.active();
-                if (value) {
-                    System.out.println("The field \"" + field.getName() + "\" in Class " + c.getName() + " is True");
+        try {
+            for (Field field : f) {
+                if (field.isAnnotationPresent(IsActive.class)) {
+                    IsActive anno = field.getAnnotation(IsActive.class);
+                    boolean value = anno.active();
+                    if (value) {
+                        fSet.add(field.getName());
+                    }
                 }
             }
+            for (String value : fSet) {
+                System.out.println(value);
+            }
+        } catch (TypeNotPresentException e) {
+            // catching....
         }
 
-        for (Method method : m) {
-            if (method.isAnnotationPresent(IsActive.class)) {
-                IsActive anno = method.getAnnotation(IsActive.class);
-                boolean value = anno.active();
-                if (value) {
-                    System.out.println("The method \"" + method.getName() + "\" in Class " + c.getName() + " is True");
+        try {
+            for (Method method : m) {
+                if (method.isAnnotationPresent(IsActive.class)) {
+                    IsActive anno = method.getAnnotation(IsActive.class);
+                    boolean value = anno.active();
+                    if (value) {
+                        MSet.add(method.getName());
+                    }
                 }
             }
+            for (String value : MSet) {
+                System.out.println(value);
+            }
+        } catch (TypeNotPresentException e) {
+            // catching....
         }
+
     }
 
 }
