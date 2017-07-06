@@ -1,5 +1,7 @@
 package main;
 
+import annotations.IsActive;
+
 public class User {
     private String name;
     private int age;
@@ -49,26 +51,32 @@ public class User {
         return "User [name=" + name + ", age=" + age + ", email=" + email + "]";
     }
 
+    @IsActive(active = true)
     public String getName() {
         return name;
     }
 
+    @IsActive(active = false)
     public void setName(final String uName) {
         name = uName;
     }
 
+    @IsActive(active = true)
     public int getAge() {
         return age;
     }
 
+    @IsActive(active = false)
     public void setAge(final int uAge) {
         age = uAge;
     }
 
+    @IsActive(active = true)
     public String getEmail() {
         return email;
     }
 
+    @IsActive(active = false)
     public void setEmail(final String uEmail) {
         email = uEmail;
     }
