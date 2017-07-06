@@ -3,8 +3,11 @@ package main;
 import annotations.IsActive;
 
 public class User {
+    @IsActive(active = true)
     private String name;
+    @IsActive(active = false)
     private int age;
+    @IsActive(active = true)
     private String email;
 
     public static void main(String[] args) {
