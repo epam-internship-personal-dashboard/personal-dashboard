@@ -1,4 +1,4 @@
-package com.github.gokolo.go_personal_dashboard;
+package com.github.gokolo.personaldashboard;
 
 import java.util.HashMap;
 import java.util.HashSet;

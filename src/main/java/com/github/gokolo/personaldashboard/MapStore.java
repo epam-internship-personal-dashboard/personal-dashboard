@@ -1,4 +1,4 @@
-package main;
+package com.github.gokolo.personaldashboard;
 
 import java.util.Set;
 

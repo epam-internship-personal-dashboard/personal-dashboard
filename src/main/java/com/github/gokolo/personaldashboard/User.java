@@ -1,14 +1,9 @@
-package main;
+package com.github.gokolo.personaldashboard;
 
 public class User {
     private String name;
     private int age;
     private String email;
-
-    public static void main(String[] args) {
-        // TODO Auto-generated method stub
-
-    }
 
     @Override
     public int hashCode() {

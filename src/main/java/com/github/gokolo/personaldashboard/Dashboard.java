@@ -1,12 +1,12 @@
-package com.github.gokolo.go_personal_dashboard;
+package com.github.gokolo.personaldashboard;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Dashboard {
 
-    static MapStoreImpl<User> storeUsers = new MapStoreImpl<User>();
-    static Scanner scanner = new Scanner(System.in);
+    private static MapStoreImpl<User> storeUsers = new MapStoreImpl<User>();
+    private static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
         System.out.println("Welcome to User Management System ");
@@ -50,7 +50,7 @@ public class Dashboard {
                 case 3:
                     // Modify a User
                     System.out.println("Please enter the current email of the user you wish to modify:");
-                    email = scanner.next().toString();
+                    email = scanner.next();
                     if (findUser(email)) {
                         deleteUser(email);
                         scanner.nextLine();
@@ -66,7 +66,7 @@ public class Dashboard {
                 case 4:
                     // Delete a User
                     System.out.println("Please enter the current email of the user you wish to delete:");
-                    email = scanner.next().toString();
+                    email = scanner.next();
                     deleteUser(email);
                     break;
 
