@@ -16,38 +16,30 @@ public class InspectIsActive {
         TreeSet<String> fSet = new TreeSet<String>();
         TreeSet<String> MSet = new TreeSet<String>();
 
-        try {
-            for (Field field : f) {
-                if (field.isAnnotationPresent(IsActive.class)) {
-                    IsActive anno = field.getAnnotation(IsActive.class);
-                    boolean value = anno.active();
-                    if (value) {
-                        fSet.add(field.getName());
-                    }
+        for (Field field : f) {
+            if (field.isAnnotationPresent(IsActive.class)) {
+                IsActive anno = field.getAnnotation(IsActive.class);
+                boolean value = anno.active();
+                if (value) {
+                    fSet.add(field.getName());
                 }
             }
-            for (String value : fSet) {
-                System.out.println(value);
-            }
-        } catch (TypeNotPresentException e) {
-            // catching....
+        }
+        for (String value : fSet) {
+            System.out.println(value);
         }
 
-        try {
-            for (Method method : m) {
-                if (method.isAnnotationPresent(IsActive.class)) {
-                    IsActive anno = method.getAnnotation(IsActive.class);
-                    boolean value = anno.active();
-                    if (value) {
-                        MSet.add(method.getName());
-                    }
+        for (Method method : m) {
+            if (method.isAnnotationPresent(IsActive.class)) {
+                IsActive anno = method.getAnnotation(IsActive.class);
+                boolean value = anno.active();
+                if (value) {
+                    MSet.add(method.getName());
                 }
             }
-            for (String value : MSet) {
-                System.out.println(value);
-            }
-        } catch (TypeNotPresentException e) {
-            // catching....
+        }
+        for (String value : MSet) {
+            System.out.println(value);
         }
 
     }
