@@ -12,33 +12,28 @@ public class InspectIsActive {
         // TODO Auto-generated method stub
         Class<User> c = User.class;
         Field[] f = c.getDeclaredFields();
-        Method[] m = c.getMethods();
-        TreeSet<String> fSet = new TreeSet<String>();
-        TreeSet<String> MSet = new TreeSet<String>();
+        Method[] m = c.getDeclaredMethods();
+        TreeSet<String> nameSet = new TreeSet<String>();
 
         for (Field field : f) {
             if (field.isAnnotationPresent(IsActive.class)) {
                 IsActive anno = field.getAnnotation(IsActive.class);
                 boolean value = anno.active();
                 if (value) {
-                    fSet.add(field.getName());
+                    nameSet.add(field.getName());
                 }
             }
         }
-        for (String value : fSet) {
-            System.out.println(value);
-        }
-
         for (Method method : m) {
             if (method.isAnnotationPresent(IsActive.class)) {
                 IsActive anno = method.getAnnotation(IsActive.class);
                 boolean value = anno.active();
                 if (value) {
-                    MSet.add(method.getName());
+                    nameSet.add(method.getName());
                 }
             }
         }
-        for (String value : MSet) {
+        for (String value : nameSet) {
             System.out.println(value);
         }
 
