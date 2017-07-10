@@ -34,14 +34,62 @@
         </developer>
     </developers>
 
+    <!--
+        When using Maven, you have the ability to create "properties".
+        Properties are nothing more than key-value pairs.
+        In this case the keys are specified by the XML tag name, while values
+        are the text inside the tags.
+
+        Using the ${keyName} syntax, you can reference these values anywhere in this
+        pom.xml file.
+
+        Think of them as some kind of 'variables', promoting reusability.
+    -->
+    <!-- By the way, this is how you can leave comments in XML, HTML & SGML files :) -->
     <properties>
+        <!--
+            This property is a built-in one for the maven-resources-plugin and
+            specifies the character encoding Maven should use for every text file
+            inside a resource folder.
+
+            If not specified, the operating system default will be used, which is
+            ISO-8859-2 (Latin 2) for most Hungarian Windows systems for example.
+
+            Consider always using UTF-8 as a best practice.
+        -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!--
+            The following properties are user-defined ones.
+            It is really up to the person/people maintaining the pom.xml
+            what goes here.
+
+            I usually like to gather every dependency and plugin versions here
+            as properties so that I have a central place where I can glimpse at
+            the version of something without the need to locate it in the file.
+        -->
+        <dir.codequality>${project.basedir}/code-quality</dir.codequality>
         <version.java>1.8</version.java>
+
         <version.plugin.compiler>3.1</version.plugin.compiler>
+        <version.plugin.versions>2.3</version.plugin.versions>
+        <version.plugin.release>2.5.3</version.plugin.release>
+
+        <version.plugin.checkstyle>2.17</version.plugin.checkstyle>
+        <version.plugin.findbugs>3.0.4</version.plugin.findbugs>
+        <version.plugin.pmd>3.6</version.plugin.pmd>
     </properties>
 
     <build>
         <plugins>
+            <!--
+                The maven-compiler-plugin is a built-in plugin
+                that is a wrapper around the Java Compiler executable and has the
+                sole role of compiling your source files.
+
+                Here it is configured to consider source files as Java 8 source and
+                compile them to a byte-code format compatible with Java 8 virtual machines.
+            -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -51,6 +99,147 @@
                     <target>${version.java}</target>
                 </configuration>
             </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>versions-maven-plugin</artifactId>
+                <version>${version.plugin.versions}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>${version.plugin.release}</version>
+                <configuration>
+                    <tagNameFormat>${project.version}</tagNameFormat>
+                    <releaseProfiles>skipChecks</releaseProfiles>
+                </configuration>
+            </plugin>
+
+            <!-- Code Quality Plugins -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <version>${version.plugin.checkstyle}</version>
+                <configuration>
+                    <configLocation>code-quality/checkstyle/checks.xml</configLocation>
+                    <suppressionsLocation>${dir.codequality}/checkstyle/suppressions.xml</suppressionsLocation>
+                    <violationSeverity>warning</violationSeverity>
+                    <failOnViolation>true</failOnViolation>
+                    <failsOnError>false</failsOnError>
+                    <linkXRef>false</linkXRef>
+                    <consoleOutput>false</consoleOutput>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>findbugs-maven-plugin</artifactId>
+                <version>${version.plugin.findbugs}</version>
+                <configuration>
+                    <xmlOutput>true</xmlOutput>
+                    <effort>Max</effort>
+                    <threshold>Medium</threshold>
+                    <excludeFilterFile>${dir.codequality}/findbugs/findbugs-exclude.xml</excludeFilterFile>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-pmd-plugin</artifactId>
+                <version>${version.plugin.pmd}</version>
+                <configuration>
+                    <failOnViolation>true</failOnViolation>
+                    <linkXRef>false</linkXRef>
+                    <rulesets>
+                        <ruleset>${dir.codequality}/pmd/basic.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/braces.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/codesize.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/design.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/empty.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/javabeans.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/strings.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/typeresolution.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/unnecessary.xml</ruleset>
+                        <ruleset>${dir.codequality}/pmd/unusedcode.xml</ruleset>
+                    </rulesets>
+                    <verbose>true</verbose>
+                </configuration>
+            </plugin>
+            <!-- /Code Quality Plugins -->
         </plugins>
     </build>
+
+    <!--
+        Maven profiles help you create separate configurations of your plugins.
+        It's like having different set of outfits and choosing the right one
+        depending on the day or your mood.
+
+        In this actual setup, we have a profile called 'code-check' which is the
+        default profile and will execute the code analysis plugins automatically
+        when you build your project with Maven.
+
+        The other one, 'skipChecks' does no such thing and can be used to skip
+        static code analysis when you want to build faster, preferably during active
+        development.
+
+        To invoke a non-default profile, specify the -P<profile-name> switch after
+        a Maven command.
+        Example: mvn clean install -PskipChecks
+    -->
+    <profiles>
+        <profile>
+            <id>code-check</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-checkstyle-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>checkstyle-code-verification</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>check</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-pmd-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>pmd-code-verification</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>check</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.codehaus.mojo</groupId>
+                            <artifactId>findbugs-maven-plugin</artifactId>
+                            <executions>
+                                <execution>
+                                    <id>findbugs-code-verification</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>findbugs</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+            </build>
+        </profile>
+
+        <profile>
+            <id>skipChecks</id>
+        </profile>
+    </profiles>
 </project>
