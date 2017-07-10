@@ -12,7 +12,7 @@ public class MapStoreImpl<T> implements MapStore<T> {
     private HashMap<Integer, T> hMap = new HashMap<Integer, T>();
 
     @Override
-    public void store(T t) {
+    public void store(final T t) {
         hMap.put(++count, t);
     }
 
@@ -22,7 +22,7 @@ public class MapStoreImpl<T> implements MapStore<T> {
     }
 
     @Override
-    public void delete(T t) {
+    public void delete(final T t) {
         for (Iterator<Entry<Integer, T>> it = hMap.entrySet().iterator(); it.hasNext();) {
             Entry<Integer, T> entry = it.next();
             if (entry.getValue().equals(t)) {
@@ -32,7 +32,7 @@ public class MapStoreImpl<T> implements MapStore<T> {
     }
 
     @Override
-    public void modify(T t, T k) {
+    public void modify(final T t, final T k) {
         delete(t);
         store(k);
     }

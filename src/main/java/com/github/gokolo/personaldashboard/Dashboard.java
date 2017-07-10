@@ -3,12 +3,12 @@ package com.github.gokolo.personaldashboard;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Dashboard {
+public final class Dashboard {
 
-    private static MapStoreImpl<User> storeUsers = new MapStoreImpl<User>();
+    private static MapStoreImpl<User> storeUsers = new MapStoreImpl<>();
     private static Scanner scanner = new Scanner(System.in);
 
-    public static void main(String[] args) {
+    public static void main(final String... args) {
         System.out.println("Welcome to User Management System ");
         int menu = 0;
         String email;
@@ -97,7 +97,7 @@ public class Dashboard {
         insertUser(user);
     }
 
-    public static void insertUser(User user) {
+    public static void insertUser(final User user) {
         storeUsers.store(user);
     }
 
@@ -124,5 +124,7 @@ public class Dashboard {
             }
         }
     }
+
+    private Dashboard() {}
 
 }
