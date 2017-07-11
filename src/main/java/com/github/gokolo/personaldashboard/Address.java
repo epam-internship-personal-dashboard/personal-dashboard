@@ -1,6 +1,6 @@
 package com.github.gokolo.personaldashboard;
 
-public class Address {
+public final class Address {
     private String street;
     private String houseNumber;
     private String zipCode;
@@ -24,34 +24,45 @@ public class Address {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         Address other = (Address) obj;
         if (city == null) {
-            if (other.city != null)
+            if (other.city != null) {
                 return false;
-        } else if (!city.equals(other.city))
+            }
+        } else if (!city.equals(other.city)) {
             return false;
+        }
         if (houseNumber == null) {
-            if (other.houseNumber != null)
+            if (other.houseNumber != null) {
                 return false;
-        } else if (!houseNumber.equals(other.houseNumber))
+            }
+        } else if (!houseNumber.equals(other.houseNumber)) {
             return false;
+        }
         if (street == null) {
-            if (other.street != null)
+            if (other.street != null) {
                 return false;
-        } else if (!street.equals(other.street))
+            }
+        } else if (!street.equals(other.street)) {
             return false;
+        }
         if (zipCode == null) {
-            if (other.zipCode != null)
+            if (other.zipCode != null) {
                 return false;
-        } else if (!zipCode.equals(other.zipCode))
+            }
+        } else if (!zipCode.equals(other.zipCode)) {
             return false;
+        }
         return true;
     }
 

@@ -7,8 +7,8 @@ public class User {
     private String password;
     private String birthday;
     private String email;
-    Gender gender;
-    Role role;
+    private Gender gender;
+    private Role role;
 
     @Override
     public int hashCode() {
@@ -27,44 +27,60 @@ public class User {
 
     @Override
     public boolean equals(final Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         User other = (User) obj;
         if (birthday == null) {
-            if (other.birthday != null)
+            if (other.birthday != null) {
                 return false;
-        } else if (!birthday.equals(other.birthday))
+            }
+        } else if (!birthday.equals(other.birthday)) {
             return false;
+        }
         if (email == null) {
-            if (other.email != null)
+            if (other.email != null) {
                 return false;
-        } else if (!email.equals(other.email))
+            }
+        } else if (!email.equals(other.email)) {
             return false;
-        if (gender != other.gender)
+        }
+        if (gender != other.gender) {
             return false;
-        if (id != other.id)
+        }
+        if (id != other.id) {
             return false;
+        }
         if (name == null) {
-            if (other.name != null)
+            if (other.name != null) {
                 return false;
-        } else if (!name.equals(other.name))
+            }
+        } else if (!name.equals(other.name)) {
             return false;
+        }
         if (password == null) {
-            if (other.password != null)
+            if (other.password != null) {
                 return false;
-        } else if (!password.equals(other.password))
+            }
+        } else if (!password.equals(other.password)) {
             return false;
-        if (role != other.role)
+        }
+        if (role != other.role) {
             return false;
+        }
         if (username == null) {
-            if (other.username != null)
+            if (other.username != null) {
                 return false;
-        } else if (!username.equals(other.username))
+            }
+        } else if (!username.equals(other.username)) {
             return false;
+        }
         return true;
     }
 
