@@ -4,9 +4,13 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public final class Dashboard {
-
     private static MapStoreImpl<User> storeUsers = new MapStoreImpl<>();
     private static Scanner scanner = new Scanner(System.in);
+    private static final int EXIT_MENU = 0;
+    private static final int REGISTER_MENU = 1;
+    private static final int LIST_MENU = 2;
+    private static final int MODIFY_MENU = 3;
+    private static final int DELETE_MENU = 4;
 
     public static void main(final String... args) {
         System.out.println("Welcome to User Management System ");
@@ -31,23 +35,23 @@ public final class Dashboard {
                 scanner.nextLine();
 
                 switch (menu) {
-                case 0:
+                case EXIT_MENU:
                     // Quit
                     System.out.println("GoodBye...");
                     System.exit(0);
                     break;
 
-                case 1:
+                case REGISTER_MENU:
                     // Register User
                     registerUser();
                     break;
 
-                case 2:
+                case LIST_MENU:
                     // List out all Users
                     listUsers();
                     break;
 
-                case 3:
+                case MODIFY_MENU:
                     // Modify a User
                     System.out.println("Please enter the current email of the user you wish to modify:");
                     email = scanner.next();
@@ -63,7 +67,7 @@ public final class Dashboard {
 
                     break;
 
-                case 4:
+                case DELETE_MENU:
                     // Delete a User
                     System.out.println("Please enter the current email of the user you wish to delete:");
                     email = scanner.next();
@@ -88,7 +92,7 @@ public final class Dashboard {
         user.setName(scanner.nextLine());
         try {
             System.out.println("Please enter age:");
-            user.setAge(scanner.nextInt());
+            user.setBirthday(scanner.next());
         } catch (InputMismatchException e) {
             System.out.println("Incorrect age entered! \n");
         }
@@ -125,6 +129,7 @@ public final class Dashboard {
         }
     }
 
-    private Dashboard() {}
+    private Dashboard() {
+    }
 
 }
