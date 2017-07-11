@@ -3,13 +3,14 @@ package com.github.gokolo.personaldashboard;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
 public class MapStoreImpl<T> implements MapStore<T> {
     private int count = 0;
 
-    private HashMap<Integer, T> hMap = new HashMap<Integer, T>();
+    private final Map<Integer, T> hMap = new HashMap<>();
 
     @Override
     public void store(final T t) {

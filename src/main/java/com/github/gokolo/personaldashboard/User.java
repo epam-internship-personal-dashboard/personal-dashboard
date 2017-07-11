@@ -11,6 +11,7 @@ public class User {
     private Role role;
 
     @Override
+    @SuppressWarnings("PMD")
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -26,6 +27,7 @@ public class User {
     }
 
     @Override
+    @SuppressWarnings("PMD")
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;

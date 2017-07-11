@@ -13,6 +13,7 @@ public final class Address {
     }
 
     @Override
+    @SuppressWarnings("PMD")
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -24,6 +25,7 @@ public final class Address {
     }
 
     @Override
+    @SuppressWarnings("PMD")
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
