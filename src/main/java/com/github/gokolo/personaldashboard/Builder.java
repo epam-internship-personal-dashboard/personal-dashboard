@@ -1,12 +1,10 @@
 package com.github.gokolo.personaldashboard;
 
 public class Builder {
-    private final User user = new User();
+    private final User user;
 
-    public static void main(final String... args) {
-        Builder buildUser = new Builder();
-        User user = buildUser.name("Grace Okolo").birthday("17-07-1993").gender(Gender.FEMALE).build();
-        System.out.println(user);
+    public Builder() {
+        this.user = new User();
     }
 
     public Builder id(final int id) {

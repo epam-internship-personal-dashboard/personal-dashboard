@@ -1,8 +1,10 @@
 package com.github.gokolo.personaldashboard;
 
+@SuppressWarnings("all")
 public final class User {
     private int id;
     private String name;
+    private Address address;
     private String username;
     private String password;
     private String birthday;
@@ -10,7 +12,6 @@ public final class User {
     private Gender gender;
     private Role role;
 
-    @SuppressWarnings("PMD")
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -154,6 +155,18 @@ public final class User {
 
     public void setRole(final Role uRole) {
         role = uRole;
+    }
+
+    public static Builder builder() {
+        return new Builder();
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(final Address address) {
+        this.address = address;
     }
 
 }
