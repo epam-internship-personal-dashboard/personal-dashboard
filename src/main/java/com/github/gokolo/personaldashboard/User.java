@@ -1,6 +1,6 @@
 package com.github.gokolo.personaldashboard;
 
-public class User {
+public final class User {
     private int id;
     private String name;
     private String username;
@@ -10,8 +10,8 @@ public class User {
     private Gender gender;
     private Role role;
 
-    @Override
     @SuppressWarnings("PMD")
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -26,8 +26,8 @@ public class User {
         return result;
     }
 
-    @Override
     @SuppressWarnings("PMD")
+    @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
@@ -120,7 +120,7 @@ public class User {
         return password;
     }
 
-    public void setpassword(final String uPassword) {
+    public void setPassword(final String uPassword) {
         password = uPassword;
     }
 
@@ -138,6 +138,22 @@ public class User {
 
     public void setEmail(final String uEmail) {
         email = uEmail;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(final Gender uGender) {
+        gender = uGender;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(final Role uRole) {
+        role = uRole;
     }
 
 }
