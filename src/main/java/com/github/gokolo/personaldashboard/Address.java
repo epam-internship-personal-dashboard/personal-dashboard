@@ -12,8 +12,8 @@ public final class Address {
                 + "]";
     }
 
-    @Override
     @SuppressWarnings("PMD")
+    @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
@@ -24,8 +24,8 @@ public final class Address {
         return result;
     }
 
-    @Override
     @SuppressWarnings("PMD")
+    @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
