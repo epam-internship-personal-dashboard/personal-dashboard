@@ -3,8 +3,10 @@ package com.github.gokolo.personaldashboard;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.github.gokolo.personaldashboard.dto.UserDTO;
+
 public final class Dashboard {
-    private static MapStoreImpl<User> storeUsers = new MapStoreImpl<>();
+    private static MapStoreImpl<UserDTO> storeUsers = new MapStoreImpl<>();
     private static Scanner scanner = new Scanner(System.in);
     private static final int EXIT_MENU = 0;
     private static final int REGISTER_MENU = 1;
@@ -87,7 +89,7 @@ public final class Dashboard {
     }
 
     public static void registerUser() {
-        User user = new User();
+        UserDTO user = new UserDTO();
         System.out.println("Please enter name:");
         user.setName(scanner.nextLine());
         try {
@@ -101,7 +103,7 @@ public final class Dashboard {
         insertUser(user);
     }
 
-    public static void insertUser(final User user) {
+    public static void insertUser(final UserDTO user) {
         storeUsers.store(user);
     }
 
@@ -111,7 +113,7 @@ public final class Dashboard {
 
     public static boolean findUser(final String email) {
         boolean exists = false;
-        for (User element : storeUsers.retrieve()) {
+        for (UserDTO element : storeUsers.retrieve()) {
             if (element.getEmail().equals(email)) {
                 exists = true;
             } else {
@@ -122,7 +124,7 @@ public final class Dashboard {
     }
 
     public static void deleteUser(final String email) {
-        for (User element : storeUsers.retrieve()) {
+        for (UserDTO element : storeUsers.retrieve()) {
             if (element.getEmail().equals(email)) {
                 storeUsers.delete(element);
             }

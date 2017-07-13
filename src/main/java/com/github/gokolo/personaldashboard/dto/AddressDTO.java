@@ -1,10 +1,11 @@
-package com.github.gokolo.personaldashboard;
+package com.github.gokolo.personaldashboard.dto;
 
-public final class Address {
+public final class AddressDTO {
     private String street;
     private String houseNumber;
     private String zipCode;
     private String city;
+    private String country;
 
     @Override
     public String toString() {
@@ -36,7 +37,7 @@ public final class Address {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Address other = (Address) obj;
+        AddressDTO other = (AddressDTO) obj;
         if (city == null) {
             if (other.city != null) {
                 return false;
@@ -98,5 +99,13 @@ public final class Address {
 
     public void setCity(final String uCity) {
         city = uCity;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String uCountry) {
+        country = uCountry;
     }
 }

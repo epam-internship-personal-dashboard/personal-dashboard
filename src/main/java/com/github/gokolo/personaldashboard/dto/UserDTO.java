@@ -1,10 +1,14 @@
-package com.github.gokolo.personaldashboard;
+package com.github.gokolo.personaldashboard.dto;
+
+import com.github.gokolo.personaldashboard.Builder;
+import com.github.gokolo.personaldashboard.Gender;
+import com.github.gokolo.personaldashboard.Role;
 
 @SuppressWarnings("all")
-public final class User {
+public final class UserDTO {
     private int id;
     private String name;
-    private Address address;
+    private AddressDTO address;
     private String username;
     private String password;
     private String birthday;
@@ -39,7 +43,7 @@ public final class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        User other = (User) obj;
+        UserDTO other = (UserDTO) obj;
         if (birthday == null) {
             if (other.birthday != null) {
                 return false;
@@ -161,11 +165,11 @@ public final class User {
         return new Builder();
     }
 
-    public Address getAddress() {
+    public AddressDTO getAddress() {
         return address;
     }
 
-    public void setAddress(final Address address) {
+    public void setAddress(final AddressDTO address) {
         this.address = address;
     }
 
