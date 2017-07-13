@@ -1,6 +1,7 @@
 package com.github.gokolo.personaldashboard.dto;
 
 public final class AddressDTO {
+    private int id;
     private String street;
     private String houseNumber;
     private String zipCode;
@@ -107,5 +108,13 @@ public final class AddressDTO {
 
     public void setCountry(String uCountry) {
         country = uCountry;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int uId) {
+        id = uId;
     }
 }

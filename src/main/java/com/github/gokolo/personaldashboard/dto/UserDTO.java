@@ -1,5 +1,7 @@
 package com.github.gokolo.personaldashboard.dto;
 
+import java.sql.Date;
+
 import com.github.gokolo.personaldashboard.Builder;
 import com.github.gokolo.personaldashboard.Gender;
 import com.github.gokolo.personaldashboard.Role;
@@ -11,7 +13,7 @@ public final class UserDTO {
     private AddressDTO address;
     private String username;
     private String password;
-    private String birthday;
+    private Date birthday;
     private String email;
     private Gender gender;
     private Role role;
@@ -129,11 +131,11 @@ public final class UserDTO {
         password = uPassword;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(final String uBirthday) {
+    public void setBirthday(final Date uBirthday) {
         birthday = uBirthday;
     }
 
