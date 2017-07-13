@@ -1,5 +1,7 @@
 package com.github.gokolo.personaldashboard;
 
+import java.sql.Date;
+
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 public class Builder {
@@ -29,7 +31,7 @@ public class Builder {
         return this;
     }
 
-    public Builder birthday(final String birthday) {
+    public Builder birthday(final Date birthday) {
         user.setBirthday(birthday);
         return this;
     }

@@ -20,6 +20,7 @@ public class AddressDAOImpl implements AddressDAO {
             stmt.setString(4, user.getZipCode());
             stmt.setString(5, user.getCity());
             stmt.setString(6, user.getCountry());
+            stmt.execute();
 
         } catch (SQLException ex) {
             // handle any errors

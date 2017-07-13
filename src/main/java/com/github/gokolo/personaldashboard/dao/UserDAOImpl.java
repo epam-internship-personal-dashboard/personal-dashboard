@@ -9,7 +9,7 @@ import com.github.gokolo.personaldashboard.MysqlConn;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 public class UserDAOImpl implements UserDAO {
-    final Connection conn = MysqlConn.connect();
+    private final Connection conn = MysqlConn.connect();
 
     @Override
     public int save(UserDTO user) {
@@ -25,6 +25,7 @@ public class UserDAOImpl implements UserDAO {
             stmt.setString(7, user.getGender().name());
             stmt.setString(7, user.getRole().name());
             stmt.setInt(1, user.getAddress().getId());
+            stmt.execute();
 
         } catch (SQLException ex) {
             // handle any errors
