@@ -10,17 +10,15 @@ import com.github.gokolo.personaldashboard.MysqlConn;
 import com.github.gokolo.personaldashboard.dto.AddressDTO;
 
 public class AddressDAOImpl implements AddressDAO {
+    private final Connection conn = MysqlConn.connect();
     private AddressDTO address = new AddressDTO();
-    final Connection conn = MysqlConn.connect();
-    private Statement statement;
-    private PreparedStatement preparedStatement;
-    private int rowsAffected;
-    private ResultSet resultSet;
 
     @Override
     public AddressDTO save(final AddressDTO address) {
+        int rowsAffected = 0;
+        Statement statement = null;
         try {
-            preparedStatement = conn.prepareStatement(
+            PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO address (name,house_number,street,zip_code,city,country) VALUES (?,?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, address.getHouseNumber());
@@ -54,9 +52,9 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public AddressDTO findById(int id) {
         try {
-            preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
             preparedStatement.setInt(1, address.getId());
-            resultSet = preparedStatement.executeQuery();
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
                 address.setId(resultSet.getInt("id"));
@@ -74,29 +72,36 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public int modify(AddressDTO user) {
+    public void modify(AddressDTO user) {
         try {
-            preparedStatement = conn.prepareStatement(
+            PreparedStatement preparedStatement = conn.prepareStatement(
                     "UPDATE address SET name=?,house_number=?,street=?,zip_code=?,city=?,country=? WHERE id =?");
             preparedStatement.setString(1, address.getHouseNumber());
             preparedStatement.setString(2, address.getStreet());
             preparedStatement.setString(3, address.getZipCode());
             preparedStatement.setString(4, address.getCity());
             preparedStatement.setString(5, address.getCountry());
-            rowsAffected = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-        return rowsAffected;
     }
 
     @Override
-    public void delete(AddressDTO user) {
-        // TODO Auto-generated method stub
-
+    public void delete(AddressDTO address) {
+        try {
+            PreparedStatement preparedStatement = conn.prepareStatement("DELET FROM address WHERE id=?");
+            preparedStatement.setInt(1, address.getId());
+            preparedStatement.executeUpdate();
+        } catch (final SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
     }
 
 }

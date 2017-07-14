@@ -10,7 +10,7 @@ import com.github.gokolo.personaldashboard.Role;
 public final class UserDTO {
     private int id;
     private String name;
-    private AddressDTO address;
+    private int addressId;
     private String username;
     private String password;
     private Date birthday;
@@ -167,12 +167,12 @@ public final class UserDTO {
         return new Builder();
     }
 
-    public AddressDTO getAddress() {
-        return address;
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setAddress(final AddressDTO address) {
-        this.address = address;
+    public void setAddressId(final int address) {
+        this.addressId = address;
     }
 
 }

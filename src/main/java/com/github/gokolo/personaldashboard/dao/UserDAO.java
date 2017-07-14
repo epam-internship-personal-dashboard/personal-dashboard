@@ -11,7 +11,7 @@ public interface UserDAO {
 
     UserDTO findById(int id);
 
-    int modify(UserDTO user);
+    void modify(UserDTO user);
 
-    int delete(UserDTO user);
+    void delete(UserDTO user);
 }

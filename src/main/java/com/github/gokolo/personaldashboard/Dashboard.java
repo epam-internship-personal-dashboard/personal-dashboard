@@ -94,7 +94,7 @@ public final class Dashboard {
         user.setName(scanner.nextLine());
         try {
             System.out.println("Please enter age:");
-            user.setBirthday(scanner.next);
+            // user.setBirthday(scanner.next);
         } catch (InputMismatchException e) {
             System.out.println("Incorrect age entered! \n");
         }

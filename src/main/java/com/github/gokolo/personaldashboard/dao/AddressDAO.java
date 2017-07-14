@@ -8,7 +8,7 @@ public interface AddressDAO {
 
     AddressDTO findById(int id);
 
-    int modify(AddressDTO user);
+    void modify(AddressDTO user);
 
     void delete(AddressDTO user);
 }
