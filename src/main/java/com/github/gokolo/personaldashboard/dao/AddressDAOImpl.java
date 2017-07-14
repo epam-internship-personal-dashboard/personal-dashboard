@@ -11,15 +11,15 @@ public class AddressDAOImpl implements AddressDAO {
     final Connection conn = MysqlConn.connect();
 
     @Override
-    public int save(AddressDTO user) {
+    public AddressDTO save(AddressDTO address) {
         try {
             PreparedStatement stmt = conn.prepareStatement(
                     "INSERT INTO address (name,house_number,street,zip_code,city,country) VALUES (?,?,?,?,?,?)");
-            stmt.setString(2, user.getHouseNumber());
-            stmt.setString(3, user.getStreet());
-            stmt.setString(4, user.getZipCode());
-            stmt.setString(5, user.getCity());
-            stmt.setString(6, user.getCountry());
+            stmt.setString(2, address.getHouseNumber());
+            stmt.setString(3, address.getStreet());
+            stmt.setString(4, address.getZipCode());
+            stmt.setString(5, address.getCity());
+            stmt.setString(6, address.getCountry());
             stmt.execute();
 
         } catch (SQLException ex) {
@@ -28,7 +28,7 @@ public class AddressDAOImpl implements AddressDAO {
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-        return 0;
+        return address;
     }
 
     @Override

@@ -4,9 +4,7 @@ import com.github.gokolo.personaldashboard.dto.AddressDTO;
 
 public interface AddressDAO {
 
-    int save(AddressDTO user);
-
-    // List<AddressDTO> findAll();
+    AddressDTO save(AddressDTO user);
 
     AddressDTO findById(int id);
 

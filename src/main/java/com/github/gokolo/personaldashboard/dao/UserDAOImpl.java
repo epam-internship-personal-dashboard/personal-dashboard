@@ -2,7 +2,9 @@ package com.github.gokolo.personaldashboard.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 
 import com.github.gokolo.personaldashboard.MysqlConn;
@@ -10,6 +12,8 @@ import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 public class UserDAOImpl implements UserDAO {
     private final Connection conn = MysqlConn.connect();
+    private ResultSet resultSet;
+    private List<UserDTO> userCollection;
 
     @Override
     public int save(UserDTO user) {
@@ -38,8 +42,27 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<UserDTO> findAll() {
-        // TODO Auto-generated method stub
-        return null;
+        try {
+            Statement stmt = conn.createStatement();
+            resultSet = stmt.executeQuery("SELECT *FROM user");
+            while (resultSet.next()) {
+                UserDTO user = new UserDTO();
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                // user.setAddress(address);
+                user.setUsername(resultSet.getString("username"));
+                user.setPassword(resultSet.getString("password"));
+                user.setBirthday(resultSet.getDate("birthday"));
+                user.setEmail(resultSet.getString("email"));
+                // gender
+                // role
+                userCollection.add(user);
+            }
+        } catch (SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return userCollection;
     }
 
     @Override
