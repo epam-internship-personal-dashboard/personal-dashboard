@@ -17,31 +17,29 @@ public class UserDAOImpl implements UserDAO {
     private PreparedStatement preparedStatement;
     private ResultSet resultSet;
     private UserDTO user;
-    private int rowsInserted;
+    private int rowsAffected;
 
     @Override
     public int save(final UserDTO user) {
-
         try {
             preparedStatement = conn.prepareStatement(
                     "INSERT INTO user (name,username,email,password,birthday,gender,role,address_id) VALUES (?,?,?,?,?,?,?,?,?)");
-            preparedStatement.setString(2, user.getName());
-            preparedStatement.setString(3, user.getUsername());
-            preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setDate(6, user.getBirthday());
-            preparedStatement.setString(7, user.getGender().name());
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setDate(5, user.getBirthday());
+            preparedStatement.setString(6, user.getGender().name());
             preparedStatement.setString(7, user.getRole().name());
-            preparedStatement.setInt(1, user.getAddress().getId());
-            preparedStatement.execute();
-            rowsInserted = preparedStatement.executeUpdate();
+            preparedStatement.setInt(8, user.getAddress().getId());
+            rowsAffected = preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
             System.out.println("SQLException: " + ex.getMessage());
             System.out.println("SQLState: " + ex.getSQLState());
             System.out.println("VendorError: " + ex.getErrorCode());
         }
-        return rowsInserted;
+        return rowsAffected;
     }
 
     @Override
@@ -72,7 +70,7 @@ public class UserDAOImpl implements UserDAO {
     @Override
     public UserDTO findById(final int id) {
         try {
-            preparedStatement = conn.prepareStatement("SELECT *FROM user WHERE id = ?");
+            preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
             preparedStatement.setInt(1, user.getId());
             resultSet = preparedStatement.executeQuery();
 
@@ -95,15 +93,41 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserDTO modify(final UserDTO user) {
-        // TODO Auto-generated method stub
-        return null;
+    public int modify(final UserDTO user) {
+        try {
+            preparedStatement = conn.prepareStatement(
+                    "UPDATE user SET name=?,username=?,email=?,password=?,birthday=?,gender=?,role=?,address_id=? WHERE id=?");
+            preparedStatement.setString(1, user.getName());
+            preparedStatement.setString(2, user.getUsername());
+            preparedStatement.setString(3, user.getEmail());
+            preparedStatement.setString(4, user.getPassword());
+            preparedStatement.setDate(5, user.getBirthday());
+            preparedStatement.setString(6, user.getGender().name());
+            preparedStatement.setString(7, user.getRole().name());
+            preparedStatement.setInt(8, user.getAddress().getId());
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (final SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return rowsAffected;
     }
 
     @Override
-    public void delete(final UserDTO user) {
-        // TODO Auto-generated method stub
-
+    public int delete(final UserDTO user) {
+        try {
+            preparedStatement = conn.prepareStatement("DELET FROM user WHERE id=?");
+            preparedStatement.setInt(1, user.getId());
+            rowsAffected = preparedStatement.executeUpdate();
+        } catch (final SQLException ex) {
+            // handle any errors
+            System.out.println("SQLException: " + ex.getMessage());
+            System.out.println("SQLState: " + ex.getSQLState());
+            System.out.println("VendorError: " + ex.getErrorCode());
+        }
+        return rowsAffected;
     }
 
 }
