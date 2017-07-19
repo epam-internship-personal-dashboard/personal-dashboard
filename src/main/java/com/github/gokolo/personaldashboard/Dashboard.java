@@ -4,13 +4,15 @@ import java.sql.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.github.gokolo.personaldashboard.dao.AddressDAO;
+import com.github.gokolo.personaldashboard.dao.AddressDAOImpl;
 import com.github.gokolo.personaldashboard.dao.UserDAO;
+import com.github.gokolo.personaldashboard.dao.UserDAOImpl;
 import com.github.gokolo.personaldashboard.dto.AddressDTO;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 public final class Dashboard {
     private static MapStoreImpl<UserDTO> storeUsers = new MapStoreImpl<>();
-    private static UserDAO userDAO;
     private static Scanner scanner = new Scanner(System.in);
     private static final int EXIT_MENU = 0;
     private static final int REGISTER_MENU = 1;
@@ -99,7 +101,11 @@ public final class Dashboard {
 
     public static void registerUser() {
         UserDTO user = new UserDTO();
+        UserDAO userDAO = new UserDAOImpl();
+        AddressDAO addressDAO = new AddressDAOImpl();
+        ;
         AddressDTO address = new AddressDTO();
+
         System.out.println("Please enter name:");
         user.setName(scanner.nextLine());
         System.out.println("Please enter username:");
@@ -122,13 +128,27 @@ public final class Dashboard {
         System.out.println("Please enter role:");
         user.setRole(Role.valueOf(scanner.nextLine()));
 
-        System.out.println("Please enter email:");
-        user.setEmail(scanner.next());
+        // Address
+        System.out.println("Please provide an address");
+        System.out.println("Enter house number:");
+        address.setHouseNumber(scanner.next());
+        System.out.println("Enter name of street:");
+        address.setStreet(scanner.next());
+        System.out.println("Enter zip code:");
+        address.setZipCode(scanner.next());
+        System.out.println("Enter name of city:");
+        address.setCity(scanner.next());
+        System.out.println("Enter name of country:");
+        address.setCountry(scanner.next());
+
+        address = addressDAO.save(address);
+        user.setAddressId(address.getId());
+        userDAO.save(user);
         insertUser(user);
     }
 
     public static void insertUser(final UserDTO user) {
-        userDAO.save(user);
+
     }
 
     public static void listUsers() {

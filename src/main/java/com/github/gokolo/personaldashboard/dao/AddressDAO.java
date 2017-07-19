@@ -4,11 +4,11 @@ import com.github.gokolo.personaldashboard.dto.AddressDTO;
 
 public interface AddressDAO {
 
-    AddressDTO save(AddressDTO user);
+    AddressDTO save(AddressDTO address);
 
     AddressDTO findById(int id);
 
-    void modify(AddressDTO user);
+    void modify(AddressDTO address);
 
-    void delete(AddressDTO user);
+    void delete(AddressDTO address);
 }
