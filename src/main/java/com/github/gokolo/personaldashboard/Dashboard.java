@@ -1,12 +1,16 @@
 package com.github.gokolo.personaldashboard;
 
+import java.sql.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
+import com.github.gokolo.personaldashboard.dao.UserDAO;
+import com.github.gokolo.personaldashboard.dto.AddressDTO;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 public final class Dashboard {
     private static MapStoreImpl<UserDTO> storeUsers = new MapStoreImpl<>();
+    private static UserDAO userDAO;
     private static Scanner scanner = new Scanner(System.in);
     private static final int EXIT_MENU = 0;
     private static final int REGISTER_MENU = 1;
@@ -60,7 +64,12 @@ public final class Dashboard {
                     if (findUser(email)) {
                         deleteUser(email);
                         scanner.nextLine();
-                        registerUser();
+                        try {
+                            registerUser();
+                        } catch (Exception e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
                         System.out.println("User details modified:");
 
                     } else {
@@ -90,21 +99,36 @@ public final class Dashboard {
 
     public static void registerUser() {
         UserDTO user = new UserDTO();
+        AddressDTO address = new AddressDTO();
         System.out.println("Please enter name:");
         user.setName(scanner.nextLine());
-        try {
-            System.out.println("Please enter age:");
-            // user.setBirthday(scanner.next);
-        } catch (InputMismatchException e) {
-            System.out.println("Incorrect age entered! \n");
+        System.out.println("Please enter username:");
+        user.setUsername(scanner.nextLine());
+        System.out.println("Please enter password:");
+        user.setPassword(scanner.nextLine());
+        // Birthday start
+        System.out.println("Please enter birthday in the format yyyy-MM-dd: ");
+        System.out.println("For example: 1998-12-31");
+        Date date = null;
+        while (date == null) {
+            String line = scanner.nextLine();
+            date = java.sql.Date.valueOf(line);
         }
+        // Birthday end
+        System.out.println("Please enter email:");
+        user.setEmail(scanner.nextLine());
+        System.out.println("Please enter gender:");
+        user.setGender(Gender.valueOf(scanner.nextLine()));
+        System.out.println("Please enter role:");
+        user.setRole(Role.valueOf(scanner.nextLine()));
+
         System.out.println("Please enter email:");
         user.setEmail(scanner.next());
         insertUser(user);
     }
 
     public static void insertUser(final UserDTO user) {
-        storeUsers.store(user);
+        userDAO.save(user);
     }
 
     public static void listUsers() {
