@@ -16,10 +16,9 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public AddressDTO save(final AddressDTO address) {
         int rowsAffected = 0;
-        Statement statement = null;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(
-                    "INSERT INTO address (name,house_number,street,zip_code,city,country) VALUES (?,?,?,?,?,?)",
+                    "INSERT INTO address (house_number,street,zip_code,city,country) VALUES (?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, address.getHouseNumber());
             preparedStatement.setString(2, address.getStreet());
@@ -32,27 +31,27 @@ public class AddressDAOImpl implements AddressDAO {
                 throw new SQLException("Creating Address failed, no rows affected.");
             }
 
-            try (final ResultSet resultSet = statement.getGeneratedKeys()) {
-                if (resultSet.next()) {
-                    address.setId(resultSet.getInt(1));
-                } else {
-                    throw new SQLException("Creating Address failed, no ID obtained.");
-                }
+            final ResultSet resultSet = preparedStatement.getGeneratedKeys();
+            if (resultSet.next()) {
+                address.setId(resultSet.getInt(1));
+            } else {
+                throw new SQLException("Creating Address failed, no ID obtained.");
             }
 
         } catch (SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("address SQLException: " + ex.getMessage());
+            System.out.println("address SQLState: " + ex.getSQLState());
+            System.out.println("address VendorError: " + ex.getErrorCode());
         }
+
         return address;
     }
 
     @Override
     public AddressDTO findById(int id) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
+            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM address WHERE id = ?");
             preparedStatement.setInt(1, address.getId());
             ResultSet resultSet = preparedStatement.executeQuery();
 

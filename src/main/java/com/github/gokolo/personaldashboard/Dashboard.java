@@ -17,8 +17,9 @@ public final class Dashboard {
     private static final int EXIT_MENU = 0;
     private static final int REGISTER_MENU = 1;
     private static final int LIST_MENU = 2;
-    private static final int MODIFY_MENU = 3;
-    private static final int DELETE_MENU = 4;
+    private static final int FIND_MENU = 3;
+    private static final int MODIFY_MENU = 4;
+    private static final int DELETE_MENU = 5;
 
     public static void main(final String... args) {
         System.out.println("Welcome to User Management System ");
@@ -29,8 +30,9 @@ public final class Dashboard {
             System.out.println("[0] EXIT");
             System.out.println("[1] REGISTER USER");
             System.out.println("[2] LIST ALL USERS");
-            System.out.println("[3] MODIFY USER");
-            System.out.println("[4] DELETE USER");
+            System.out.println("[3] FIND A USER");
+            System.out.println("[4] MODIFY USER");
+            System.out.println("[5] DELETE USER");
 
             try {
                 System.out.println("Choose a menu: ");
@@ -59,24 +61,36 @@ public final class Dashboard {
                     listUsers();
                     break;
 
+                case FIND_MENU:
+                    // Find User by ID
+                    try {
+                        System.out.println("Please enter the User's ID:");
+                        int id = scanner.nextInt();
+                        System.out.println(findUser(id));
+                    } catch (InputMismatchException e) {
+                        System.out.println("Incorrect input entered! \n");
+                    }
+                    break;
+
                 case MODIFY_MENU:
                     // Modify a User
-                    System.out.println("Please enter the current email of the user you wish to modify:");
-                    email = scanner.next();
-                    if (findUser(email)) {
-                        deleteUser(email);
-                        scanner.nextLine();
-                        try {
-                            registerUser();
-                        } catch (Exception e) {
-                            // TODO Auto-generated catch block
-                            e.printStackTrace();
-                        }
-                        System.out.println("User details modified:");
-
-                    } else {
-                        System.out.println("This user does not exist \n \n");
-                    }
+                    // System.out.println("Please enter the current email of the user you wish to
+                    // modify:");
+                    // email = scanner.next();
+                    // if (findUser(email)) {
+                    // deleteUser(email);
+                    // scanner.nextLine();
+                    // try {
+                    // registerUser();
+                    // } catch (Exception e) {
+                    // // TODO Auto-generated catch block
+                    // e.printStackTrace();
+                    // }
+                    // System.out.println("User details modified:");
+                    //
+                    // } else {
+                    // System.out.println("This user does not exist \n \n");
+                    // }
 
                     break;
 
@@ -124,9 +138,9 @@ public final class Dashboard {
         System.out.println("Please enter email:");
         user.setEmail(scanner.nextLine());
         System.out.println("Please enter gender:");
-        user.setGender(Gender.valueOf(scanner.nextLine()));
+        user.setGender(Gender.valueOf(scanner.nextLine().toUpperCase()));
         System.out.println("Please enter role:");
-        user.setRole(Role.valueOf(scanner.nextLine()));
+        user.setRole(Role.valueOf(scanner.nextLine().toUpperCase()));
 
         // Address
         System.out.println("Please provide an address");
@@ -144,27 +158,18 @@ public final class Dashboard {
         address = addressDAO.save(address);
         user.setAddressId(address.getId());
         userDAO.save(user);
-        insertUser(user);
-    }
-
-    public static void insertUser(final UserDTO user) {
-
     }
 
     public static void listUsers() {
-        System.out.println(storeUsers.retrieve());
+        UserDAO userDAO = new UserDAOImpl();
+        System.out.println(userDAO.findAll());
     }
 
-    public static boolean findUser(final String email) {
-        boolean exists = false;
-        for (UserDTO element : storeUsers.retrieve()) {
-            if (element.getEmail().equals(email)) {
-                exists = true;
-            } else {
-                exists = false;
-            }
-        }
-        return exists;
+    public static UserDTO findUser(int id) {
+        UserDAO userDAO = new UserDAOImpl();
+        UserDTO user = new UserDTO();
+        user = userDAO.findById(id);
+        return user;
     }
 
     public static void deleteUser(final String email) {

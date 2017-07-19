@@ -21,7 +21,7 @@ public class UserDAOImpl implements UserDAO {
         int rowsAffected = 0;
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(
-                    "INSERT INTO user (name,username,email,password,birthday,gender,role,address_id) VALUES (?,?,?,?,?,?,?,?,?)");
+                    "INSERT INTO user (name,username,email,password,birthday,gender,role,address_id) VALUES (?,?,?,?,?,?,?,?)");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getUsername());
             preparedStatement.setString(3, user.getEmail());
@@ -33,9 +33,9 @@ public class UserDAOImpl implements UserDAO {
             rowsAffected = preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("User SQLException: " + ex.getMessage());
+            System.out.println("User SQLState: " + ex.getSQLState());
+            System.out.println("User VendorError: " + ex.getErrorCode());
         }
         return rowsAffected;
     }
@@ -65,7 +65,7 @@ public class UserDAOImpl implements UserDAO {
         UserDTO user = new UserDTO();
         try {
             preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
-            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
