@@ -10,8 +10,8 @@ public final class AddressDTO {
 
     @Override
     public String toString() {
-        return "Address [street=" + street + ", houseNumber=" + houseNumber + ", zipCode=" + zipCode + ", city=" + city
-                + "]";
+        return "AddressDTO [id=" + id + ", street=" + street + ", houseNumber=" + houseNumber + ", zipCode=" + zipCode
+                + ", city=" + city + ", country=" + country + "]";
     }
 
     @SuppressWarnings("PMD")
@@ -30,41 +30,55 @@ public final class AddressDTO {
 
     @SuppressWarnings("PMD")
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj)
+    public boolean equals(final Object obj) {
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (getClass() != obj.getClass()) {
             return false;
+        }
         AddressDTO other = (AddressDTO) obj;
         if (city == null) {
-            if (other.city != null)
+            if (other.city != null) {
                 return false;
-        } else if (!city.equals(other.city))
+            }
+        } else if (!city.equals(other.city)) {
             return false;
+        }
         if (country == null) {
-            if (other.country != null)
+            if (other.country != null) {
                 return false;
-        } else if (!country.equals(other.country))
+            }
+        } else if (!country.equals(other.country)) {
             return false;
+        }
         if (houseNumber == null) {
-            if (other.houseNumber != null)
+            if (other.houseNumber != null) {
                 return false;
-        } else if (!houseNumber.equals(other.houseNumber))
+            }
+        } else if (!houseNumber.equals(other.houseNumber)) {
             return false;
-        if (id != other.id)
+        }
+        if (id != other.id) {
             return false;
+        }
         if (street == null) {
-            if (other.street != null)
+            if (other.street != null) {
                 return false;
-        } else if (!street.equals(other.street))
+            }
+        } else if (!street.equals(other.street)) {
             return false;
+        }
         if (zipCode == null) {
-            if (other.zipCode != null)
+            if (other.zipCode != null) {
                 return false;
-        } else if (!zipCode.equals(other.zipCode))
+            }
+        } else if (!zipCode.equals(other.zipCode)) {
             return false;
+        }
         return true;
     }
 
@@ -104,7 +118,7 @@ public final class AddressDTO {
         return country;
     }
 
-    public void setCountry(String uCountry) {
+    public void setCountry(final String uCountry) {
         country = uCountry;
     }
 
@@ -112,7 +126,7 @@ public final class AddressDTO {
         return id;
     }
 
-    public void setId(int uId) {
+    public void setId(final int uId) {
         id = uId;
     }
 }

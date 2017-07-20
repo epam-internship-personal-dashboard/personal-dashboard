@@ -13,8 +13,17 @@ import com.github.gokolo.personaldashboard.MysqlConn;
 import com.github.gokolo.personaldashboard.Role;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
+@SuppressWarnings("PMD")
 public class UserDAOImpl implements UserDAO {
     private final Connection conn = MysqlConn.connect();
+    private static final int PARA_ONE = 1;
+    private static final int PARA_TWO = 2;
+    private static final int PARA_THREE = 3;
+    private static final int PARA_FOUR = 4;
+    private static final int PARA_FIVE = 5;
+    private static final int PARA_SIX = 6;
+    private static final int PARA_SEVEN = 7;
+    private static final int PARA_EIGHT = 8;
 
     @Override
     public int save(final UserDTO user) {
@@ -22,14 +31,14 @@ public class UserDAOImpl implements UserDAO {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "INSERT INTO user (name,username,email,password,birthday,gender,role,address_id) VALUES (?,?,?,?,?,?,?,?)");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setDate(5, user.getBirthday());
-            preparedStatement.setString(6, user.getGender().name());
-            preparedStatement.setString(7, user.getRole().name());
-            preparedStatement.setInt(8, user.getAddressId());
+            preparedStatement.setString(PARA_ONE, user.getName());
+            preparedStatement.setString(PARA_TWO, user.getUsername());
+            preparedStatement.setString(PARA_THREE, user.getEmail());
+            preparedStatement.setString(PARA_FOUR, user.getPassword());
+            preparedStatement.setDate(PARA_FIVE, user.getBirthday());
+            preparedStatement.setString(PARA_SIX, user.getGender().name());
+            preparedStatement.setString(PARA_SEVEN, user.getRole().name());
+            preparedStatement.setInt(PARA_EIGHT, user.getAddressId());
             rowsAffected = preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
@@ -84,15 +93,14 @@ public class UserDAOImpl implements UserDAO {
         try {
             preparedStatement = conn.prepareStatement(
                     "UPDATE user SET name=?,username=?,email=?,password=?,birthday=?,gender=?,role=? WHERE id=?");
-            preparedStatement.setString(1, user.getName());
-            preparedStatement.setString(2, user.getUsername());
-            preparedStatement.setString(3, user.getEmail());
-            preparedStatement.setString(4, user.getPassword());
-            preparedStatement.setDate(5, user.getBirthday());
-            preparedStatement.setString(6, user.getGender().name());
-            preparedStatement.setString(7, user.getRole().name());
-            // preparedStatement.setInt(8, user.getAddressId());
-            preparedStatement.setInt(8, user.getId());
+            preparedStatement.setString(PARA_ONE, user.getName());
+            preparedStatement.setString(PARA_TWO, user.getUsername());
+            preparedStatement.setString(PARA_THREE, user.getEmail());
+            preparedStatement.setString(PARA_FOUR, user.getPassword());
+            preparedStatement.setDate(PARA_FIVE, user.getBirthday());
+            preparedStatement.setString(PARA_SIX, user.getGender().name());
+            preparedStatement.setString(PARA_SEVEN, user.getRole().name());
+            preparedStatement.setInt(PARA_EIGHT, user.getId());
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
@@ -106,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
     public void delete(final UserDTO user) {
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = conn.prepareStatement("DELET FROM user WHERE id=?");
+            preparedStatement = conn.prepareStatement("DELETE FROM user WHERE id=?");
             preparedStatement.setInt(1, user.getId());
         } catch (final SQLException ex) {
             // handle any errors
@@ -116,7 +124,7 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    private UserDTO convert(ResultSet resultSet) throws SQLException {
+    private UserDTO convert(final ResultSet resultSet) throws SQLException {
         UserDTO user = new UserDTO();
         user.setId(resultSet.getInt("id"));
         user.setName(resultSet.getString("name"));

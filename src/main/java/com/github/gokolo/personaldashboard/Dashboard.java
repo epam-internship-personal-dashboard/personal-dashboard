@@ -26,7 +26,6 @@ public final class Dashboard {
         AddressDAOImpl addressDAOImpl = new AddressDAOImpl();
         System.out.println("Welcome to User Management System ");
         int menu = 0;
-        String email;
 
         do {
             System.out.println("[0] EXIT");
@@ -71,7 +70,8 @@ public final class Dashboard {
                         UserDTO user = findUser(id);
                         if (user.getId() != 0) {
                             System.out.println(user);
-                            System.out.println(addressDAOImpl.findById(user.getAddressId()));
+                            address = addressDAOImpl.findById(user.getAddressId());
+                            System.out.println(address);
                         } else {
                             System.out.println("There is no user with that ID.");
                         }
@@ -89,15 +89,13 @@ public final class Dashboard {
                         if (user.getId() != 0) {
                             System.out.println("You are modifying the user: " + user.getName());
                             int addressId = user.getAddressId();
-                            address.setId(user.getAddressId());
                             user = receiveUserData();
                             address = receiveAddressData();
                             user.setId(id);
                             modifyUsers(user);
                             address.setId(addressId);
                             addressDAOImpl.modify(address);
-                            System.out.println(user);
-                            System.out.println(address);
+
                         } else {
                             System.out.println("There is no user with that ID.");
                         }
@@ -110,9 +108,26 @@ public final class Dashboard {
 
                 case DELETE_MENU:
                     // Delete a User
-                    System.out.println("Please enter the current email of the user you wish to delete:");
-                    email = scanner.next();
-                    deleteUser(email);
+                    try {
+                        System.out.println("Please enter the ID of the user you wish to delete:");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        UserDTO user = findUser(id);
+                        if (user.getId() != 0) {
+                            System.out.println(user);
+                            System.out.println("You have deleted the user: " + user.getName());
+                            address = addressDAOImpl.findById(user.getAddressId());
+                            System.out.println(address);
+                            deleteUser(user);
+                            addressDAOImpl.delete(address);
+
+                        } else {
+                            System.out.println("There is no user with that ID.");
+                        }
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Incorrect input entered! \n");
+                    }
                     break;
 
                 default:
@@ -129,7 +144,6 @@ public final class Dashboard {
 
     public static UserDTO receiveUserData() {
         UserDTO user = new UserDTO();
-
         System.out.println("Please enter name:");
         user.setName(scanner.nextLine());
         System.out.println("Please enter username:");
@@ -144,7 +158,7 @@ public final class Dashboard {
             while (date == null) {
                 String line = scanner.nextLine();
                 date = java.sql.Date.valueOf(line);
-
+                user.setBirthday(date);
                 System.out.println("Please enter gender:");
                 user.setGender(Gender.valueOf(scanner.nextLine().toUpperCase()));
                 System.out.println("Please enter role:");
@@ -192,24 +206,21 @@ public final class Dashboard {
         System.out.println(userDAO.findAll());
     }
 
-    public static void modifyUsers(UserDTO user) {
+    public static void modifyUsers(final UserDTO user) {
         UserDAO userDAO = new UserDAOImpl();
         userDAO.modify(user);
     }
 
-    public static UserDTO findUser(int id) {
+    public static UserDTO findUser(final int id) {
         UserDAO userDAO = new UserDAOImpl();
         UserDTO user = new UserDTO();
         user = userDAO.findById(id);
         return user;
     }
 
-    public static void deleteUser(final String email) {
-        for (UserDTO element : storeUsers.retrieve()) {
-            if (element.getEmail().equals(email)) {
-                storeUsers.delete(element);
-            }
-        }
+    public static void deleteUser(final UserDTO user) {
+        UserDAO userDAO = new UserDAOImpl();
+        userDAO.delete(user);
     }
 
     private Dashboard() {

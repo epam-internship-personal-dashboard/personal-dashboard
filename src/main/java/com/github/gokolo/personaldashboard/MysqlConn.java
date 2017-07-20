@@ -7,6 +7,11 @@ import java.sql.SQLException;
 public class MysqlConn {
     private static Connection conn;
 
+    private MysqlConn() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
+
     public static Connection connect() {
         if (conn == null) {
             try {

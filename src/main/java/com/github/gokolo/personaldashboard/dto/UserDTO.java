@@ -95,8 +95,9 @@ public final class UserDTO {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", birthday="
-                + birthday + ", email=" + email + ", gender=" + gender + ", role=" + role + "]";
+        return "UserDTO [id=" + id + ", name=" + name + ", addressId=" + addressId + ", username=" + username
+                + ", password=" + password + ", birthday=" + birthday + ", email=" + email + ", gender=" + gender
+                + ", role=" + role + "]";
     }
 
     public int getId() {
