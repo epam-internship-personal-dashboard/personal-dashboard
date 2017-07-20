@@ -11,7 +11,6 @@ import com.github.gokolo.personaldashboard.dto.AddressDTO;
 
 public class AddressDAOImpl implements AddressDAO {
     private final Connection conn = MysqlConn.connect();
-    private AddressDTO address = new AddressDTO();
 
     @Override
     public AddressDTO save(final AddressDTO address) {
@@ -50,6 +49,7 @@ public class AddressDAOImpl implements AddressDAO {
 
     @Override
     public AddressDTO findById(int id) {
+        AddressDTO address = new AddressDTO();
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM address WHERE id = ?");
             preparedStatement.setInt(1, address.getId());
@@ -71,7 +71,7 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public void modify(AddressDTO user) {
+    public void modify(AddressDTO address) {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement(
                     "UPDATE address SET name=?,house_number=?,street=?,zip_code=?,city=?,country=? WHERE id =?");
@@ -83,9 +83,9 @@ public class AddressDAOImpl implements AddressDAO {
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("address SQLException: " + ex.getMessage());
+            System.out.println("address SQLState: " + ex.getSQLState());
+            System.out.println("address VendorError: " + ex.getErrorCode());
         }
     }
 
@@ -97,9 +97,9 @@ public class AddressDAOImpl implements AddressDAO {
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("address SQLException: " + ex.getMessage());
+            System.out.println("address SQLState: " + ex.getSQLState());
+            System.out.println("address VendorError: " + ex.getErrorCode());
         }
     }
 

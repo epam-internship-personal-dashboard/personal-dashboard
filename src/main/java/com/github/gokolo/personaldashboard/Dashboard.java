@@ -22,6 +22,8 @@ public final class Dashboard {
     private static final int DELETE_MENU = 5;
 
     public static void main(final String... args) {
+        AddressDTO address = new AddressDTO();
+        AddressDAOImpl addressDAOImpl = new AddressDAOImpl();
         System.out.println("Welcome to User Management System ");
         int menu = 0;
         String email;
@@ -66,31 +68,43 @@ public final class Dashboard {
                     try {
                         System.out.println("Please enter the User's ID:");
                         int id = scanner.nextInt();
-                        System.out.println(findUser(id));
+                        UserDTO user = findUser(id);
+                        if (user.getId() != 0) {
+                            System.out.println(user);
+                            System.out.println(addressDAOImpl.findById(user.getAddressId()));
+                        } else {
+                            System.out.println("There is no user with that ID.");
+                        }
                     } catch (InputMismatchException e) {
                         System.out.println("Incorrect input entered! \n");
                     }
                     break;
 
                 case MODIFY_MENU:
-                    // Modify a User
-                    // System.out.println("Please enter the current email of the user you wish to
-                    // modify:");
-                    // email = scanner.next();
-                    // if (findUser(email)) {
-                    // deleteUser(email);
-                    // scanner.nextLine();
-                    // try {
-                    // registerUser();
-                    // } catch (Exception e) {
-                    // // TODO Auto-generated catch block
-                    // e.printStackTrace();
-                    // }
-                    // System.out.println("User details modified:");
-                    //
-                    // } else {
-                    // System.out.println("This user does not exist \n \n");
-                    // }
+                    try {
+                        System.out.println("Please enter the ID of the user you wish to modify:");
+                        int id = scanner.nextInt();
+                        scanner.nextLine();
+                        UserDTO user = findUser(id);
+                        if (user.getId() != 0) {
+                            System.out.println("You are modifying the user: " + user.getName());
+                            int addressId = user.getAddressId();
+                            address.setId(user.getAddressId());
+                            user = receiveUserData();
+                            address = receiveAddressData();
+                            user.setId(id);
+                            modifyUsers(user);
+                            address.setId(addressId);
+                            addressDAOImpl.modify(address);
+                            System.out.println(user);
+                            System.out.println(address);
+                        } else {
+                            System.out.println("There is no user with that ID.");
+                        }
+
+                    } catch (InputMismatchException e) {
+                        System.out.println("Incorrect input entered! \n");
+                    }
 
                     break;
 
@@ -113,12 +127,8 @@ public final class Dashboard {
 
     }
 
-    public static void registerUser() {
+    public static UserDTO receiveUserData() {
         UserDTO user = new UserDTO();
-        UserDAO userDAO = new UserDAOImpl();
-        AddressDAO addressDAO = new AddressDAOImpl();
-        ;
-        AddressDTO address = new AddressDTO();
 
         System.out.println("Please enter name:");
         user.setName(scanner.nextLine());
@@ -126,23 +136,32 @@ public final class Dashboard {
         user.setUsername(scanner.nextLine());
         System.out.println("Please enter password:");
         user.setPassword(scanner.nextLine());
-        // Birthday start
-        System.out.println("Please enter birthday in the format yyyy-MM-dd: ");
-        System.out.println("For example: 1998-12-31");
-        Date date = null;
-        while (date == null) {
-            String line = scanner.nextLine();
-            date = java.sql.Date.valueOf(line);
+
+        try {
+            System.out.println("Please enter birthday in the format yyyy-MM-dd: ");
+            System.out.println("For example: 1998-12-31");
+            Date date = null;
+            while (date == null) {
+                String line = scanner.nextLine();
+                date = java.sql.Date.valueOf(line);
+
+                System.out.println("Please enter gender:");
+                user.setGender(Gender.valueOf(scanner.nextLine().toUpperCase()));
+                System.out.println("Please enter role:");
+                user.setRole(Role.valueOf(scanner.nextLine().toUpperCase()));
+            }
+        } catch (IllegalArgumentException e) {
+            System.out.println("Invalid input! Try again.");
+            System.exit(0);
         }
-        // Birthday end
         System.out.println("Please enter email:");
         user.setEmail(scanner.nextLine());
-        System.out.println("Please enter gender:");
-        user.setGender(Gender.valueOf(scanner.nextLine().toUpperCase()));
-        System.out.println("Please enter role:");
-        user.setRole(Role.valueOf(scanner.nextLine().toUpperCase()));
 
-        // Address
+        return user;
+    }
+
+    public static AddressDTO receiveAddressData() {
+        AddressDTO address = new AddressDTO();
         System.out.println("Please provide an address");
         System.out.println("Enter house number:");
         address.setHouseNumber(scanner.next());
@@ -154,6 +173,14 @@ public final class Dashboard {
         address.setCity(scanner.next());
         System.out.println("Enter name of country:");
         address.setCountry(scanner.next());
+        return address;
+    }
+
+    public static void registerUser() {
+        UserDTO user = receiveUserData();
+        UserDAO userDAO = new UserDAOImpl();
+        AddressDAO addressDAO = new AddressDAOImpl();
+        AddressDTO address = receiveAddressData();
 
         address = addressDAO.save(address);
         user.setAddressId(address.getId());
@@ -163,6 +190,11 @@ public final class Dashboard {
     public static void listUsers() {
         UserDAO userDAO = new UserDAOImpl();
         System.out.println(userDAO.findAll());
+    }
+
+    public static void modifyUsers(UserDTO user) {
+        UserDAO userDAO = new UserDAOImpl();
+        userDAO.modify(user);
     }
 
     public static UserDTO findUser(int id) {

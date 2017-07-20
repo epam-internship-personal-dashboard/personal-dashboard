@@ -83,7 +83,7 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = conn.prepareStatement(
-                    "UPDATE user SET name=?,username=?,email=?,password=?,birthday=?,gender=?,role=?,address_id=? WHERE id=?");
+                    "UPDATE user SET name=?,username=?,email=?,password=?,birthday=?,gender=?,role=? WHERE id=?");
             preparedStatement.setString(1, user.getName());
             preparedStatement.setString(2, user.getUsername());
             preparedStatement.setString(3, user.getEmail());
@@ -91,13 +91,14 @@ public class UserDAOImpl implements UserDAO {
             preparedStatement.setDate(5, user.getBirthday());
             preparedStatement.setString(6, user.getGender().name());
             preparedStatement.setString(7, user.getRole().name());
-            preparedStatement.setInt(8, user.getAddressId());
+            // preparedStatement.setInt(8, user.getAddressId());
+            preparedStatement.setInt(8, user.getId());
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("User SQLException: " + ex.getMessage());
+            System.out.println("User SQLState: " + ex.getSQLState());
+            System.out.println("User VendorError: " + ex.getErrorCode());
         }
     }
 
