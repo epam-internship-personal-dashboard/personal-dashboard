@@ -115,12 +115,13 @@ public class UserDAOImpl implements UserDAO {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = conn.prepareStatement("DELETE FROM user WHERE id=?");
-            preparedStatement.setInt(1, user.getId());
+            preparedStatement.setInt(PARA_ONE, user.getId());
+            preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
-            System.out.println("SQLException: " + ex.getMessage());
-            System.out.println("SQLState: " + ex.getSQLState());
-            System.out.println("VendorError: " + ex.getErrorCode());
+            System.out.println("u delete SQLException: " + ex.getMessage());
+            System.out.println("u delete SQLState: " + ex.getSQLState());
+            System.out.println("u delete VendorError: " + ex.getErrorCode());
         }
     }
 

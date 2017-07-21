@@ -101,7 +101,7 @@ public class AddressDAOImpl implements AddressDAO {
     public void delete(final AddressDTO address) {
         try {
             PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM address WHERE id=?");
-            preparedStatement.setInt(1, address.getId());
+            preparedStatement.setInt(PARA_ONE, address.getId());
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
             // handle any errors
