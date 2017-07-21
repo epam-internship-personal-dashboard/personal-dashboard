@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class MysqlConn {
+public final class MysqlConn {
     private static Connection conn;
 
     private MysqlConn() {

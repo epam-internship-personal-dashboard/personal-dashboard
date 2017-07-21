@@ -12,7 +12,6 @@ import com.github.gokolo.personaldashboard.dto.AddressDTO;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 public final class Dashboard {
-    private static MapStoreImpl<UserDTO> storeUsers = new MapStoreImpl<>();
     private static Scanner scanner = new Scanner(System.in);
     private static final int EXIT_MENU = 0;
     private static final int REGISTER_MENU = 1;
@@ -20,10 +19,11 @@ public final class Dashboard {
     private static final int FIND_MENU = 3;
     private static final int MODIFY_MENU = 4;
     private static final int DELETE_MENU = 5;
+    private static AddressDAO addressDAOImpl = new AddressDAOImpl();
+    private static UserDAO userDAO = new UserDAOImpl();
 
     public static void main(final String... args) {
         AddressDTO address = new AddressDTO();
-        AddressDAOImpl addressDAOImpl = new AddressDAOImpl();
         System.out.println("Welcome to User Management System ");
         int menu = 0;
 
@@ -192,34 +192,28 @@ public final class Dashboard {
 
     public static void registerUser() {
         UserDTO user = receiveUserData();
-        UserDAO userDAO = new UserDAOImpl();
-        AddressDAO addressDAO = new AddressDAOImpl();
         AddressDTO address = receiveAddressData();
 
-        address = addressDAO.save(address);
+        address = addressDAOImpl.save(address);
         user.setAddressId(address.getId());
         userDAO.save(user);
     }
 
     public static void listUsers() {
-        UserDAO userDAO = new UserDAOImpl();
         System.out.println(userDAO.findAll());
     }
 
     public static void modifyUsers(final UserDTO user) {
-        UserDAO userDAO = new UserDAOImpl();
         userDAO.modify(user);
     }
 
     public static UserDTO findUser(final int id) {
-        UserDAO userDAO = new UserDAOImpl();
         UserDTO user = new UserDTO();
         user = userDAO.findById(id);
         return user;
     }
 
     public static void deleteUser(final UserDTO user) {
-        UserDAO userDAO = new UserDAOImpl();
         userDAO.delete(user);
     }
 
