@@ -1,10 +1,14 @@
 package com.github.gokolo.personaldashboard;
 
+import java.sql.Date;
+
+import com.github.gokolo.personaldashboard.dto.UserDTO;
+
 public class Builder {
-    private final User user;
+    private final UserDTO user;
 
     public Builder() {
-        this.user = new User();
+        this.user = new UserDTO();
     }
 
     public Builder id(final int id) {
@@ -27,7 +31,7 @@ public class Builder {
         return this;
     }
 
-    public Builder birthday(final String birthday) {
+    public Builder birthday(final Date birthday) {
         user.setBirthday(birthday);
         return this;
     }
@@ -47,7 +51,7 @@ public class Builder {
         return this;
     }
 
-    public User build() {
+    public UserDTO build() {
         return this.user;
     }
 }

@@ -1,13 +1,19 @@
-package com.github.gokolo.personaldashboard;
+package com.github.gokolo.personaldashboard.dto;
+
+import java.sql.Date;
+
+import com.github.gokolo.personaldashboard.Builder;
+import com.github.gokolo.personaldashboard.Gender;
+import com.github.gokolo.personaldashboard.Role;
 
 @SuppressWarnings("all")
-public final class User {
+public final class UserDTO {
     private int id;
     private String name;
-    private Address address;
+    private int addressId;
     private String username;
     private String password;
-    private String birthday;
+    private Date birthday;
     private String email;
     private Gender gender;
     private Role role;
@@ -39,7 +45,7 @@ public final class User {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        User other = (User) obj;
+        UserDTO other = (UserDTO) obj;
         if (birthday == null) {
             if (other.birthday != null) {
                 return false;
@@ -89,8 +95,9 @@ public final class User {
 
     @Override
     public String toString() {
-        return "User [id=" + id + ", name=" + name + ", username=" + username + ", password=" + password + ", birthday="
-                + birthday + ", email=" + email + ", gender=" + gender + ", role=" + role + "]";
+        return "UserDTO [id=" + id + ", name=" + name + ", addressId=" + addressId + ", username=" + username
+                + ", password=" + password + ", birthday=" + birthday + ", email=" + email + ", gender=" + gender
+                + ", role=" + role + "]";
     }
 
     public int getId() {
@@ -125,11 +132,11 @@ public final class User {
         password = uPassword;
     }
 
-    public String getBirthday() {
+    public Date getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(final String uBirthday) {
+    public void setBirthday(final Date uBirthday) {
         birthday = uBirthday;
     }
 
@@ -161,12 +168,12 @@ public final class User {
         return new Builder();
     }
 
-    public Address getAddress() {
-        return address;
+    public int getAddressId() {
+        return addressId;
     }
 
-    public void setAddress(final Address address) {
-        this.address = address;
+    public void setAddressId(final int address) {
+        this.addressId = address;
     }
 
 }

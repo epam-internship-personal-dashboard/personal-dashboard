@@ -1,15 +1,17 @@
-package com.github.gokolo.personaldashboard;
+package com.github.gokolo.personaldashboard.dto;
 
-public final class Address {
+public final class AddressDTO {
+    private int id;
     private String street;
     private String houseNumber;
     private String zipCode;
     private String city;
+    private String country;
 
     @Override
     public String toString() {
-        return "Address [street=" + street + ", houseNumber=" + houseNumber + ", zipCode=" + zipCode + ", city=" + city
-                + "]";
+        return "AddressDTO [id=" + id + ", street=" + street + ", houseNumber=" + houseNumber + ", zipCode=" + zipCode
+                + ", city=" + city + ", country=" + country + "]";
     }
 
     @SuppressWarnings("PMD")
@@ -18,7 +20,9 @@ public final class Address {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((city == null) ? 0 : city.hashCode());
+        result = prime * result + ((country == null) ? 0 : country.hashCode());
         result = prime * result + ((houseNumber == null) ? 0 : houseNumber.hashCode());
+        result = prime * result + id;
         result = prime * result + ((street == null) ? 0 : street.hashCode());
         result = prime * result + ((zipCode == null) ? 0 : zipCode.hashCode());
         return result;
@@ -36,7 +40,7 @@ public final class Address {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Address other = (Address) obj;
+        AddressDTO other = (AddressDTO) obj;
         if (city == null) {
             if (other.city != null) {
                 return false;
@@ -44,11 +48,21 @@ public final class Address {
         } else if (!city.equals(other.city)) {
             return false;
         }
+        if (country == null) {
+            if (other.country != null) {
+                return false;
+            }
+        } else if (!country.equals(other.country)) {
+            return false;
+        }
         if (houseNumber == null) {
             if (other.houseNumber != null) {
                 return false;
             }
         } else if (!houseNumber.equals(other.houseNumber)) {
+            return false;
+        }
+        if (id != other.id) {
             return false;
         }
         if (street == null) {
@@ -98,5 +112,21 @@ public final class Address {
 
     public void setCity(final String uCity) {
         city = uCity;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(final String uCountry) {
+        country = uCountry;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(final int uId) {
+        id = uId;
     }
 }
