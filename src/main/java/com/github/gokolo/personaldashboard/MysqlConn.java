@@ -1,12 +1,15 @@
 package com.github.gokolo.personaldashboard;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+import com.zaxxer.hikari.pool.HikariPool.PoolInitializationException;
 
 @SuppressWarnings("PMD")
 public final class MysqlConn {
-    private static Connection conn;
+    private static HikariDataSource ds;
 
     private MysqlConn() {
         super();
@@ -14,20 +17,17 @@ public final class MysqlConn {
     }
 
     public static Connection connect() {
-        if (conn == null) {
-            try {
-                Class.forName("com.mysql.cj.jdbc.Driver");
-                conn = DriverManager
-                        .getConnection("jdbc:mysql://localhost:3306/personaldashboard?" + "user=root&password=1234");
-
-            } catch (ClassNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (SQLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+        try {
+            if (ds == null) {
+                HikariConfig config = new HikariConfig("/hikari.properties");
+                ds = new HikariDataSource(config);
             }
+
+            return ds.getConnection();
+        } catch (SQLException | PoolInitializationException e) {
+            System.err.println("Unable to establish a connection!");
+            System.exit(1);
         }
-        return conn;
+        return null;
     }
 }
