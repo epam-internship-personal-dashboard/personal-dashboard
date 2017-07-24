@@ -7,6 +7,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import com.zaxxer.hikari.pool.HikariPool.PoolInitializationException;
 
+@SuppressWarnings("PMD")
 public final class MysqlConn {
     private static HikariDataSource ds;
 

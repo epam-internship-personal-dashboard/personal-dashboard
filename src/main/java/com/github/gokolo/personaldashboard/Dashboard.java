@@ -11,6 +11,7 @@ import com.github.gokolo.personaldashboard.dao.UserDAOImpl;
 import com.github.gokolo.personaldashboard.dto.AddressDTO;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
+@SuppressWarnings("PMD")
 public final class Dashboard {
     private static Scanner scanner = new Scanner(System.in);
     private static final int EXIT_MENU = 0;

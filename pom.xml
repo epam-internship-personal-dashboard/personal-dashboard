@@ -7,7 +7,7 @@
     <groupId>com.github.gokolo</groupId>
     <artifactId>go-personal-dashboard</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <name>Personal Dashboard</name>
     <description>Web application to aggregate personal online data</description>
@@ -70,6 +70,8 @@
         -->
         <dir.codequality>${project.basedir}/code-quality</dir.codequality>
         <version.java>1.8</version.java>
+        
+        <version.mysql.connector>6.0.6</version.mysql.connector>
 
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.versions>2.3</version.plugin.versions>
@@ -84,7 +86,7 @@
 	    <dependency>
 	        <groupId>mysql</groupId>
 	        <artifactId>mysql-connector-java</artifactId>
-	        <version>6.0.6</version>
+	        <version>${version.mysql.connector}</version>
 	    </dependency>
 		<dependency>
 	        <groupId>com.zaxxer</groupId>
