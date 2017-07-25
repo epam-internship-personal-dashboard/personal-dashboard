@@ -17,3 +17,7 @@ target/
 # LOGS
 logs/
 *.log
+
+# RELEASE PLUGIN
+pom.xml.releaseBackup
+release.properties
