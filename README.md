@@ -1,4 +1,4 @@
-### Personal Dashboard
+# Personal Dashboard App
 
 CI Build: [![CircleCI](https://circleci.com/gh/epam-internship-personal-dashboard/personal-dashboard/tree/master.svg?style=svg)](https://circleci.com/gh/epam-internship-personal-dashboard/personal-dashboard/tree/master)
 
