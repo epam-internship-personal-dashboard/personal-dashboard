@@ -1,8 +1,19 @@
+# ECLIPSE FILES
 .classpath
 .project
 .settings/
+
+# JAVAC FILES
 bin/
 build/
+
+# MAVEN
 target/
+
+# IDEA
 .idea/
 *.iml
+
+# LOGS
+logs/
+*.log
