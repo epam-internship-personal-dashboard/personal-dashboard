@@ -84,23 +84,23 @@
     </properties>
 
     <dependencies>
-	      <dependency>
-	          <groupId>mysql</groupId>
-	          <artifactId>mysql-connector-java</artifactId>
-	          <version>${version.mysql.connector}</version>
-	      </dependency>
-		    <dependency>
-	          <groupId>com.zaxxer</groupId>
-	          <artifactId>HikariCP</artifactId>
-	          <version>2.6.2</version>
-	      </dependency>
-	      <dependency>
-		        <groupId>javax.servlet</groupId>
-		        <artifactId>javax.servlet-api</artifactId>
-		        <version>3.1.0</version>
-		        <scope>provided</scope>
-		    </dependency>
-    </dependencies>    
+        <dependency>
+          <groupId>mysql</groupId>
+          <artifactId>mysql-connector-java</artifactId>
+          <version>${version.mysql.connector}</version>
+        </dependency>
+        <dependency>
+          <groupId>com.zaxxer</groupId>
+          <artifactId>HikariCP</artifactId>
+          <version>2.6.2</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.1.0</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
 
     <build>
         <plugins>
@@ -122,11 +122,10 @@
                 </configuration>
             </plugin>
             <plugin>
-			    <groupId>org.apache.maven.plugins</groupId>
-			    <artifactId>maven-war-plugin</artifactId>
-			    <version>3.1.0</version>
-			</plugin>
-            
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.1.0</version>
+            </plugin>
 
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
