@@ -6,12 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.github.gokolo.personaldashboard.MysqlConn;
+import com.github.gokolo.personaldashboard.ConnectionProvider;
 import com.github.gokolo.personaldashboard.dto.AddressDTO;
 
 @SuppressWarnings("PMD")
 public class AddressDAOImpl implements AddressDAO {
-    private final Connection conn = MysqlConn.connect();
+    private final Connection conn = ConnectionProvider.connect();
     private static final int PARA_ONE = 1;
     private static final int PARA_TWO = 2;
     private static final int PARA_THREE = 3;

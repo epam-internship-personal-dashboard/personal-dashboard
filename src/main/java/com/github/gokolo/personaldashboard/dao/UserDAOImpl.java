@@ -8,14 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.github.gokolo.personaldashboard.ConnectionProvider;
 import com.github.gokolo.personaldashboard.Gender;
-import com.github.gokolo.personaldashboard.MysqlConn;
 import com.github.gokolo.personaldashboard.Role;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
 @SuppressWarnings("PMD")
 public class UserDAOImpl implements UserDAO {
-    private final Connection conn = MysqlConn.connect();
+    private final Connection conn = ConnectionProvider.connect();
     private static final int PARA_ONE = 1;
     private static final int PARA_TWO = 2;
     private static final int PARA_THREE = 3;
