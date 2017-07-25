@@ -70,10 +70,9 @@
         -->
         <dir.codequality>${project.basedir}/code-quality</dir.codequality>
         <version.java>1.8</version.java>
-        
-        <version.mysql.connector>6.0.6</version.mysql.connector>
 
         <version.mysql.connector>6.0.6</version.mysql.connector>
+        <version.hikaricp>2.6.2</version.hikaricp>
 
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.versions>2.3</version.plugin.versions>
@@ -85,23 +84,22 @@
     </properties>
 
     <dependencies>
-	    <dependency>
-	        <groupId>mysql</groupId>
-	        <artifactId>mysql-connector-java</artifactId>
-	        <version>${version.mysql.connector}</version>
-	    </dependency>
-		<dependency>
-	        <groupId>com.zaxxer</groupId>
-	        <artifactId>HikariCP</artifactId>
-	        <version>2.6.2</version>
-	    </dependency>
-	    <dependency>
-		    <groupId>javax.servlet</groupId>
-		    <artifactId>javax.servlet-api</artifactId>
-		    <version>3.1.0</version>
-		    <scope>provided</scope>
-		</dependency>
-	    
+	      <dependency>
+	          <groupId>mysql</groupId>
+	          <artifactId>mysql-connector-java</artifactId>
+	          <version>${version.mysql.connector}</version>
+	      </dependency>
+		    <dependency>
+	          <groupId>com.zaxxer</groupId>
+	          <artifactId>HikariCP</artifactId>
+	          <version>2.6.2</version>
+	      </dependency>
+	      <dependency>
+		        <groupId>javax.servlet</groupId>
+		        <artifactId>javax.servlet-api</artifactId>
+		        <version>3.1.0</version>
+		        <scope>provided</scope>
+		    </dependency>
     </dependencies>    
 
     <build>
