@@ -13,6 +13,18 @@
     <description>Web application to aggregate personal online data</description>
     <inceptionYear>2017</inceptionYear>
 
+    <organization>
+        <name>EPAM Systems</name>
+        <url>https://epam.com</url>
+    </organization>
+
+    <scm>
+        <developerConnection>scm:git:git@github.com:epam-internship-personal-dashboard/personal-dashboard.git</developerConnection>
+        <connection>scm:git:git@github.com:epam-internship-personal-dashboard/personal-dashboard.git</connection>
+        <url>git@github.com:epam-internship-personal-dashboard/personal-dashboard.git</url>
+        <tag>HEAD</tag>
+    </scm>
+
     <developers>
         <developer>
             <id>attilagyongyosi</id>
