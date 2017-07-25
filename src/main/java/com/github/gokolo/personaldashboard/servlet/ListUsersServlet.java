@@ -14,6 +14,7 @@ import com.github.gokolo.personaldashboard.dao.UserDAO;
 import com.github.gokolo.personaldashboard.dao.UserDAOImpl;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
+@SuppressWarnings("PMD")
 @WebServlet(name = "ListUsersServlet", urlPatterns = "/xxx")
 public class ListUsersServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAOImpl();
@@ -23,8 +24,8 @@ public class ListUsersServlet extends HttpServlet {
         response.setContentType("text/html");
         List<UserDTO> userCollection = userDAO.findAll();
         StringBuilder sb = new StringBuilder();
-        sb.append("<!DOCTYPE html>").append("<head>").append("<title>").append("All Users").append("</title>")
-                .append("</head>").append("<body>");
+        sb.append("<!DOCTYPE html>").append("<html>").append("<head>").append("<title>").append("All Users")
+                .append("</title>").append("</head>").append("<body>");
 
         for (UserDTO user : userCollection) {
             sb.append("<p>").append(user.getName()).append("</p>");
