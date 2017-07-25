@@ -6,6 +6,11 @@ import com.github.gokolo.personaldashboard.Builder;
 import com.github.gokolo.personaldashboard.Gender;
 import com.github.gokolo.personaldashboard.Role;
 
+/**
+ * 
+ * @author Grace_Okolo
+ *
+ */
 @SuppressWarnings("all")
 public final class UserDTO {
     private int id;

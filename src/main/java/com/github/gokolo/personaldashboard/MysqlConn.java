@@ -24,7 +24,10 @@ public final class MysqlConn {
         super();
         // TODO Auto-generated constructor stub
     }
-
+    /**
+     * 
+     * @return
+     */
     public static Connection connect() {
         LOG.info("Trying to connect to the database");
         try {
