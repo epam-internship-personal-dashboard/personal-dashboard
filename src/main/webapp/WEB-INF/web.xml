@@ -1,7 +1,7 @@
 <web-app>
     <servlet>
         <servlet-name>users</servlet-name>
-        <jsp-file>/jsp/users.jsp</jsp-file>
+        <jsp-file>/WEB-INF/jsp/users.jsp</jsp-file>
     </servlet>
 	 <servlet-mapping>
 	      <servlet-name>users</servlet-name>
