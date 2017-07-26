@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.github.gokolo.personaldashboard.ConnectionProvider;
 import com.github.gokolo.personaldashboard.dto.AddressDTO;
@@ -55,6 +57,24 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
+    public List<AddressDTO> findAll() {
+        Statement statement;
+        ResultSet resultSet;
+        List<AddressDTO> addressCollection = new ArrayList<>();
+        try {
+            statement = conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM address");
+            while (resultSet.next()) {
+                addressCollection.add(convert(resultSet));
+            }
+        } catch (final SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return addressCollection;
+    }
+
+    @Override
     public AddressDTO findById(final int id) {
         AddressDTO address = new AddressDTO();
         try {
@@ -63,12 +83,7 @@ public class AddressDAOImpl implements AddressDAO {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()) {
-                address.setId(resultSet.getInt("id"));
-                address.setHouseNumber(resultSet.getString("house_number"));
-                address.setStreet(resultSet.getString("street"));
-                address.setZipCode(resultSet.getString("zip_code"));
-                address.setCity(resultSet.getString("city"));
-                address.setCountry(resultSet.getString("country"));
+                address = convert(resultSet);
             }
         } catch (final SQLException e) {
             // TODO Auto-generated catch block
@@ -109,6 +124,17 @@ public class AddressDAOImpl implements AddressDAO {
             System.out.println("address SQLState: " + ex.getSQLState());
             System.out.println("address VendorError: " + ex.getErrorCode());
         }
+    }
+
+    private AddressDTO convert(final ResultSet resultSet) throws SQLException {
+        AddressDTO address = new AddressDTO();
+        address.setId(resultSet.getInt("id"));
+        address.setHouseNumber(resultSet.getString("house_number"));
+        address.setStreet(resultSet.getString("street"));
+        address.setZipCode(resultSet.getString("zip_code"));
+        address.setCity(resultSet.getString("city"));
+        address.setCountry(resultSet.getString("country"));
+        return address;
     }
 
 }
