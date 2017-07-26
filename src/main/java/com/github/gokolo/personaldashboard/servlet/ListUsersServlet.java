@@ -1,7 +1,6 @@
 package com.github.gokolo.personaldashboard.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,8 +13,12 @@ import com.github.gokolo.personaldashboard.dao.UserDAO;
 import com.github.gokolo.personaldashboard.dao.UserDAOImpl;
 import com.github.gokolo.personaldashboard.dto.UserDTO;
 
+/**
+ * @author Grace_Okolo
+ *
+ */
 @SuppressWarnings("PMD")
-@WebServlet(name = "ListUsersServlet", urlPatterns = "/xxx")
+@WebServlet(name = "ListUsersServlet", urlPatterns = "/users")
 public class ListUsersServlet extends HttpServlet {
     private UserDAO userDAO = new UserDAOImpl();
 
@@ -23,17 +26,8 @@ public class ListUsersServlet extends HttpServlet {
             throws IOException, ServletException {
         response.setContentType("text/html");
         List<UserDTO> userCollection = userDAO.findAll();
-        StringBuilder sb = new StringBuilder();
-        sb.append("<!DOCTYPE html>").append("<html>").append("<head>").append("<title>").append("All Users")
-                .append("</title>").append("</head>").append("<body>");
-
-        for (UserDTO user : userCollection) {
-            sb.append("<p>").append(user.getName()).append("</p>");
-        }
-        sb.append("</body>").append("</html>");
-
-        PrintWriter writer = response.getWriter();
-        writer.println(sb.toString());
+        request.setAttribute("user", userCollection);
+        request.getRequestDispatcher("/usersPage").forward(request, response);
     }
 
 }
