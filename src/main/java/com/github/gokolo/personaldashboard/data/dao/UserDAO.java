@@ -1,8 +1,8 @@
-package com.github.gokolo.personaldashboard.dao;
+package com.github.gokolo.personaldashboard.data.dao;
 
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.dto.UserDTO;
+import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 
 public interface UserDAO {
     int save(UserDTO user);
@@ -14,4 +14,6 @@ public interface UserDAO {
     void modify(UserDTO user);
 
     void delete(UserDTO user);
+
+    UserDTO findByUsernamePassword(String username, String password);
 }

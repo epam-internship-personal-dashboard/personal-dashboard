@@ -4,7 +4,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>All Users</title>
+        <title>All Users | Personal Dashboard</title>
     </head>
     <body>
         <table>
@@ -17,14 +17,14 @@
                 <th>Role</th>
             </thead>
             <tbody>
-            <c:forEach items="${user}" var="user">
+            <c:forEach items="${userDTO}" var="userDTO">
             <tr>
-                <td><c:out value="${user.name}"></c:out></td>
-                <td><c:out value="${user.username}"></c:out></td>
-                <td><c:out value="${user.email}"></c:out></td>
-                <td><c:out value="${user.birthday}"></c:out></td>
-                <td><c:out value="${user.gender}"></c:out></td>
-                <td><c:out value="${user.role}"></c:out></td>
+                <td><c:out value="${userDTO.name}"></c:out></td>
+                <td><c:out value="${userDTO.username}"></c:out></td>
+                <td><c:out value="${userDTO.email}"></c:out></td>
+                <td><c:out value="${userDTO.birthday}"></c:out></td>
+                <td><c:out value="${userDTO.gender}"></c:out></td>
+                <td><c:out value="${userDTO.role}"></c:out></td>
             </tr>
             </c:forEach>
             </tbody>

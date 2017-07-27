@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard;
+package com.github.gokolo.personaldashboard.data;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -21,8 +21,8 @@ import com.zaxxer.hikari.pool.HikariPool.PoolInitializationException;
  *
  * @author  Grace_Okolo, Attila_Gyongyosi
  * @since   0.0.1
- * @see     com.github.gokolo.personaldashboard.dao.AddressDAOImpl
- * @see     com.github.gokolo.personaldashboard.dao.UserDAOImpl
+ * @see     com.github.gokolo.personaldashboard.data.dao.AddressDAOImpl
+ * @see     com.github.gokolo.personaldashboard.data.dao.UserDAOImpl
  */
 public final class ConnectionProvider {
     private static final Logger LOG = LoggerFactory.getLogger(ConnectionProvider.class);

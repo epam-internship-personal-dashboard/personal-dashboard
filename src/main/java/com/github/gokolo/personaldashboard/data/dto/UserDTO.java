@@ -1,10 +1,9 @@
-package com.github.gokolo.personaldashboard.dto;
+package com.github.gokolo.personaldashboard.data.dto;
 
 import java.sql.Date;
 
-import com.github.gokolo.personaldashboard.Builder;
-import com.github.gokolo.personaldashboard.Gender;
-import com.github.gokolo.personaldashboard.Role;
+import com.github.gokolo.personaldashboard.data.enums.Gender;
+import com.github.gokolo.personaldashboard.data.enums.Role;
 
 /**
  * 
@@ -167,10 +166,6 @@ public final class UserDTO {
 
     public void setRole(final Role uRole) {
         role = uRole;
-    }
-
-    public static Builder builder() {
-        return new Builder();
     }
 
     public int getAddressId() {

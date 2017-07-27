@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.dao;
+package com.github.gokolo.personaldashboard.data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,8 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.ConnectionProvider;
-import com.github.gokolo.personaldashboard.dto.AddressDTO;
+import com.github.gokolo.personaldashboard.data.ConnectionProvider;
+import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
 
 @SuppressWarnings("PMD")
 public class AddressDAOImpl implements AddressDAO {

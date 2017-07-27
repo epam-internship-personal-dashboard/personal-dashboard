@@ -1,8 +1,8 @@
-package com.github.gokolo.personaldashboard.dao;
+package com.github.gokolo.personaldashboard.data.dao;
 
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.dto.AddressDTO;
+import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
 
 public interface AddressDAO {
 
