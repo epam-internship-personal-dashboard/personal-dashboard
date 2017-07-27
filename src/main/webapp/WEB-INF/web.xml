@@ -8,4 +8,20 @@
     <servlet-name>users</servlet-name>
     <url-pattern>/usersPage</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>login</servlet-name>
+    <jsp-file>/WEB-INF/jsp/login.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>login</servlet-name>
+    <url-pattern>/loginPage</url-pattern>
+  </servlet-mapping>
+    <servlet>
+    <servlet-name>userProfile</servlet-name>
+    <jsp-file>/WEB-INF/jsp/userProfile.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>userProfile</servlet-name>
+    <url-pattern>/userProfilePage</url-pattern>
+  </servlet-mapping>
 </web-app>

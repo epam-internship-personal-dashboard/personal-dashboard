@@ -88,6 +88,27 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
+    public UserDTO findByUsernamePassword(final String username, final String password) {
+        PreparedStatement preparedStatement;
+        ResultSet resultSet;
+        UserDTO user = null;
+        try {
+            preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE username = ? and password = ?");
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                user = convert(resultSet);
+            }
+        } catch (final SQLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
     public void modify(final UserDTO user) {
         PreparedStatement preparedStatement;
         try {
