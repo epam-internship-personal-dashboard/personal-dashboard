@@ -4,12 +4,14 @@ import java.sql.Date;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import com.github.gokolo.personaldashboard.dao.AddressDAO;
-import com.github.gokolo.personaldashboard.dao.AddressDAOImpl;
-import com.github.gokolo.personaldashboard.dao.UserDAO;
-import com.github.gokolo.personaldashboard.dao.UserDAOImpl;
-import com.github.gokolo.personaldashboard.dto.AddressDTO;
-import com.github.gokolo.personaldashboard.dto.UserDTO;
+import com.github.gokolo.personaldashboard.data.dao.AddressDAO;
+import com.github.gokolo.personaldashboard.data.dao.AddressDAOImpl;
+import com.github.gokolo.personaldashboard.data.dao.UserDAO;
+import com.github.gokolo.personaldashboard.data.dao.UserDAOImpl;
+import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
+import com.github.gokolo.personaldashboard.data.dto.UserDTO;
+import com.github.gokolo.personaldashboard.data.enums.Gender;
+import com.github.gokolo.personaldashboard.data.enums.Role;
 
 @SuppressWarnings("PMD")
 public final class Dashboard {

@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.dto;
+package com.github.gokolo.personaldashboard.data.dto;
 
 public final class AddressDTO {
     private int id;

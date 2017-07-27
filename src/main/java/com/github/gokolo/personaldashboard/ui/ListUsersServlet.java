@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.servlet;
+package com.github.gokolo.personaldashboard.ui;
 
 import java.io.IOException;
 import java.util.List;
@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.github.gokolo.personaldashboard.dao.UserDAO;
-import com.github.gokolo.personaldashboard.dao.UserDAOImpl;
-import com.github.gokolo.personaldashboard.dto.UserDTO;
+import com.github.gokolo.personaldashboard.data.dao.UserDAO;
+import com.github.gokolo.personaldashboard.data.dao.UserDAOImpl;
+import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 
 /**
  * @author Grace_Okolo
@@ -25,8 +25,8 @@ public class ListUsersServlet extends HttpServlet {
     public void doGet(final HttpServletRequest request, final HttpServletResponse response)
             throws IOException, ServletException {
         response.setContentType("text/html");
-        List<UserDTO> userCollection = userDAO.findAll();
-        request.setAttribute("user", userCollection);
+        List<UserDTO> userDTOCollection = userDAO.findAll();
+        request.setAttribute("userDTO", userDTOCollection);
         request.getRequestDispatcher("/usersPage").forward(request, response);
     }
 

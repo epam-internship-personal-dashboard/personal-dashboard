@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.dao;
+package com.github.gokolo.personaldashboard.data.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,10 +8,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.ConnectionProvider;
-import com.github.gokolo.personaldashboard.Gender;
-import com.github.gokolo.personaldashboard.Role;
-import com.github.gokolo.personaldashboard.dto.UserDTO;
+import com.github.gokolo.personaldashboard.data.ConnectionProvider;
+import com.github.gokolo.personaldashboard.data.dto.UserDTO;
+import com.github.gokolo.personaldashboard.data.enums.Gender;
+import com.github.gokolo.personaldashboard.data.enums.Role;
 
 @SuppressWarnings("PMD")
 public class UserDAOImpl implements UserDAO {
