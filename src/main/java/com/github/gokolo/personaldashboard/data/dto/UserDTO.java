@@ -10,6 +10,7 @@ import com.github.gokolo.personaldashboard.data.enums.Role;
  * @author Grace_Okolo
  *
  */
+
 @SuppressWarnings("all")
 public final class UserDTO {
     private int id;

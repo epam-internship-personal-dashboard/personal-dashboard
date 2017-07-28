@@ -8,9 +8,12 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.github.gokolo.personaldashboard.data.ConnectionProvider;
 import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
 
+@Repository
 @SuppressWarnings("PMD")
 public class AddressDAOImpl implements AddressDAO {
     private final Connection conn = ConnectionProvider.connect();

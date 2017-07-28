@@ -2,6 +2,7 @@ package com.github.gokolo.personaldashboard.ui.servlets;
 
 import java.io.IOException;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,9 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.github.gokolo.personaldashboard.data.dao.UserDAO;
-import com.github.gokolo.personaldashboard.data.dao.UserDAOImpl;
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 
 /**
@@ -24,15 +27,19 @@ import com.github.gokolo.personaldashboard.data.dto.UserDTO;
  * @author Grace_Okolo
  *
  */
+@Component
 @WebServlet(name = "LoginServlet", urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
     private static final Logger LOG = LoggerFactory.getLogger(LoginServlet.class);
-    private final UserDAO userDAO = new UserDAOImpl();
-
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
+
+    @Autowired
+    private UserDAO userDAO;
+
+    public void init(final ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
 
     /**
      * This method allow the servlet to handle a login POST requests. It

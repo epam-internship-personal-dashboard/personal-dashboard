@@ -8,11 +8,14 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.github.gokolo.personaldashboard.data.ConnectionProvider;
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 import com.github.gokolo.personaldashboard.data.enums.Gender;
 import com.github.gokolo.personaldashboard.data.enums.Role;
 
+@Repository
 @SuppressWarnings("PMD")
 public class UserDAOImpl implements UserDAO {
     private final Connection conn = ConnectionProvider.connect();
