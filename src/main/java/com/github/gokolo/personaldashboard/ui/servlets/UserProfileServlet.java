@@ -33,8 +33,9 @@ public class UserProfileServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
+
         if (session != null) {
-            request.setAttribute("message", "Invalid username or password!");
+            request.getRequestDispatcher("/userProfilePage").forward(request, response);
         } else {
             response.sendRedirect(request.getContextPath() + "/loginPage");
         }
