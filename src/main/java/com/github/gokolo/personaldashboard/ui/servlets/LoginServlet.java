@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.ui;
+package com.github.gokolo.personaldashboard.ui.servlets;
 
 import java.io.IOException;
 
@@ -20,7 +20,7 @@ import com.github.gokolo.personaldashboard.data.dto.UserDTO;
  * This Servlet handles login requests. It forwards GET requests to the login
  * jsp page. It handles POST request, by performing authentication. Servlet
  * implementation class userAuthentication
- * 
+ *
  * @author Grace_Okolo
  *
  */
@@ -30,7 +30,7 @@ public class LoginServlet extends HttpServlet {
     private final UserDAO userDAO = new UserDAOImpl();
 
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = 1L;
 
@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
      * authenticates the username and password from the post request. If the
      * authentication succeeds, it forwards the request to the user profile jsp.
      * If it fails, it forwards the request back to itself.
-     * 
+     *
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
      *      response)
      */
@@ -66,7 +66,7 @@ public class LoginServlet extends HttpServlet {
     /**
      * This method allow the servlet to handle a login GET requests. It forwards
      * the request to the login jsp page.
-     * 
+     *
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.
      *      HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */

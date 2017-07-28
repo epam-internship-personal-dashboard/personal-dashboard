@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.ui;
+package com.github.gokolo.personaldashboard.ui.servlets;
 
 import java.io.IOException;
 import java.util.List;
@@ -16,7 +16,7 @@ import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 /**
  * This Servlet handles requests to find all users. It forwards GET requests to
  * the users jsp page.
- * 
+ *
  * @author Grace_Okolo
  */
 @SuppressWarnings("PMD")
@@ -27,7 +27,7 @@ public class ListUsersServlet extends HttpServlet {
     /**
      * This method allow the servlet to handle a GET requests. It forwards the
      * request with a User collection to the users jsp page.
-     * 
+     *
      * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.
      *      HttpServletRequest, javax.servlet.http.HttpServletResponse)
      */
