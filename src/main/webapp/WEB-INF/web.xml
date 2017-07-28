@@ -16,7 +16,7 @@
     <servlet-name>login</servlet-name>
     <url-pattern>/loginPage</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>userProfile</servlet-name>
     <jsp-file>/WEB-INF/jsp/userProfile.jsp</jsp-file>
   </servlet>

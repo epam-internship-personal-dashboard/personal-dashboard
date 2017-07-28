@@ -10,8 +10,8 @@
     <body>    
         <header>
             <h1>PERSONAL DASHBOARD</h1>
-            <nav>            
-                <a href="#">Logout</a>            
+            <nav>
+                <a href="${pageContext.request.contextPath}/logout">Logout</a>
             </nav>
         </header>
         
