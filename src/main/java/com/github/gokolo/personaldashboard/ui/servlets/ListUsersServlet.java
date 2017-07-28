@@ -3,14 +3,18 @@ package com.github.gokolo.personaldashboard.ui.servlets;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
 import com.github.gokolo.personaldashboard.data.dao.UserDAO;
-import com.github.gokolo.personaldashboard.data.dao.UserDAOImpl;
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 
 /**
@@ -19,10 +23,18 @@ import com.github.gokolo.personaldashboard.data.dto.UserDTO;
  *
  * @author Grace_Okolo
  */
+@Component
 @SuppressWarnings("PMD")
 @WebServlet(name = "ListUsersServlet", urlPatterns = "/users")
 public class ListUsersServlet extends HttpServlet {
-    private final UserDAO userDAO = new UserDAOImpl();
+
+    @Autowired
+    private UserDAO userDAO;
+
+    public void init(final ServletConfig config) throws ServletException {
+        super.init(config);
+        SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this, config.getServletContext());
+    }
 
     /**
      * This method allow the servlet to handle a GET requests. It forwards the

@@ -2,8 +2,11 @@ package com.github.gokolo.personaldashboard.data.dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Component;
+
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 
+@Component
 public interface UserDAO {
     int save(UserDTO user);
 
