@@ -8,16 +8,17 @@
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/css/style.css" />
     </head>
     <body>    
-        <nav id="main-menu">
-            <ul>
-                <li>Logout</li>
-            </ul>
-        </nav>
+        <header>
+            <h1>PERSONAL DASHBOARD</h1>
+            <nav>            
+                <a href="#">Logout</a>            
+            </nav>
+        </header>
         
-        <section>
+        <main>
             <div class="container">
                 ${user.name}
             </div>
-        </section>
+        </main>
     </body>
 </html>
