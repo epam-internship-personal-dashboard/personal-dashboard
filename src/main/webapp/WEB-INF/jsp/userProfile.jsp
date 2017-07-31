@@ -17,7 +17,12 @@
         
         <main>
             <div class="container">
-                ${user.name}
+                <p><span><strong>Name:</strong> ${user.name}</span></p>
+                <p><span><strong>Username:</strong> ${user.username}</span></p>
+                <p><span><strong>Email:</strong> ${user.email}</span></p>
+                <p><span><strong>Birthday:</strong> ${user.birthday}</span></p>
+                <p><span><strong>Gender:</strong> ${user.gender}</span></p>
+                <p><span><strong>Role:</strong> ${user.role}</span></p>
             </div>
         </main>
     </body>
