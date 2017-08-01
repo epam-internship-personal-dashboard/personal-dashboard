@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -25,7 +26,7 @@ public class RegisterController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String save(final UserDTO user) {
+    public String save(@ModelAttribute final UserDTO user) {
         int save = userDAO.save(user);
         if (save == 0) {
             LOG.info("User Not Registered!");
