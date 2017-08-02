@@ -2,11 +2,15 @@ package com.github.gokolo.personaldashboard.data.dao;
 
 import java.util.List;
 
-import org.springframework.stereotype.Component;
-
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 
-@Component
+/**
+ * This is a data layer interface holds the methods and actions for UserDTO.
+ * 
+ * @author Grace_Okolo
+ *
+ * @see com.github.gokolo.personaldashboard.data.dto.UserDTO
+ */
 public interface UserDAO {
     int save(UserDTO user);
 
@@ -19,4 +23,6 @@ public interface UserDAO {
     void delete(UserDTO user);
 
     UserDTO findByUsernamePassword(String username, String password);
+
+    UserDTO findByUsername(String username);
 }

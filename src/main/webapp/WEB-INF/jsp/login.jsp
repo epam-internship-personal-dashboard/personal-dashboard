@@ -9,7 +9,7 @@
     </head>
     <body>
         <header>
-            <h1>PERSONAL DASHBOARD</h1>            
+            <h1>PERSONAL DASHBOARD</h1>
         </header>
         <main>
             <div class="login-container">
