@@ -105,7 +105,7 @@ public class UserServiceImpl implements UserService {
      * @since 02/08/2017
      */
     @Override
-    public UserVO findByUsername(String username) {
+    public UserVO findByUsername(final String username) {
         UserDTO userDTO = userDAO.findByUsername(username);
         AddressDTO addressDTO = addressDAO.findById(userDTO.getAddressId());
         UserVO userVO = convertToVO(userDTO, addressDTO);
@@ -140,7 +140,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void save(UserVO userVO) {
+    public void save(final UserVO userVO) {
         UserDTO userDTO = convertUserToDTO(userVO);
         AddressDTO addressDTO = convertAddressToDTO(userVO);
         addressDTO = addressDAO.save(addressDTO);
@@ -149,7 +149,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void modify(UserVO userVO) {
+    public void modify(final UserVO userVO) {
         UserDTO userDTO = convertUserToDTO(userVO);
         AddressDTO addressDTO = convertAddressToDTO(userVO);
         userDAO.modify(userDTO);
@@ -157,7 +157,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void delete(UserVO userVO) {
+    public void delete(final UserVO userVO) {
         UserDTO userDTO = convertUserToDTO(userVO);
         AddressDTO addressDTO = convertAddressToDTO(userVO);
         userDAO.delete(userDTO);
@@ -166,7 +166,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserVO findByUsernamePassword(String username, String password) {
+    public UserVO findByUsernamePassword(final String username, final String password) {
         UserDTO userDTO = userDAO.findByUsernamePassword(username, password);
         AddressDTO addressDTO = addressDAO.findById(userDTO.getAddressId());
         UserVO userVO = convertToVO(userDTO, addressDTO);

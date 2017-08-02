@@ -2,6 +2,7 @@ package com.github.gokolo.personaldashboard.ui.controller;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,7 +32,7 @@ public class RegisterController {
 
     @InitBinder
     public void initBinder(final WebDataBinder binder) {
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
         sdf.setLenient(true);
 
         binder.registerCustomEditor(Date.class, new CustomDateEditor(sdf, true));
@@ -44,7 +45,7 @@ public class RegisterController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String save(@ModelAttribute final UserVO user, BindingResult bindingResult,
+    public String save(@ModelAttribute final UserVO user, final BindingResult bindingResult,
             final HttpServletRequest request) {
         LOG.error("{}", bindingResult.getAllErrors());
         userService.save(user);
