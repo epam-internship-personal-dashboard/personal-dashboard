@@ -46,6 +46,26 @@
                     <label for="role">Role:</label>
                     <f:input type="text" name="role" path="role" id ="role"/>
                 </div>
+                <div>
+                    <label for="houseNumber">House Number:</label>
+                    <f:input type="text" name="houseNumber" path="address.houseNumber" id ="houseNumber" />
+                </div>
+                <div>
+                    <label for="">Street:</label>
+                    <f:input type="text" name="street" path="address.street" id ="street" />
+                </div>
+                <div>
+                    <label for="zipCode">Zip Code:</label>
+                    <f:input type="text" name="zipCode" path="address.zipCode" id ="zipCode" />
+                </div>
+                <div>
+                    <label for="city">City:</label>
+                    <f:input type="text" name="city" path="address.city" id ="city" />
+                </div>
+                <div>
+                    <label for="country">Country:</label>
+                    <f:input type="text" name="country" path="address.country" id ="country" />
+                </div>
                 
             <input type="submit" value="Create Accont"/>
             </f:form>

@@ -18,16 +18,20 @@ import com.github.gokolo.personaldashboard.service.models.UserVO;
 public interface UserService {
     UserVO convertToVO(UserDTO user, AddressDTO address);
 
-    UserVO convertToDTO(UserVO userVO);
+    AddressDTO convertAddressToDTO(UserVO userVO);
+
+    UserDTO convertUserToDTO(UserVO userVO);
 
     List<UserVO> findAll();
 
-    UserVO findById(int id);
+    UserVO findByUsername(String username);
 
-    void modify(UserVO user);
+    void modify(UserVO userVO);
 
-    void delete(UserVO user);
+    void delete(UserVO userVO);
 
     UserVO findByUsernamePassword(String username, String password);
+
+    void save(UserVO userVO);
 
 }

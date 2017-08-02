@@ -23,4 +23,6 @@ public interface UserDAO {
     void delete(UserDTO user);
 
     UserDTO findByUsernamePassword(String username, String password);
+
+    UserDTO findByUsername(String username);
 }
