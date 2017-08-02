@@ -1,5 +1,6 @@
 package com.github.gokolo.personaldashboard.service.services;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -130,7 +131,7 @@ public class UserServiceImpl implements UserService {
         userDTO.setName(userVO.getName());
         userDTO.setUsername(userVO.getUsername());
         userDTO.setPassword(userVO.getPassword());
-        userDTO.setBirthday(userVO.getBirthday());
+        userDTO.setBirthday(new Date(userVO.getBirthday().getTime()));
         userDTO.setAddressId(userVO.getAddress().getId());
         userDTO.setEmail(userVO.getEmail());
         userDTO.setGender(userVO.getGender());
@@ -142,8 +143,9 @@ public class UserServiceImpl implements UserService {
     public void save(UserVO userVO) {
         UserDTO userDTO = convertUserToDTO(userVO);
         AddressDTO addressDTO = convertAddressToDTO(userVO);
+        addressDTO = addressDAO.save(addressDTO);
+        userDTO.setAddressId(addressDTO.getId());
         userDAO.save(userDTO);
-        addressDAO.save(addressDTO);
     }
 
     @Override

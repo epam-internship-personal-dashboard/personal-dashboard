@@ -23,6 +23,11 @@
                 <p><span><strong>Email: </strong> </span>${user.email}</p>
                 <p><span><strong>Gender: </strong> </span>${user.gender}</p>
                 <p><span><strong>Role: </strong> </span>${user.role}</p>
+                <p><span><strong>House Number: </strong> </span>${user.address.houseNumber}</p>
+                <p><span><strong>Street: </strong> </span>${user.address.street}</p>
+                <p><span><strong>Zip Code: </strong> </span>${user.address.city}</p>
+                <p><span><strong>City: </strong> </span>${user.address.zipCode}</p>
+                <p><span><strong>Country: </strong> </span>${user.address.country}</p>
             </div>
         </main>
     </body>

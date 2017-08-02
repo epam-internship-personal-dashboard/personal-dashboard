@@ -1,6 +1,6 @@
 package com.github.gokolo.personaldashboard.service.models;
 
-import java.sql.Date;
+import java.util.Date;
 
 import com.github.gokolo.personaldashboard.data.enums.Gender;
 import com.github.gokolo.personaldashboard.data.enums.Role;

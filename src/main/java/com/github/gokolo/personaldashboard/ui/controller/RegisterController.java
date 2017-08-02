@@ -3,6 +3,9 @@ package com.github.gokolo.personaldashboard.ui.controller;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +44,13 @@ public class RegisterController {
     }
 
     @RequestMapping(method = RequestMethod.POST)
-    public String save(@ModelAttribute final UserVO user, BindingResult bindingResult) {
+    public String save(@ModelAttribute final UserVO user, BindingResult bindingResult,
+            final HttpServletRequest request) {
         LOG.error("{}", bindingResult.getAllErrors());
         userService.save(user);
-        return "register";
+        HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        return "userProfile";
     }
 
 }
