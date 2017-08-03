@@ -2,8 +2,6 @@ package com.github.gokolo.personaldashboard.service.services;
 
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
-import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 import com.github.gokolo.personaldashboard.service.models.UserVO;
 
 /**
@@ -16,11 +14,6 @@ import com.github.gokolo.personaldashboard.service.models.UserVO;
  */
 
 public interface UserService {
-    UserVO convertToVO(UserDTO user, AddressDTO address);
-
-    AddressDTO convertAddressToDTO(UserVO userVO);
-
-    UserDTO convertUserToDTO(UserVO userVO);
 
     List<UserVO> findAll();
 

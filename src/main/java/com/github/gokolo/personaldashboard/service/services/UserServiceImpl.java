@@ -1,17 +1,16 @@
 package com.github.gokolo.personaldashboard.service.services;
 
-import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.convert.ConversionService;
 import org.springframework.stereotype.Service;
 
 import com.github.gokolo.personaldashboard.data.dao.AddressDAO;
 import com.github.gokolo.personaldashboard.data.dao.UserDAO;
 import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
-import com.github.gokolo.personaldashboard.service.models.AddressVO;
 import com.github.gokolo.personaldashboard.service.models.UserVO;
 
 /**
@@ -35,28 +34,8 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AddressDAO addressDAO;
 
-    @Override
-    public UserVO convertToVO(final UserDTO userDTO, final AddressDTO addressDTO) {
-        UserVO userVO = new UserVO();
-        AddressVO addressVO = new AddressVO();
-        userVO.setId(userDTO.getId());
-        userVO.setName(userDTO.getName());
-        userVO.setUsername(userDTO.getUsername());
-        userVO.setPassword(userDTO.getPassword());
-        userVO.setBirthday(userDTO.getBirthday());
-        userVO.setEmail(userDTO.getEmail());
-        userVO.setGender(userDTO.getGender());
-        userVO.setRole(userDTO.getRole());
-
-        addressVO.setHouseNumber(addressDTO.getHouseNumber());
-        addressVO.setStreet(addressDTO.getStreet());
-        addressVO.setCity(addressDTO.getCity());
-        addressVO.setZipCode(addressDTO.getZipCode());
-        addressVO.setCountry(addressDTO.getCountry());
-
-        userVO.setAddress(addressVO);
-        return userVO;
-    }
+    @Autowired
+    private ConversionService conversionService;
 
     /**
      * This method uses the
@@ -83,7 +62,7 @@ public class UserServiceImpl implements UserService {
         for (UserDTO userDTO : userDTOCollection) {
             for (AddressDTO addressDTO : addressDTOCollection) {
                 if (userDTO.getAddressId() == addressDTO.getId()) {
-                    userVOCollection.add(convertToVO(userDTO, addressDTO));
+                    userVOCollection.add(conversionService.convert(userDTO, UserVO.class));
                 }
             }
         }
@@ -107,42 +86,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByUsername(final String username) {
         UserDTO userDTO = userDAO.findByUsername(username);
-        AddressDTO addressDTO = addressDAO.findById(userDTO.getAddressId());
-        UserVO userVO = convertToVO(userDTO, addressDTO);
-        return userVO;
-    }
-
-    @Override
-    public AddressDTO convertAddressToDTO(final UserVO userVO) {
-        AddressDTO addressDTO = new AddressDTO();
-        addressDTO.setId(userVO.getAddress().getId());
-        addressDTO.setHouseNumber(userVO.getAddress().getHouseNumber());
-        addressDTO.setStreet(userVO.getAddress().getStreet());
-        addressDTO.setCity(userVO.getAddress().getCity());
-        addressDTO.setCountry(userVO.getAddress().getCountry());
-        addressDTO.setZipCode(userVO.getAddress().getZipCode());
-        return addressDTO;
-    }
-
-    @Override
-    public UserDTO convertUserToDTO(final UserVO userVO) {
-        UserDTO userDTO = new UserDTO();
-        userDTO.setId(userVO.getId());
-        userDTO.setName(userVO.getName());
-        userDTO.setUsername(userVO.getUsername());
-        userDTO.setPassword(userVO.getPassword());
-        userDTO.setBirthday(new Date(userVO.getBirthday().getTime()));
-        userDTO.setAddressId(userVO.getAddress().getId());
-        userDTO.setEmail(userVO.getEmail());
-        userDTO.setGender(userVO.getGender());
-        userDTO.setRole(userVO.getRole());
-        return userDTO;
+        return conversionService.convert(userDTO, UserVO.class);
     }
 
     @Override
     public void save(final UserVO userVO) {
-        UserDTO userDTO = convertUserToDTO(userVO);
-        AddressDTO addressDTO = convertAddressToDTO(userVO);
+        UserDTO userDTO = conversionService.convert(userVO, UserDTO.class);
+        AddressDTO addressDTO = conversionService.convert(userVO.getAddress(), AddressDTO.class);
         addressDTO = addressDAO.save(addressDTO);
         userDTO.setAddressId(addressDTO.getId());
         userDAO.save(userDTO);
@@ -150,16 +100,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void modify(final UserVO userVO) {
-        UserDTO userDTO = convertUserToDTO(userVO);
-        AddressDTO addressDTO = convertAddressToDTO(userVO);
+        UserDTO userDTO = conversionService.convert(userVO, UserDTO.class);
+        AddressDTO addressDTO = conversionService.convert(userVO.getAddress(), AddressDTO.class);
         userDAO.modify(userDTO);
         addressDAO.modify(addressDTO);
     }
 
     @Override
     public void delete(final UserVO userVO) {
-        UserDTO userDTO = convertUserToDTO(userVO);
-        AddressDTO addressDTO = convertAddressToDTO(userVO);
+        UserDTO userDTO = conversionService.convert(userVO, UserDTO.class);
+        AddressDTO addressDTO = conversionService.convert(userVO.getAddress(), AddressDTO.class);
         userDAO.delete(userDTO);
         addressDAO.delete(addressDTO);
 
@@ -168,9 +118,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserVO findByUsernamePassword(final String username, final String password) {
         UserDTO userDTO = userDAO.findByUsernamePassword(username, password);
-        AddressDTO addressDTO = addressDAO.findById(userDTO.getAddressId());
-        UserVO userVO = convertToVO(userDTO, addressDTO);
-        return userVO;
+        return conversionService.convert(userDTO, UserVO.class);
     }
 
 }
