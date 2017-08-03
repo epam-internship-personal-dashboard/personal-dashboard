@@ -1,5 +1,6 @@
 package com.github.gokolo.personaldashboard.ui.spring;
 
+import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -28,6 +29,12 @@ public class SpringWebAppConfig {
     @Autowired
     private UserDTOConverter userDTOConverter;
 
+    @Autowired
+    private UserVOConverter userVOConverter;
+
+    @Autowired
+    private AddressVOConverter addressVOConverter;
+
     @Bean
     public ViewResolver configureViewResolver() {
         InternalResourceViewResolver viewResolve = new InternalResourceViewResolver();
@@ -41,9 +48,14 @@ public class SpringWebAppConfig {
     public ConversionService conversionService() {
         DefaultConversionService service = new DefaultConversionService();
         service.addConverter(userDTOConverter);
-        service.addConverter(new UserVOConverter());
-        service.addConverter(new AddressVOConverter());
+        service.addConverter(userVOConverter);
+        service.addConverter(addressVOConverter);
         return service;
+    }
+
+    @Bean
+    public DozerBeanMapper dozerBeanMapper() {
+        return new DozerBeanMapper();
     }
 
 }

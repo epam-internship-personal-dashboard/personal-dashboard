@@ -15,7 +15,9 @@ import com.github.gokolo.personaldashboard.service.models.UserVO;
 public class UserDTOConverter implements Converter<UserDTO, UserVO> {
     @Autowired
     private AddressDAO addressDAO;
-    private final DozerBeanMapper mapper = new DozerBeanMapper();
+
+    @Autowired
+    private DozerBeanMapper mapper;
 
     @Override
     public UserVO convert(final UserDTO userDTO) {
