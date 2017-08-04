@@ -16,16 +16,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private DataSource dataSource;
 
     @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/userProfile").hasRole("USER").and().formLogin()
                 .usernameParameter("username").passwordParameter("password").loginPage("/").loginProcessingUrl("/login")
                 .failureUrl("/login.html?error=true").and().logout().logoutSuccessUrl("/");
     }
 
     @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+    protected void configure(final AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
-                .usersByUsernameQuery("select username,password from user where username=?")
+                .usersByUsernameQuery("select username,password, enabled from user where username=?")
                 .authoritiesByUsernameQuery("select username, role from user where username=?");
     }
 }
