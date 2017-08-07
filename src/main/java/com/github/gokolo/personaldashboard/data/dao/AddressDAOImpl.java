@@ -1,6 +1,5 @@
 package com.github.gokolo.personaldashboard.data.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,15 +7,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.github.gokolo.personaldashboard.data.ConnectionProvider;
 import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
 
 @Repository
 @SuppressWarnings("PMD")
 public class AddressDAOImpl implements AddressDAO {
-    private final Connection conn = ConnectionProvider.connect();
+    @Autowired
+    private DataSource dataSource;
     private static final int PARA_ONE = 1;
     private static final int PARA_TWO = 2;
     private static final int PARA_THREE = 3;
@@ -28,7 +30,7 @@ public class AddressDAOImpl implements AddressDAO {
     public AddressDTO save(final AddressDTO address) {
         int rowsAffected = 0;
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement(
+            PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(
                     "INSERT INTO address (house_number,street,zip_code,city,country) VALUES (?,?,?,?,?)",
                     Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(PARA_ONE, address.getHouseNumber());
@@ -65,7 +67,7 @@ public class AddressDAOImpl implements AddressDAO {
         ResultSet resultSet;
         List<AddressDTO> addressCollection = new ArrayList<>();
         try {
-            statement = conn.createStatement();
+            statement = dataSource.getConnection().createStatement();
             resultSet = statement.executeQuery("SELECT * FROM address");
             while (resultSet.next()) {
                 addressCollection.add(convert(resultSet));
@@ -81,7 +83,8 @@ public class AddressDAOImpl implements AddressDAO {
     public AddressDTO findById(final int id) {
         AddressDTO address = new AddressDTO();
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("SELECT * FROM address WHERE id = ?");
+            PreparedStatement preparedStatement = dataSource.getConnection()
+                    .prepareStatement("SELECT * FROM address WHERE id = ?");
             preparedStatement.setInt(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -98,7 +101,7 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public void modify(final AddressDTO address) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement(
+            PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(
                     "UPDATE address SET house_number=?,street=?,zip_code=?,city=?,country=? WHERE id =?");
             preparedStatement.setString(PARA_ONE, address.getHouseNumber());
             preparedStatement.setString(PARA_TWO, address.getStreet());
@@ -118,7 +121,8 @@ public class AddressDAOImpl implements AddressDAO {
     @Override
     public void delete(final AddressDTO address) {
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement("DELETE FROM address WHERE id=?");
+            PreparedStatement preparedStatement = dataSource.getConnection()
+                    .prepareStatement("DELETE FROM address WHERE id=?");
             preparedStatement.setInt(PARA_ONE, address.getId());
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {

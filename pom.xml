@@ -91,6 +91,7 @@
         <version.jstl>1.2</version.jstl>
 
         <version.spring>4.3.10.RELEASE</version.spring>
+        <version.spring.security>3.2.3.RELEASE</version.spring.security>
 
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.versions>2.3</version.plugin.versions>
@@ -164,6 +165,22 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${version.spring}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-web</artifactId>
+            <version>${version.spring.security}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-config</artifactId>
+            <version>${version.spring.security}</version>
+        </dependency>
+        <dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-jdbc</artifactId>
+		    <version>${version.spring}</version>
+		</dependency>
+        
         <!-- Spring Dependencies -->
         <dependency>
             <groupId>org.projectlombok</groupId>

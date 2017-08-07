@@ -1,6 +1,5 @@
 package com.github.gokolo.personaldashboard.data.dao;
 
-import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,9 +7,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.github.gokolo.personaldashboard.data.ConnectionProvider;
 import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 import com.github.gokolo.personaldashboard.data.enums.Gender;
 import com.github.gokolo.personaldashboard.data.enums.Role;
@@ -18,7 +19,8 @@ import com.github.gokolo.personaldashboard.data.enums.Role;
 @Repository
 @SuppressWarnings("PMD")
 public class UserDAOImpl implements UserDAO {
-    private final Connection conn = ConnectionProvider.connect();
+    @Autowired
+    private DataSource dataSource;
     private static final int PARA_ONE = 1;
     private static final int PARA_TWO = 2;
     private static final int PARA_THREE = 3;
@@ -32,7 +34,7 @@ public class UserDAOImpl implements UserDAO {
     public int save(final UserDTO user) {
         int rowsAffected = 0;
         try {
-            PreparedStatement preparedStatement = conn.prepareStatement(
+            PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(
                     "INSERT INTO user (name,username,email,password,birthday,gender,role,address_id) VALUES (?,?,?,?,?,?,?,?)");
             preparedStatement.setString(PARA_ONE, user.getName());
             preparedStatement.setString(PARA_TWO, user.getUsername());
@@ -58,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
         ResultSet resultSet;
         List<UserDTO> userCollection = new ArrayList<>();
         try {
-            statement = conn.createStatement();
+            statement = dataSource.getConnection().createStatement();
             resultSet = statement.executeQuery("SELECT * FROM user");
             while (resultSet.next()) {
                 userCollection.add(convert(resultSet));
@@ -76,7 +78,7 @@ public class UserDAOImpl implements UserDAO {
         ResultSet resultSet;
         UserDTO user = new UserDTO();
         try {
-            preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE id = ?");
+            preparedStatement = dataSource.getConnection().prepareStatement("SELECT * FROM user WHERE id = ?");
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
 
@@ -96,7 +98,8 @@ public class UserDAOImpl implements UserDAO {
         ResultSet resultSet;
         UserDTO user = null;
         try {
-            preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE username = ? and password = ?");
+            preparedStatement = dataSource.getConnection()
+                    .prepareStatement("SELECT * FROM user WHERE username = ? and password = ?");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
@@ -117,7 +120,7 @@ public class UserDAOImpl implements UserDAO {
         ResultSet resultSet;
         UserDTO user = null;
         try {
-            preparedStatement = conn.prepareStatement("SELECT * FROM user WHERE username = ?");
+            preparedStatement = dataSource.getConnection().prepareStatement("SELECT * FROM user WHERE username = ?");
             preparedStatement.setString(1, username);
             resultSet = preparedStatement.executeQuery();
 
@@ -135,7 +138,7 @@ public class UserDAOImpl implements UserDAO {
     public void modify(final UserDTO user) {
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = conn.prepareStatement(
+            preparedStatement = dataSource.getConnection().prepareStatement(
                     "UPDATE user SET name=?,username=?,email=?,password=?,birthday=?,gender=?,role=? WHERE id=?");
             preparedStatement.setString(PARA_ONE, user.getName());
             preparedStatement.setString(PARA_TWO, user.getUsername());
@@ -158,7 +161,7 @@ public class UserDAOImpl implements UserDAO {
     public void delete(final UserDTO user) {
         PreparedStatement preparedStatement;
         try {
-            preparedStatement = conn.prepareStatement("DELETE FROM user WHERE id=?");
+            preparedStatement = dataSource.getConnection().prepareStatement("DELETE FROM user WHERE id=?");
             preparedStatement.setInt(PARA_ONE, user.getId());
             preparedStatement.executeUpdate();
         } catch (final SQLException ex) {
