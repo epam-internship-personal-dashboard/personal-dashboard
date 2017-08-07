@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 
 import com.github.gokolo.personaldashboard.data.dao.AddressDAO;
 import com.github.gokolo.personaldashboard.data.dao.UserDAO;
-import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
-import com.github.gokolo.personaldashboard.data.dto.UserDTO;
+import com.github.gokolo.personaldashboard.entities.AddressEntity;
+import com.github.gokolo.personaldashboard.entities.UserEntity;
 import com.github.gokolo.personaldashboard.service.models.UserVO;
 
 /**
@@ -20,7 +20,7 @@ import com.github.gokolo.personaldashboard.service.models.UserVO;
  * @version 0.4.0
  * @since 01/08/2017
  *
- * @see com.github.gokolo.personaldashboard.data.dto.UserDTO
+ * @see com.github.gokolo.personaldashboard.entities.UserEntity
  * @see com.github.gokolo.personaldashboard.data.dao.UserDAO;
  * @see com.github.gokolo.personaldashboard.data.dto.AddressDTO;
  * @see com.github.gokolo.personaldashboard.data.dao.AddressDAO;
@@ -56,11 +56,11 @@ public class UserServiceImpl implements UserService {
     public List<UserVO> findAll() {
         List<UserVO> userVOCollection = new ArrayList<>();
 
-        List<UserDTO> userDTOCollection = userDAO.findAll();
-        List<AddressDTO> addressDTOCollection = addressDAO.findAll();
+        List<UserEntity> userDTOCollection = userDAO.findAll();
+        List<AddressEntity> addressDTOCollection = addressDAO.findAll();
 
-        for (UserDTO userDTO : userDTOCollection) {
-            for (AddressDTO addressDTO : addressDTOCollection) {
+        for (UserEntity userDTO : userDTOCollection) {
+            for (AddressEntity addressDTO : addressDTOCollection) {
                 if (userDTO.getAddressId() == addressDTO.getId()) {
                     userVOCollection.add(conversionService.convert(userDTO, UserVO.class));
                 }
@@ -85,14 +85,14 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public UserVO findByUsername(final String username) {
-        UserDTO userDTO = userDAO.findByUsername(username);
+        UserEntity userDTO = userDAO.findByUsername(username);
         return conversionService.convert(userDTO, UserVO.class);
     }
 
     @Override
     public void save(final UserVO userVO) {
-        UserDTO userDTO = conversionService.convert(userVO, UserDTO.class);
-        AddressDTO addressDTO = conversionService.convert(userVO.getAddress(), AddressDTO.class);
+        UserEntity userDTO = conversionService.convert(userVO, UserEntity.class);
+        AddressEntity addressDTO = conversionService.convert(userVO.getAddress(), AddressEntity.class);
         addressDTO = addressDAO.save(addressDTO);
         userDTO.setAddressId(addressDTO.getId());
         userDAO.save(userDTO);
@@ -100,16 +100,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void modify(final UserVO userVO) {
-        UserDTO userDTO = conversionService.convert(userVO, UserDTO.class);
-        AddressDTO addressDTO = conversionService.convert(userVO.getAddress(), AddressDTO.class);
+        UserEntity userDTO = conversionService.convert(userVO, UserEntity.class);
+        AddressEntity addressDTO = conversionService.convert(userVO.getAddress(), AddressEntity.class);
         userDAO.modify(userDTO);
         addressDAO.modify(addressDTO);
     }
 
     @Override
     public void delete(final UserVO userVO) {
-        UserDTO userDTO = conversionService.convert(userVO, UserDTO.class);
-        AddressDTO addressDTO = conversionService.convert(userVO.getAddress(), AddressDTO.class);
+        UserEntity userDTO = conversionService.convert(userVO, UserEntity.class);
+        AddressEntity addressDTO = conversionService.convert(userVO.getAddress(), AddressEntity.class);
         userDAO.delete(userDTO);
         addressDAO.delete(addressDTO);
 
@@ -117,7 +117,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserVO findByUsernamePassword(final String username, final String password) {
-        UserDTO userDTO = userDAO.findByUsernamePassword(username, password);
+        UserEntity userDTO = userDAO.findByUsernamePassword(username, password);
         return conversionService.convert(userDTO, UserVO.class);
     }
 

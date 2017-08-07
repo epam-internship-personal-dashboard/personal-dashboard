@@ -1,6 +1,13 @@
-package com.github.gokolo.personaldashboard.data.dto;
+package com.github.gokolo.personaldashboard.entities;
 
 import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import com.github.gokolo.personaldashboard.data.enums.Gender;
 import com.github.gokolo.personaldashboard.data.enums.Role;
@@ -16,18 +23,28 @@ import lombok.NoArgsConstructor;
  *
  */
 
+@Entity
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class UserDTO {
+public class UserEntity {
+    @Id
+    @GeneratedValue
     private int id;
     private String name;
-    private int addressId;
+
+    @OneToOne
+    private AddressEntity address;
+
     private String username;
     private String password;
     private Date birthday;
     private String email;
+
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

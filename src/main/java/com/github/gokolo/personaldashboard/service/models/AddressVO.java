@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
  * @version 0.4.0
  * @since 01/08/2017
  *
- * @see com.github.gokolo.personaldashboard.data.dto.AddressDTO
+ * @see com.github.gokolo.personaldashboard.entities.AddressEntity
  */
 @Data
 @Builder

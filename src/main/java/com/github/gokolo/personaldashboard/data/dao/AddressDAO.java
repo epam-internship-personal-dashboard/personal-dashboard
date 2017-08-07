@@ -2,17 +2,17 @@ package com.github.gokolo.personaldashboard.data.dao;
 
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
+import com.github.gokolo.personaldashboard.entities.AddressEntity;
 
 public interface AddressDAO {
 
-    AddressDTO save(AddressDTO address);
+    AddressEntity save(AddressEntity address);
 
-    AddressDTO findById(int id);
+    AddressEntity findById(int id);
 
-    void modify(AddressDTO address);
+    void modify(AddressEntity address);
 
-    void delete(AddressDTO address);
+    void delete(AddressEntity address);
 
-    List<AddressDTO> findAll();
+    List<AddressEntity> findAll();
 }

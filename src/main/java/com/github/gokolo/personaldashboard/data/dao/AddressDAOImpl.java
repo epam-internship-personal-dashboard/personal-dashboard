@@ -12,7 +12,7 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.github.gokolo.personaldashboard.data.dto.AddressDTO;
+import com.github.gokolo.personaldashboard.entities.AddressEntity;
 
 @Repository
 @SuppressWarnings("PMD")
@@ -27,7 +27,7 @@ public class AddressDAOImpl implements AddressDAO {
     private static final int PARA_SIX = 6;
 
     @Override
-    public AddressDTO save(final AddressDTO address) {
+    public AddressEntity save(final AddressEntity address) {
         int rowsAffected = 0;
         try {
             PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(
@@ -62,10 +62,10 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public List<AddressDTO> findAll() {
+    public List<AddressEntity> findAll() {
         Statement statement;
         ResultSet resultSet;
-        List<AddressDTO> addressCollection = new ArrayList<>();
+        List<AddressEntity> addressCollection = new ArrayList<>();
         try {
             statement = dataSource.getConnection().createStatement();
             resultSet = statement.executeQuery("SELECT * FROM address");
@@ -80,8 +80,8 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public AddressDTO findById(final int id) {
-        AddressDTO address = new AddressDTO();
+    public AddressEntity findById(final int id) {
+        AddressEntity address = new AddressEntity();
         try {
             PreparedStatement preparedStatement = dataSource.getConnection()
                     .prepareStatement("SELECT * FROM address WHERE id = ?");
@@ -99,7 +99,7 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public void modify(final AddressDTO address) {
+    public void modify(final AddressEntity address) {
         try {
             PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(
                     "UPDATE address SET house_number=?,street=?,zip_code=?,city=?,country=? WHERE id =?");
@@ -119,7 +119,7 @@ public class AddressDAOImpl implements AddressDAO {
     }
 
     @Override
-    public void delete(final AddressDTO address) {
+    public void delete(final AddressEntity address) {
         try {
             PreparedStatement preparedStatement = dataSource.getConnection()
                     .prepareStatement("DELETE FROM address WHERE id=?");
@@ -133,8 +133,8 @@ public class AddressDAOImpl implements AddressDAO {
         }
     }
 
-    private AddressDTO convert(final ResultSet resultSet) throws SQLException {
-        AddressDTO address = new AddressDTO();
+    private AddressEntity convert(final ResultSet resultSet) throws SQLException {
+        AddressEntity address = new AddressEntity();
         address.setId(resultSet.getInt("id"));
         address.setHouseNumber(resultSet.getString("house_number"));
         address.setStreet(resultSet.getString("street"));

@@ -12,9 +12,9 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.github.gokolo.personaldashboard.data.dto.UserDTO;
 import com.github.gokolo.personaldashboard.data.enums.Gender;
 import com.github.gokolo.personaldashboard.data.enums.Role;
+import com.github.gokolo.personaldashboard.entities.UserEntity;
 
 @Repository
 @SuppressWarnings("PMD")
@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
     private static final int PARA_EIGHT = 8;
 
     @Override
-    public int save(final UserDTO user) {
+    public int save(final UserEntity user) {
         int rowsAffected = 0;
         try {
             PreparedStatement preparedStatement = dataSource.getConnection().prepareStatement(
@@ -55,10 +55,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public List<UserDTO> findAll() {
+    public List<UserEntity> findAll() {
         Statement statement;
         ResultSet resultSet;
-        List<UserDTO> userCollection = new ArrayList<>();
+        List<UserEntity> userCollection = new ArrayList<>();
         try {
             statement = dataSource.getConnection().createStatement();
             resultSet = statement.executeQuery("SELECT * FROM user");
@@ -73,10 +73,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserDTO findById(final int id) {
+    public UserEntity findById(final int id) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        UserDTO user = new UserDTO();
+        UserEntity user = new UserEntity();
         try {
             preparedStatement = dataSource.getConnection().prepareStatement("SELECT * FROM user WHERE id = ?");
             preparedStatement.setInt(1, id);
@@ -93,10 +93,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserDTO findByUsernamePassword(final String username, final String password) {
+    public UserEntity findByUsernamePassword(final String username, final String password) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        UserDTO user = null;
+        UserEntity user = null;
         try {
             preparedStatement = dataSource.getConnection()
                     .prepareStatement("SELECT * FROM user WHERE username = ? and password = ?");
@@ -115,10 +115,10 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public UserDTO findByUsername(final String username) {
+    public UserEntity findByUsername(final String username) {
         PreparedStatement preparedStatement;
         ResultSet resultSet;
-        UserDTO user = null;
+        UserEntity user = null;
         try {
             preparedStatement = dataSource.getConnection().prepareStatement("SELECT * FROM user WHERE username = ?");
             preparedStatement.setString(1, username);
@@ -135,7 +135,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void modify(final UserDTO user) {
+    public void modify(final UserEntity user) {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = dataSource.getConnection().prepareStatement(
@@ -158,7 +158,7 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public void delete(final UserDTO user) {
+    public void delete(final UserEntity user) {
         PreparedStatement preparedStatement;
         try {
             preparedStatement = dataSource.getConnection().prepareStatement("DELETE FROM user WHERE id=?");
@@ -172,8 +172,8 @@ public class UserDAOImpl implements UserDAO {
         }
     }
 
-    private UserDTO convert(final ResultSet resultSet) throws SQLException {
-        UserDTO user = new UserDTO();
+    private UserEntity convert(final ResultSet resultSet) throws SQLException {
+        UserEntity user = new UserEntity();
         user.setId(resultSet.getInt("id"));
         user.setName(resultSet.getString("name"));
         user.setAddressId(resultSet.getInt("address_id"));

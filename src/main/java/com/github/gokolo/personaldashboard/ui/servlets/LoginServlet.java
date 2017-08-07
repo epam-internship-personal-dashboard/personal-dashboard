@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.github.gokolo.personaldashboard.data.dao.UserDAO;
-import com.github.gokolo.personaldashboard.data.dto.UserDTO;
+import com.github.gokolo.personaldashboard.entities.UserEntity;
 
 /**
  * This Servlet handles login requests. It forwards GET requests to the login
@@ -51,7 +51,7 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("username");
         LOG.info("Authenticating user with name: {}", username);
         String password = request.getParameter("password");
-        UserDTO userDTO = userDAO.findByUsernamePassword(username, password);
+        UserEntity userDTO = userDAO.findByUsernamePassword(username, password);
 
         if (userDTO == null) {
             request.setAttribute("message", "Invalid username or password!");

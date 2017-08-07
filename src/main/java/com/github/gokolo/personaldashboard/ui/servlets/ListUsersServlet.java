@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.github.gokolo.personaldashboard.data.dao.UserDAO;
-import com.github.gokolo.personaldashboard.data.dto.UserDTO;
+import com.github.gokolo.personaldashboard.entities.UserEntity;
 
 /**
  * This Servlet handles requests to find all users. It forwards GET requests to
@@ -45,7 +45,7 @@ public class ListUsersServlet extends HttpServlet {
      */
     public void doGet(final HttpServletRequest request, final HttpServletResponse response)
             throws IOException, ServletException {
-        List<UserDTO> userDTOCollection = userDAO.findAll();
+        List<UserEntity> userDTOCollection = userDAO.findAll();
         request.setAttribute("userDTO", userDTOCollection);
         request.getRequestDispatcher("/usersPage").forward(request, response);
     }

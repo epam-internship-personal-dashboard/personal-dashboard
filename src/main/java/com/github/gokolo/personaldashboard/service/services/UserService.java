@@ -10,7 +10,7 @@ import com.github.gokolo.personaldashboard.service.models.UserVO;
  * @author Grace_Okolo
  * @version 0.4.0
  * @since 01/08/2017
- * @see com.github.gokolo.personaldashboard.data.dto.UserDTO
+ * @see com.github.gokolo.personaldashboard.entities.UserEntity
  */
 
 public interface UserService {

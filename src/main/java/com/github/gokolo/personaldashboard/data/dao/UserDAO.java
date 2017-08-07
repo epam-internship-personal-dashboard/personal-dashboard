@@ -2,27 +2,27 @@ package com.github.gokolo.personaldashboard.data.dao;
 
 import java.util.List;
 
-import com.github.gokolo.personaldashboard.data.dto.UserDTO;
+import com.github.gokolo.personaldashboard.entities.UserEntity;
 
 /**
  * This is a data layer interface holds the methods and actions for UserDTO.
  * 
  * @author Grace_Okolo
  *
- * @see com.github.gokolo.personaldashboard.data.dto.UserDTO
+ * @see com.github.gokolo.personaldashboard.entities.UserEntity
  */
 public interface UserDAO {
-    int save(UserDTO user);
+    int save(UserEntity user);
 
-    List<UserDTO> findAll();
+    List<UserEntity> findAll();
 
-    UserDTO findById(int id);
+    UserEntity findById(int id);
 
-    void modify(UserDTO user);
+    void modify(UserEntity user);
 
-    void delete(UserDTO user);
+    void delete(UserEntity user);
 
-    UserDTO findByUsernamePassword(String username, String password);
+    UserEntity findByUsernamePassword(String username, String password);
 
-    UserDTO findByUsername(String username);
+    UserEntity findByUsername(String username);
 }

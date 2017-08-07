@@ -1,4 +1,8 @@
-package com.github.gokolo.personaldashboard.data.dto;
+package com.github.gokolo.personaldashboard.entities;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +13,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public final class AddressDTO {
+@Entity
+public class AddressEntity {
+    @Id
+    @GeneratedValue
     private int id;
+
     private String street;
     private String houseNumber;
     private String zipCode;
