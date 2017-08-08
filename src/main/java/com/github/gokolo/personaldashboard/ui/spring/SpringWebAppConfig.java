@@ -1,7 +1,5 @@
 package com.github.gokolo.personaldashboard.ui.spring;
 
-import javax.sql.DataSource;
-
 import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,10 +11,8 @@ import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.github.gokolo.personaldashboard.service.converters.AddressVOConverter;
-import com.github.gokolo.personaldashboard.service.converters.UserDTOConverter;
+import com.github.gokolo.personaldashboard.service.converters.UserEntityConverter;
 import com.github.gokolo.personaldashboard.service.converters.UserVOConverter;
-import com.zaxxer.hikari.HikariConfig;
-import com.zaxxer.hikari.HikariDataSource;
 
 /**
  * Spring context configuration class. As of now, it only contains the component
@@ -31,19 +27,13 @@ import com.zaxxer.hikari.HikariDataSource;
 public class SpringWebAppConfig {
 
     @Autowired
-    private UserDTOConverter userDTOConverter;
+    private UserEntityConverter userEntityConverter;
 
     @Autowired
     private UserVOConverter userVOConverter;
 
     @Autowired
     private AddressVOConverter addressVOConverter;
-
-    @Bean
-    public DataSource dataSource() {
-        HikariConfig config = new HikariConfig("/hikari.properties");
-        return new HikariDataSource(config);
-    }
 
     @Bean
     public ViewResolver configureViewResolver() {
@@ -57,7 +47,7 @@ public class SpringWebAppConfig {
     @Bean
     public ConversionService conversionService() {
         DefaultConversionService service = new DefaultConversionService();
-        service.addConverter(userDTOConverter);
+        service.addConverter(userEntityConverter);
         service.addConverter(userVOConverter);
         service.addConverter(addressVOConverter);
         return service;

@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.entities;
+package com.github.gokolo.personaldashboard.data.entities;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

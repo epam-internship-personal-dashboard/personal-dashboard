@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
-import com.github.gokolo.personaldashboard.entities.UserEntity;
+import com.github.gokolo.personaldashboard.data.entities.UserEntity;
 import com.github.gokolo.personaldashboard.service.models.UserVO;
 
 @Service

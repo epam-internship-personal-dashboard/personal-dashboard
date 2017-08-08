@@ -80,6 +80,7 @@
         -->
         <dir.codequality>${project.basedir}/code-quality</dir.codequality>
         <version.java>1.8</version.java>
+        <version.javax>7.0</version.javax>
 
         <version.logback>1.2.3</version.logback>
         <version.slf4j>1.7.25</version.slf4j>
@@ -188,7 +189,6 @@
             <artifactId>spring-data-jpa</artifactId>
             <version>${version.spring.data}</version>
         </dependency>
-
         
         <!-- Spring Dependencies -->
         
@@ -211,11 +211,16 @@
         
         <!-- Hibernate Dependencies -->
         <dependency>
-	      <groupId>org.hibernate</groupId>
-	      <artifactId>hibernate-core</artifactId>
-	      <version>${version.hibernate.core}</version>
-	    </dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>${version.hibernate.core}</version>
+        </dependency>
         <!-- Hibernate Dependencies -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.javax}</version>
+        </dependency>
         
     </dependencies>
 
