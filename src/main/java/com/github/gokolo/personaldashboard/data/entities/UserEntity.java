@@ -2,6 +2,7 @@ package com.github.gokolo.personaldashboard.data.entities;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -34,7 +35,7 @@ public class UserEntity {
     private int id;
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private AddressEntity address;
 
     private String username;

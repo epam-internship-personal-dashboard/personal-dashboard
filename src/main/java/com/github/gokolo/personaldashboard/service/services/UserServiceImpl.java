@@ -33,15 +33,6 @@ public class UserServiceImpl implements UserService {
     private ConversionService conversionService;
 
     /**
-     * This method uses the
-     * {@link com.github.gokolo.personaldashboard.data.dao.UserDAO#findAll()}
-     * and
-     * {@link com.github.gokolo.personaldashboard.data.dao.AddressDAO#findAll()}
-     * methods to get the Address and User DTO objects. Then it uses
-     * {@link UserService#convertToVO(final UserDTO userDTO, final AddressDTO
-     * addressDTO)} to convert them into one UserVO object and adds all the
-     * objects to a List Collection of UserVOs.
-     * 
      * @return List Collection of type UserVO
      * @author Grace_Okolo
      * @version 0.4.0
@@ -58,14 +49,6 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * This method uses the
-     * {@link com.github.gokolo.personaldashboard.data.dao.UserDAO#findByUsername(String username)}
-     * and
-     * {@link com.github.gokolo.personaldashboard.data.dao.AddressDAO#findById(int id)}
-     * methods to get the User and Address DTO objects. Then it uses
-     * {@link UserService#convertToVO(final UserDTO userDTO, final AddressDTO
-     * addressDTO)} to convert them into one UserVO object.
-     * 
      * @return UserVO object
      * @author Grace_Okolo
      * @version 0.4.0

@@ -20,7 +20,7 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableJpaRepositories
+@EnableJpaRepositories(basePackages = "com.github.gokolo.personaldashboard.data.repository")
 @EnableTransactionManagement
 public class EntityManagerBeanConfig {
 
@@ -28,7 +28,7 @@ public class EntityManagerBeanConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setDataSource(dataSource());
-        em.setPackagesToScan(new String[] { "com.github.gokolo.personaldashboard.entities" });
+        em.setPackagesToScan(new String[] { "com.github.gokolo.personaldashboard.data.entities" });
 
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         em.setJpaVendorAdapter(vendorAdapter);
