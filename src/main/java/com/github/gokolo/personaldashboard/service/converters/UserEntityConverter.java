@@ -5,17 +5,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Service;
 
-import com.github.gokolo.personaldashboard.data.entities.AddressEntity;
-import com.github.gokolo.personaldashboard.service.models.AddressVO;
+import com.github.gokolo.personaldashboard.data.entities.UserEntity;
+import com.github.gokolo.personaldashboard.service.models.UserVO;
 
 @Service
-public class AddressVOConverter implements Converter<AddressVO, AddressEntity> {
+public class UserEntityConverter implements Converter<UserEntity, UserVO> {
     @Autowired
     private DozerBeanMapper mapper;
 
     @Override
-    public AddressEntity convert(final AddressVO addressVO) {
-        return mapper.map(addressVO, AddressEntity.class);
+    public UserVO convert(final UserEntity userEntity) {
+        return mapper.map(userEntity, UserVO.class);
     }
 
 }

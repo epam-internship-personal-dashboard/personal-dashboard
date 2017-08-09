@@ -80,6 +80,7 @@
         -->
         <dir.codequality>${project.basedir}/code-quality</dir.codequality>
         <version.java>1.8</version.java>
+        <version.javax>7.0</version.javax>
 
         <version.logback>1.2.3</version.logback>
         <version.slf4j>1.7.25</version.slf4j>
@@ -92,6 +93,7 @@
 
         <version.spring>4.3.10.RELEASE</version.spring>
         <version.spring.security>3.2.3.RELEASE</version.spring.security>
+        <version.spring.data>1.11.6.RELEASE</version.spring.data>
 
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.versions>2.3</version.plugin.versions>
@@ -101,6 +103,8 @@
         <version.plugin.checkstyle>2.17</version.plugin.checkstyle>
         <version.plugin.findbugs>3.0.4</version.plugin.findbugs>
         <version.plugin.pmd>3.8</version.plugin.pmd>
+        
+        <version.hibernate.core>5.2.10.Final</version.hibernate.core>
     </properties>
 
     <dependencies>
@@ -176,22 +180,46 @@
             <version>${version.spring.security}</version>
         </dependency>
         <dependency>
-		    <groupId>org.springframework</groupId>
-		    <artifactId>spring-jdbc</artifactId>
-		    <version>${version.spring}</version>
-		</dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-jdbc</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>${version.spring.data}</version>
+        </dependency>
         
         <!-- Spring Dependencies -->
+        
+        <!-- Lombok Dependencies -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.16.18</version>
             <scope>provided</scope>
         </dependency>
+        <!-- Lombok Dependencies -->
+        
+        <!-- Dozer Dependencies -->
         <dependency>
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
             <version>5.5.1</version>
+        </dependency>
+        <!-- Dozer Dependencies -->
+        
+        <!-- Hibernate Dependencies -->
+        <dependency>
+          <groupId>org.hibernate</groupId>
+          <artifactId>hibernate-core</artifactId>
+          <version>${version.hibernate.core}</version>
+        </dependency>
+        <!-- Hibernate Dependencies -->
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>${version.javax}</version>
         </dependency>
         
     </dependencies>

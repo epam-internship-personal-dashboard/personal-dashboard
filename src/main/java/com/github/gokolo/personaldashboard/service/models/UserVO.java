@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
  * @version 0.4.0
  * @since 01/08/2017
  *
- * @see com.github.gokolo.personaldashboard.data.dto.UserDTO
+ * @see com.github.gokolo.personaldashboard.data.entities.UserEntity
  * @see com.github.gokolo.personaldashboard.service.models.AddressVO
  */
 @Data
