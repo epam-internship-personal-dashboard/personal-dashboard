@@ -39,19 +39,18 @@
                     <f:input type="email" name="email" path="email" id="email"/>
                 </div>
                 <div>
-                    <label for="gender">Gender:</label>
-                    <f:input type="text" name="gender" path="gender" id ="gender"/>
+                    <label for="genderMale">Male:</label>
+                    <f:radiobutton name="gender" path="gender" value="MALE" id ="genderMale" checked="checked" />
+                    <label for="genderFemale">Female:</label>
+                    <f:radiobutton name="gender" path="gender" value="FEMALE" id ="genderFemale" />
                 </div>
-                <div>
-                    <label for="role">Role:</label>
-                    <f:input type="text" name="role" path="role" id ="role"/>
-                </div>
+                
                 <div>
                     <label for="houseNumber">House Number:</label>
                     <f:input type="text" name="houseNumber" path="address.houseNumber" id ="houseNumber" />
                 </div>
                 <div>
-                    <label for="">Street:</label>
+                    <label for="street">Street:</label>
                     <f:input type="text" name="street" path="address.street" id ="street" />
                 </div>
                 <div>
@@ -66,6 +65,8 @@
                     <label for="country">Country:</label>
                     <f:input type="text" name="country" path="address.country" id ="country" />
                 </div>
+                
+                <f:hidden path="role" value="ROLE_USER"/>
                 
             <input type="submit" value="Create Accont"/>
             </f:form>
