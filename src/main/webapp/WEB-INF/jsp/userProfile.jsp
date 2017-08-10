@@ -18,10 +18,7 @@
         
         <main>
             <div class="container">
-                <security:authorize access="isAuthenticated()">
-                    authenticated as <security:authentication property="principal.username" /> 
-                </security:authorize>
-                <%-- <p><span><strong>Full Name: </strong> </span>${user.name}</p>
+                <p><span><strong>Full Name: </strong> </span>${user.name}</p>
                 <p><span><strong>Username: </strong> </span>${user.username}</p>
                 <p><span><strong>Birthday: </strong> </span>${user.birthday}</p>
                 <p><span><strong>Email: </strong> </span>${user.email}</p>
@@ -31,7 +28,7 @@
                 <p><span><strong>Street: </strong> </span>${user.address.street}</p>
                 <p><span><strong>Zip Code: </strong> </span>${user.address.city}</p>
                 <p><span><strong>City: </strong> </span>${user.address.zipCode}</p>
-                <p><span><strong>Country: </strong> </span>${user.address.country}</p> --%>
+                <p><span><strong>Country: </strong> </span>${user.address.country}</p>
             </div>
         </main>
     </body>

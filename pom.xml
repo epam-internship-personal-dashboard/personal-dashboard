@@ -94,6 +94,7 @@
         <version.spring>4.3.10.RELEASE</version.spring>
         <version.spring.security>3.2.3.RELEASE</version.spring.security>
         <version.spring.data>1.11.6.RELEASE</version.spring.data>
+        <version.spring.security.taglibs>4.2.3.RELEASE</version.spring.security.taglibs>
 
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.versions>2.3</version.plugin.versions>
@@ -188,6 +189,11 @@
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
             <version>${version.spring.data}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-taglibs</artifactId>
+            <version>${version.spring.security.taglibs}</version>
         </dependency>
         
         <!-- Spring Dependencies -->
