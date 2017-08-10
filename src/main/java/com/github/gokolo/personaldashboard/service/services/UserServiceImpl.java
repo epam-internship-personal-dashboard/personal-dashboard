@@ -67,4 +67,10 @@ public class UserServiceImpl implements UserService {
         userRepo.delete(userEntity);
     }
 
+    @Override
+    public UserVO findByUsername(final String username) {
+        UserEntity userEntity = userRepo.findByUsername(username);
+        return conversionService.convert(userEntity, UserVO.class);
+    }
+
 }
