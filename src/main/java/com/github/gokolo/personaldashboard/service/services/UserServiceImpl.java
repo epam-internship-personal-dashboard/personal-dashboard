@@ -73,4 +73,10 @@ public class UserServiceImpl implements UserService {
         return conversionService.convert(userEntity, UserVO.class);
     }
 
+    @Override
+    public UserVO findByID(final int id) {
+        UserEntity userEntity = userRepo.findOne(id);
+        return conversionService.convert(userEntity, UserVO.class);
+    }
+
 }

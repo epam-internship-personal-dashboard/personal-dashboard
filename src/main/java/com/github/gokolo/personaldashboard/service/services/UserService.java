@@ -22,4 +22,7 @@ public interface UserService {
     void save(UserVO userVO);
 
     UserVO findByUsername(String username);
+
+    UserVO findByID(int id);
+
 }
