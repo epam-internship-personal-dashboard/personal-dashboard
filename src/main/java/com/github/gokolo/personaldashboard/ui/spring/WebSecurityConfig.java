@@ -17,21 +17,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.csrf()
-            .disable()
-            .authorizeRequests()
-                .antMatchers("/userProfile").hasRole("USER")
-            .and()
-                .formLogin()
-                .loginPage("/")
-                .usernameParameter("username")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/userProfile")
-                .loginProcessingUrl("/login")
-                .failureUrl("/login.html?error=true")
-            .and()
-                .logout()
-                .logoutSuccessUrl("/");
+        http.csrf().disable().authorizeRequests().antMatchers("/userProfile").hasRole("USER").and().formLogin()
+                .loginPage("/").usernameParameter("username").passwordParameter("password")
+                .defaultSuccessUrl("/userProfile").loginProcessingUrl("/login").failureUrl("/login.html?error=true")
+                .and().logout().logoutSuccessUrl("/");
     }
 
     @Override
@@ -40,4 +29,5 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .usersByUsernameQuery("select username,password, enabled from user where username=?")
                 .authoritiesByUsernameQuery("select username, role from user where username=?");
     }
+
 }
