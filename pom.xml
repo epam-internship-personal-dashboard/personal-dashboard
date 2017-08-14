@@ -87,6 +87,7 @@
 
         <version.mysql.connector>6.0.6</version.mysql.connector>
         <version.hikaricp>2.6.2</version.hikaricp>
+        <version.hibernate.core>5.2.10.Final</version.hibernate.core>
 
         <version.servlet>3.1.0</version.servlet>
         <version.jstl>1.2</version.jstl>
@@ -96,6 +97,8 @@
         <version.spring.data>1.11.6.RELEASE</version.spring.data>
         <version.spring.security.taglibs>4.2.3.RELEASE</version.spring.security.taglibs>
 
+        <version.jackson>2.9.0</version.jackson>
+
         <version.plugin.compiler>3.1</version.plugin.compiler>
         <version.plugin.versions>2.3</version.plugin.versions>
         <version.plugin.release>2.5.3</version.plugin.release>
@@ -104,9 +107,8 @@
         <version.plugin.checkstyle>2.17</version.plugin.checkstyle>
         <version.plugin.findbugs>3.0.4</version.plugin.findbugs>
         <version.plugin.pmd>3.8</version.plugin.pmd>
-        <version.jackson>2.9.0</version.jackson>
-        
-        <version.hibernate.core>5.2.10.Final</version.hibernate.core>
+
+        <version.plugin.jetty>9.4.6.v20170531</version.plugin.jetty>
     </properties>
 
     <dependencies>
@@ -196,9 +198,9 @@
             <artifactId>spring-security-taglibs</artifactId>
             <version>${version.spring.security.taglibs}</version>
         </dependency>
-        
+
         <!-- Spring Dependencies -->
-        
+
         <!-- Lombok Dependencies -->
         <dependency>
             <groupId>org.projectlombok</groupId>
@@ -207,7 +209,7 @@
             <scope>provided</scope>
         </dependency>
         <!-- Lombok Dependencies -->
-        
+
         <!-- Dozer Dependencies -->
         <dependency>
             <groupId>net.sf.dozer</groupId>
@@ -215,7 +217,7 @@
             <version>5.5.1</version>
         </dependency>
         <!-- Dozer Dependencies -->
-        
+
         <!-- Hibernate Dependencies -->
         <dependency>
           <groupId>org.hibernate</groupId>
@@ -230,17 +232,17 @@
         </dependency>
         <!-- Jackson Dependencies -->
         <dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-core</artifactId>
-		    <version>${version.jackson}</version>
-		</dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${version.jackson}</version>
+        </dependency>
         <dependency>
-		    <groupId>com.fasterxml.jackson.core</groupId>
-		    <artifactId>jackson-databind</artifactId>
-		    <version>${version.jackson}</version>
-		</dependency>
-		<!-- Jackson Dependencies -->
-        
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${version.jackson}</version>
+        </dependency>
+        <!-- Jackson Dependencies -->
+
     </dependencies>
 
     <build>
@@ -333,6 +335,23 @@
                 </configuration>
             </plugin>
             <!-- /Code Quality Plugins -->
+
+            <!-- Web Plugins -->
+            <plugin>
+                <groupId>org.eclipse.jetty</groupId>
+                <artifactId>jetty-maven-plugin</artifactId>
+                <version>${version.plugin.jetty}</version>
+                <configuration>
+                    <scanIntervalSeconds>2</scanIntervalSeconds>
+                    <httpConnector>
+                        <port>9090</port>
+                    </httpConnector>
+                    <webApp>
+                        <contextPath>/personal-dashboard</contextPath>
+                    </webApp>
+                </configuration>
+            </plugin>
+            <!-- /Web Plugins -->
         </plugins>
     </build>
 
