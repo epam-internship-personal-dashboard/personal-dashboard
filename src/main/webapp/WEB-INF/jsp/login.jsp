@@ -5,6 +5,7 @@
     <%@ include file = "header.jsp" %>
     <body>
         <header>
+            <div id="logo-div"></div>
             <h1>PERSONAL DASHBOARD</h1>
         </header>
         <main>
