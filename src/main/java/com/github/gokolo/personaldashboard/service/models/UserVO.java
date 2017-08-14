@@ -33,6 +33,7 @@ public class UserVO {
     private String password;
     private Date birthday;
     private String email;
+    private int enabled;
     private Gender gender;
     private Role role;
 }
