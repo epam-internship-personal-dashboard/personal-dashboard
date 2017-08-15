@@ -19,8 +19,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(final HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests().antMatchers("/userProfile").hasRole("USER").and().formLogin()
                 .loginPage("/").usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/userProfile").loginProcessingUrl("/login").failureUrl("/login.html?error=true")
-                .and().logout().logoutSuccessUrl("/");
+                .defaultSuccessUrl("/userProfile").loginProcessingUrl("/login").failureUrl("/?error=true").and()
+                .logout().logoutSuccessUrl("/");
     }
 
     @Override
