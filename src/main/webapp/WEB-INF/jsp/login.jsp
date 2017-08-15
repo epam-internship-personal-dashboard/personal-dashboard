@@ -4,21 +4,30 @@
 <html>
     <%@ include file = "header.jsp" %>
     <body>
-        <header>
+        <header id="header">
+            <div id="logo-div"><span id="material-icon-acct" class="material-icons">account_circle</span></div>
             <h1>PERSONAL DASHBOARD</h1>
         </header>
-        <main>
+        <main id="container">
             <div class="login-container">
-              <form action="${pageContext.request.contextPath}/login" method="post">  
-                <label for="username">Userame:</label>
-                <input type="text" name="username" id ="username">
-                <label for="password">Password: </label>
-                <input type="password" name="password" id="password">
-            <input type="submit" value="login">  
-            </form>
-            <c:if test="${not empty message}">
-                <p id="msg">${message}</p>
-            </c:if>
+                <c:if test="${param.error}">
+                    <div class="div-msg">
+                        <span id="msg">Invalid username or password!</span>
+                    </div>
+                </c:if>
+                <form action="${pageContext.request.contextPath}/login" method="post">  
+                    <label for="username">Username:</label>
+                    <div class="div_texbox">
+                        <input type="text" class="input-text" name="username" id ="username">
+                    </div>
+                    <label for="password">Password: </label>
+                    <div class="div_texbox">
+                        <input type="password" class="input-text" name="password" id="password">
+                    </div>
+                    <div class="button_div">
+                        <input name="Submit" type="submit" value="Login" class="buttons" />
+                    </div>
+                </form>
             </div>
         </main>
     </body>
