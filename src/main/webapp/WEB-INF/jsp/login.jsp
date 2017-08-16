@@ -8,13 +8,15 @@
             <div id="logo-div"><span id="material-icon-acct" class="material-icons">account_circle</span></div>
             <h1>PERSONAL DASHBOARD</h1>
         </header>
-        <main id="container">
-            <div class="login-container">
+        <main class="container">
+            <div id="login-container">
+                <h1>Login</h1>
                 <c:if test="${param.error}">
                     <div class="div-msg">
                         <span id="msg">Invalid username or password!</span>
                     </div>
                 </c:if>
+                
                 <form action="${pageContext.request.contextPath}/login" method="post">  
                     <label for="username">Username:</label>
                     <div class="div_texbox">
