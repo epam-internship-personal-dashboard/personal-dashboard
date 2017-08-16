@@ -31,8 +31,6 @@ nav a {
     align-items: center;
 }
 
-
-
 label {
     width:140px;
     height:32px;
@@ -53,25 +51,21 @@ label {
     margin:0;
     padding:0;
 }
-#container {
-    width:750px;
-    margin:auto;
-    padding:10px;
-    display: flex;
-    
-}
-#login-container {
-    width:530px;
-    padding-top:30px;
-    float:left;
-    display: flex;
-    align-content: space-evenly;
-    
-}
+
 .clear {
     clear:both;
 }
 .div_texbox {
+    width:347px;
+    float:right;
+    height:35px;
+    margin-top:3px;
+    padding-top:5px;
+    padding-bottom:3px;
+    padding-left:5px;
+}
+
+.div_radio {
     width:347px;
     float:right;
     height:35px;
@@ -87,7 +81,7 @@ label {
     padding:3px 5px 3px 10px;
 }
 .input-text:focus, .username:hover {
-    background-color:#F0FFE6;
+    box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #logo-div {
@@ -129,7 +123,7 @@ label {
     cursor: pointer;
 }
 
-.login-container
+#login-container
 {
   position: absolute;
   margin: auto;
@@ -138,9 +132,29 @@ label {
   bottom: 0;
   left: 0;
   width: 500px;
-  height: 180px;
+  height: 250px;
   background-color: white;
   border-radius: 3px;
-  padding: 35px;
+  padding-bottom: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+#register-container
+{
+  position: absolute;
+  margin: auto;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 500px;
+  height: 700px;
+  background-color: white;
+  border-radius: 3px;
+  padding-bottom: 35px;
+  padding-left: 35px;
+  padding-right: 35px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
