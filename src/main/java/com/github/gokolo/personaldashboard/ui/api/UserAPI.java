@@ -1,4 +1,4 @@
-package com.github.gokolo.personaldashboard.ui.controller.api;
+package com.github.gokolo.personaldashboard.ui.api;
 
 import javax.validation.Valid;
 

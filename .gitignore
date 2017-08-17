@@ -21,3 +21,10 @@ logs/
 # RELEASE PLUGIN
 pom.xml.releaseBackup
 release.properties
+
+# UI
+node_modules/
+bower_components/
+
+**/resources/lib/
+**/resources/dist/
