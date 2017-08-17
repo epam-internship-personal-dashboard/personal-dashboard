@@ -18,11 +18,11 @@
                 </c:if>
                 
                 <form action="${pageContext.request.contextPath}/login" method="post">  
-                    <label for="username">Username:</label>
+                    <label class="label" for="username">Username:</label>
                     <div class="div_texbox">
                         <input type="text" class="input-text" name="username" id ="username">
                     </div>
-                    <label for="password">Password: </label>
+                    <label class="label" for="password">Password: </label>
                     <div class="div_texbox">
                         <input type="password" class="input-text" name="password" id="password">
                     </div>

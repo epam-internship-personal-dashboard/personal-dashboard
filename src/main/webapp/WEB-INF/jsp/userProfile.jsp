@@ -4,28 +4,68 @@
 <!DOCTYPE html>
 <html>
     <%@ include file = "header.jsp" %>
-    <body>
-        <header>
+    <body id="body-tag">
+        <header id="header">
+            <div id="logo-div"><span id="material-icon-acct" class="material-icons">account_circle</span></div>
             <h1>PERSONAL DASHBOARD</h1>
-            <nav>
-                <a href="${pageContext.request.contextPath}/logout">Logout</a>
-            </nav>
         </header>
         
-        <main>
-            <div class="container">
-                <p><span><strong>Full Name: </strong> </span>${user.name}</p>
-                <p><span><strong>Username: </strong> </span>${user.username}</p>
-                <p><span><strong>Birthday: </strong> </span>${user.birthday}</p>
-                <p><span><strong>Email: </strong> </span>${user.email}</p>
-                <p><span><strong>Gender: </strong> </span>${user.gender}</p>
-                <p><span><strong>Role: </strong> </span>${user.role}</p>
-                <p><span><strong>House Number: </strong> </span>${user.address.houseNumber}</p>
-                <p><span><strong>Street: </strong> </span>${user.address.street}</p>
-                <p><span><strong>Zip Code: </strong> </span>${user.address.city}</p>
-                <p><span><strong>City: </strong> </span>${user.address.zipCode}</p>
-                <p><span><strong>Country: </strong> </span>${user.address.country}</p>
+        <main id="container">
+            <div class="flex-container">
+              <div class="flex-item-1">
+                  <div class="notification">
+                      <div class="flex-item-1-2-3" id="photo">
+                        <img id="profile-avatar" src="https://wordsmith.org/words/images/avatar2_large.png" alt="Profile Avatar">
+                      </div>
+                      <div class="flex-item-1-2-3" id="alert">
+                       <span id="msg-icon" class="material-icons">email</span><span id="alert-icon">1</span>
+                      </div>
+                  </div>
+                  
+                  <div class="box">
+                    <div class="box-header">
+                        <h1>User Details</h1>
+                    </div>
+                    <div class="box-content">
+                       <div class="box-content-body">
+                           <div class="body-items">
+                                <p><span class="label-style">Full Name:  </span>${user.name}</p>
+                                <p><span class="label-style">Username:  </span>${user.username}</p>
+                                <p><span class="label-style">Role:  </span>${user.role}</p>
+                                <p><span class="label-style">Email:  </span>${user.email}</p>
+                           </div>
+                       </div>
+                       <div class="box-content-add">
+                           <span id="add-btn-1" class="box-add-btn material-icons">add_box</span>
+                       </div>
+                    </div>
+                  </div>
+              </div>
+             
+              <div class="flex-item-1">
+                <div class="box">
+                  <div class="box-header">
+                       <h1>To-Do List</h1>
+                    </div>
+                    <div class="box-content">
+                       <div class="box-content-body">
+                           <div class="body-items">
+                               <input type="checkbox" name="chk-item1" id="chk-item1" value="buyGroceries">
+                               <label class="label-style" for="chk-item1">Buy groceries</label>                      
+                           </div>
+                           <div class="body-items">
+                               <input type="checkbox" name="chk-item2" id="chk-item2" value="walkDog">
+                               <label class="label-style" for="chk-item2">Walk the dog</label>
+                           </div>
+                       </div>
+                       <div class="box-content-add">
+                           <span id="add-btn-2" class="box-add-btn material-icons">add_box</span>
+                       </div>
+                    </div>
+                </div>    
+              </div>
             </div>
+
         </main>
     </body>
 </html>

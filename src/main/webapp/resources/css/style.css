@@ -31,7 +31,7 @@ nav a {
     align-items: center;
 }
 
-label {
+.label {
     width:140px;
     height:32px;
     margin-top:3px;
@@ -141,7 +141,7 @@ label {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
-#register-container
+.long-container
 {
   position: absolute;
   margin: auto;
@@ -158,3 +158,10 @@ label {
   padding-right: 35px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+.label-style {
+    color:#666;
+    margin-right: 10px;
+    width: 20px;
+}
+
