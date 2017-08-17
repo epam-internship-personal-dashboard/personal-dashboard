@@ -13,65 +13,65 @@
             <h1>PERSONAL DASHBOARD</h1>
         </header>
         <main class="container">
-            <div id="register-container">
+            <div class="long-container">
               <h1>Create an Account</h1>
               <f:form action="${pageContext.request.contextPath}/register" method="post" modelAttribute="user">  
-                <label for="name">Full Name:</label>
+                <label class="label" for="name">Full Name:</label>
                 <div class="div_texbox">
                     <f:input type="text" name="name" path="name" class="input-text" id ="name"/>
                 </div>
                 
-                <label for="username">Username:</label>
+                <label class="label" for="username">Username:</label>
                 <div class="div_texbox">
                     <f:input type="text" class="input-text" name="username" path="username" id ="username"/>
                 </div>
                 
-                <label for="password">Password:</label>
+                <label class="label" for="password">Password:</label>
                 <div class="div_texbox">
                     <f:input type="password" name="password" class="input-text" path="password" id ="password"/>
                 </div>
                 
-                <label for="birthday">Birthday:</label>
+                <label class="label" for="birthday">Birthday:</label>
                 <div class="div_texbox">
                     <f:input type="date" name="birthday" class="input-text" path="birthday" id ="birthday"/>
                 </div>
                 
-                <label for="email">Email: </label>
+                <label class="label" for="email">Email: </label>
                 <div class="div_radio">
                     <f:input type="email" name="email" class="input-text" path="email" id="email"/>
                 </div>
                 
-                <label for="genderMale">Male:</label>
+                <label class="label" for="genderMale">Male:</label>
                 <div class="div_radio">
                     <f:radiobutton name="gender" class="input-radio" path="gender" value="MALE" id ="genderMale" checked="checked" />
                 </div>
                 
-                <label for="genderFemale">Female:</label>
+                <label class="label" for="genderFemale">Female:</label>
                 <div class="div_texbox">
                     <f:radiobutton name="gender" class="input-radio" path="gender" value="FEMALE" id ="genderFemale" />
                 </div>
                  
-                <label for="houseNumber">House Number:</label>
+                <label class="label" for="houseNumber">House Number:</label>
                 <div class="div_texbox">
                     <f:input type="text" name="houseNumber" class="input-text" path="address.houseNumber" id ="houseNumber" />
                 </div>
                 
-                <label for="street">Street:</label>
+                <label class="label" for="street">Street:</label>
                 <div class="div_texbox">
                     <f:input type="text" class="input-text" name="street" path="address.street" id ="street" />
                 </div>
                 
-                <label for="zipCode">Zip Code:</label>
+                <label class="label" for="zipCode">Zip Code:</label>
                 <div class="div_texbox">
                     <f:input type="text" name="zipCode" class="input-text" path="address.zipCode" id ="zipCode" />
                 </div>
                 
-                <label for="city">City:</label>
+                <label class="label" for="city">City:</label>
                 <div class="div_texbox">
                     <f:input type="text" name="city" class="input-text" path="address.city" id ="city" />
                 </div>
                 
-                <label for="country">Country:</label>
+                <label class="label" for="country">Country:</label>
                 <div class="div_texbox">
                     <f:input type="text" name="country" class="input-text" path="address.country" id ="country" />
                 </div>
