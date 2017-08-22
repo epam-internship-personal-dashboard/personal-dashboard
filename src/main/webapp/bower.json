@@ -14,11 +14,10 @@
   ],
   "dependencies": {
     "angular": "1.6.5",
-    "angular-route": "1.6.4",
+    "angular-route": "1.6.5",
     "jquery": "2.2.2"
   },
   "resolutions": {
-    "angular": "1.6.5",
     "jquery": "2.2.2"
   }
 }
