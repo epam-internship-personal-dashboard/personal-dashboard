@@ -1,0 +1,22 @@
+<div id="login-container">
+    <h1 id="login-h1">Login</h1>   
+    
+    <div ng-if="ctrl.msg" class="div-msg">
+        <span id="msg">Invalid username or password!</span>
+    </div>
+    
+    <form id="login-form" action="login" method="post">  
+        <div class="div-input-label">
+            <label class="label" for="username">Username:</label>
+            <input type="text" class="input-text" name="username" id ="username">
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="password">Password: </label>
+            <input type="password" class="input-text" name="password" id="password">
+        </div>
+        
+        <pd-button btn-text="Login"></pd-button>
+        
+    </form>
+</div>

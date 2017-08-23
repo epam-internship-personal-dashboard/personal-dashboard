@@ -1,7 +1,6 @@
 #body-tag {
     display: flex-inline;
     flex-flow: column;
-    align-items: center;
 }
 
 #header, #container {

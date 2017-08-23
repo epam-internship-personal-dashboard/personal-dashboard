@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <base href="/personal-dashboard/">
         <title>Personal Dashboard</title>
         <link href="resources/dist/pd.css" rel="stylesheet"/>
         <link href="resources/lib/vendors.css" rel="stylesheet"/>
     </head>
     <body ng-app="pd.app">
         <pd-header></pd-header>
+        <main ng-view></main>
         <script src="resources/lib/vendors.min.js"></script>
         <script src="resources/dist/pd-views.min.js"></script>
         <script src="resources/dist/pd.js"></script>
