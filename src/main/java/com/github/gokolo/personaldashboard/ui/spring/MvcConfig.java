@@ -1,13 +1,13 @@
 package com.github.gokolo.personaldashboard.ui.spring;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-
-import java.util.HashSet;
-import java.util.Set;
 
 @EnableWebMvc
 @Configuration
@@ -19,7 +19,7 @@ public class MvcConfig extends WebMvcConfigurerAdapter {
         PAGES = new HashSet<>();
         PAGES.add("/");
         PAGES.add("/register");
-        PAGES.add("/dashboard");
+        PAGES.add("/userProfile");
     }
 
     @Override
