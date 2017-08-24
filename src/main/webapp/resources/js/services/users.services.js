@@ -1,10 +1,10 @@
 (function () {
     'use strict';
-
+    var path = 'api/users';
     angular.module('pd.services').service('pdUserService', function($http){
 
         this.getAll = function(successCallback, errorCallback) {
-            $http.get('/api/users').then(function(responseObj) {
+            $http.get(path).then(function(responseObj) {
                 successCallback(responseObj.data);
             }, function(errorObj) {
                 errorCallback(errorObj.data);
@@ -12,17 +12,17 @@
         };
 
         this.getUser = function(id, successCallback, errorCallback) {
-            $http.get('/api/users/'+id).then(function(responseObj) {
+            $http.get(path+id).then(function(responseObj) {
                 successCallback(responseObj.data);
             }, function(errorObj) {
                 errorCallback(errorObj.data);
             });
         };
 
-        this.saveUser = function(user, successCallback, errorCallback) {
+        this.save = function(user, successCallback, errorCallback) {
             var request = {
                 method: 'POST',
-                url: '/api/users',
+                url: path,
                 data: user
             };
 
@@ -34,15 +34,15 @@
         };
 
         this.deleteUser =  function(id, successCallback, errorCallback){
-            $http.delete('/api/users/'+id).then(function(responseObj) {
+            $http.delete(path+id).then(function(responseObj) {
                 successCallback(responseObj.data);
             }, function(errorObj) {
                 errorCallback(errorObj.data);
             });
         };
 
-        this.updateUser =  function(id, successCallback, errorCallback) {
-            $http.put('/api/users/' + id).then(function(responseObj) {
+        this.updateUser =  function(id, user, successCallback, errorCallback) {
+            $http.put(path + id, user).then(function(responseObj) {
                 successCallback(responseObj.data);
             }, function(errorObj) {
                 errorCallback(errorObj.data);
