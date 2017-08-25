@@ -5,11 +5,11 @@
         templateUrl: '/views/login.view.html',
         controllerAs: 'ctrl',
         controller: function($location){
-        	var ctrl = this;
-        	ctrl.$onInit = function (){
-        		var searchObj = $location.search();
-        		ctrl.msg = searchObj.hasOwnProperty("error");
-        	};
+            var ctrl = this;
+            ctrl.$onInit = function (){
+                var searchObj = $location.search();
+                ctrl.msg = searchObj.hasOwnProperty("error");
+            };
         }
     };
 

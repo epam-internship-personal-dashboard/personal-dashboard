@@ -5,7 +5,7 @@
         templateUrl: '/views/button.view.html',
         controllerAs: 'ctrl',
         bindings: {
-        	btnText: '@'
+            btnText: '@'
         }
     };
 
