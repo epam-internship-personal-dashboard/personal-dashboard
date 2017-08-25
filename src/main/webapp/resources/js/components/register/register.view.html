@@ -1,3 +1,70 @@
-<div id="reg-container">
-    Registration stuff
+<div class="container">
+    <h1>Create an Account</h1>
+    
+    <div ng-if="ctrl.msg" class="div-msg">
+        <span class="msg">There was an error with the registration... Please try again later... Thank you :)</span>
+    </div>
+    
+    <form ng-submit="ctrl.submit()">
+        <div class="div-input-label">
+            <label class="label" for="name">Full Name:</label>
+            <input type="text" name="name" ng-model="ctrl.user.name" required class="input-text" id ="name"/>
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="username">Username:</label>
+            <input type="text" class="input-text" name="username" required  ng-model="ctrl.user.username" id ="username"/>
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="password">Password:</label>
+            <input type="password" name="password" required class="input-text" ng-model="ctrl.user.password" id ="password"/>
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="birthday">Birthday:</label>
+            <input type="date" name="birthday" required class="input-text" ng-model="ctrl.user.birthday" id ="birthday"/>
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="email">Email: </label>
+            <input type="email" name="email" required class="input-text" ng-model="ctrl.user.email" id="email"/>
+        </div>
+        
+        <div class="div-radio-label">
+            <label class="label-radio" for="genderMale">Male</label>
+            <input type="radio" name="gender" required class="input-radio" ng-model="ctrl.user.gender" value="MALE" id ="genderMale" checked="checked" />
+        
+            <label class="label-radio" for="genderFemale">Female</label>
+            <input type="radio" name="gender" class="input-radio" ng-model="ctrl.user.gender" value="FEMALE" id ="genderFemale"  />
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="houseNumber">House Number:</label>
+            <input type="text" name="houseNumber" required class="input-text" ng-model="ctrl.user.address.houseNumber" id ="houseNumber" />
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="street">Street:</label>
+            <input type="text" class="input-text" required name="street" ng-model="ctrl.user.address.street" id ="street" />
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="zipCode">Zip Code:</label>
+            <input type="text" name="zipCode" required class="input-text" ng-model="ctrl.user.address.zipCode" id ="zipCode" />
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="city">City:</label>
+            <input type="text" name="city" required class="input-text" ng-model="ctrl.user.address.city" id ="city" />
+        </div>
+        
+        <div class="div-input-label">
+            <label class="label" for="country">Country:</label>
+            <input type="text" name="country" required class="input-text" ng-model="ctrl.user.address.country" id ="country" />
+        </div>
+        
+        
+        <pd-button btn-text="Create Account"></pd-button>
+    </form>
 </div>

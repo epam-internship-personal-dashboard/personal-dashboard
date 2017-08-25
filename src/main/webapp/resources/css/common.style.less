@@ -1,5 +1,19 @@
+form {
+    display: flex;
+    align-items: flex-end;
+    flex-flow: column;
+}
+
+.container {
+    display: flex;
+    flex-grow:1;
+    flex-flow: column;
+    background-color: #ffffff;
+    padding: 50px;
+}
+
 .div-msg {
-    background-color: indianred;
+    background-color: #cd5c5c;
     height:40px;
     display: flex;
     justify-content: center;
@@ -14,6 +28,34 @@
     padding-top:11px;
     padding-left:6px;
     float:left;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 115%;
+    letter-spacing: -1px;
+    font-weight: normal;
+    line-height: 1.1;
+    color:#666;
+}
+
+.div-input-label {
+    display: flex;
+    align-items: center;
+}
+
+.div-radio-label {
+    display: flex;
+    align-items: center;
+}
+
+.input-radio {
+    margin-right: 50px;
+}
+
+.label-radio{
+    height:32px;
+    margin-top:3px;
+    margin-right:2px;
+    padding-top:11px;
+    padding-left:6px;
     font-family:Arial, Helvetica, sans-serif;
     font-size: 115%;
     letter-spacing: -1px;
@@ -39,15 +81,6 @@
     clear:both;
 }
 
-.div_texbox {
-    width:347px;
-    float:right;
-    height:35px;
-    margin-top:3px;
-    padding-top:5px;
-    padding-bottom:3px;
-    padding-left:5px;
-}
 
 .buttons {  
     font-size:12px; 
@@ -64,15 +97,6 @@
     cursor: pointer;
 }
 
-.div_radio {
-    width:347px;
-    float:right;
-    height:35px;
-    margin-top:3px;
-    padding-top:5px;
-    padding-bottom:3px;
-    padding-left:5px;
-}
 
 .input-text:focus, .username:hover {
     box-shadow: 0 4px 8px 0 rgba(255, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
