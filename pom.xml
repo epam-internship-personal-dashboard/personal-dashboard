@@ -4,7 +4,7 @@
 
     <groupId>com.github.gokolo</groupId>
     <artifactId>go-personal-dashboard</artifactId>
-    <version>0.21.0-SNAPSHOT</version>
+    <version>0.22.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
     <name>Personal Dashboard</name>
